@@ -2,6 +2,6 @@
 
 ## Em desenvolvimento
 
-- Instale as dependências
+- Instale as dependências e codifique comigo ❤️
 ```
 python -m pip install -r requirements.txt
