@@ -775,7 +775,7 @@ QProgressBar::chunk {
             </property>
             <property name="font">
              <font>
-              <family>Segoe Script</family>
+              <family>Arial Black</family>
               <pointsize>10</pointsize>
               <bold>true</bold>
              </font>
@@ -785,6 +785,9 @@ QProgressBar::chunk {
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+            <property name="invertedAppearance">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -851,7 +854,7 @@ QProgressBar::chunk {
             </property>
             <property name="font">
              <font>
-              <family>Segoe Script</family>
+              <family>Arial Black</family>
               <pointsize>10</pointsize>
               <bold>true</bold>
              </font>

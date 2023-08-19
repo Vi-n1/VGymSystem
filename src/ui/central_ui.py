@@ -466,12 +466,13 @@ class Ui_JanelaCentral(object):
         self.progress_bar_memoria.setObjectName('progress_bar_memoria')
         self.progress_bar_memoria.setMaximumSize(QSize(50, 30))
         font1 = QFont()
-        font1.setFamilies(['Segoe Script'])
+        font1.setFamilies(['Arial Black'])
         font1.setPointSize(10)
         font1.setBold(True)
         self.progress_bar_memoria.setFont(font1)
         self.progress_bar_memoria.setValue(0)
         self.progress_bar_memoria.setAlignment(Qt.AlignCenter)
+        self.progress_bar_memoria.setInvertedAppearance(False)
 
         self.horizontalLayout_3.addWidget(self.progress_bar_memoria)
 
