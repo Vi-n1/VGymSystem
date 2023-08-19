@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="grobal">
+    <file>img/pix.png</file>
+    <file>img/imprimir.png</file>
     <file>img/grafico.png</file>
     <file>img/grafico-hover.png</file>
     <file>img/grafico-press.png</file>
@@ -24,6 +26,11 @@
     <file>img/logar.png</file>
   </qresource>
   <qresource prefix="cadastro">
+    <file>img/excluir-aluno.png</file>
+    <file>img/procurar-aluno.png</file>
+    <file>img/procurar-aluno-hover.png</file>
+    <file>img/procurar-aluno-press.png</file>
+    <file>img/lupa.png</file>
     <file>img/remove-aluno.png</file>
     <file>img/remove-aluno-hover.png</file>
     <file>img/remove-aluno-press.png</file>

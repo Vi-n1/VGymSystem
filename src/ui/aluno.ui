@@ -71,7 +71,7 @@ QPushButton::pressed{
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pb_pagina_pagamento">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -108,7 +108,7 @@ QPushButton::pressed{
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="pb_pagina_ad_aluno">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -145,7 +145,7 @@ QPushButton::pressed{
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="pb_pagina_excluir_aluno">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -170,6 +170,37 @@ QPushButton::hover{
 }
 QPushButton::pressed{
 	border-image: url(:/cadastro/img/remove-aluno-press.png);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_pagina_pesquisar_aluno">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>15</y>
+       <width>52</width>
+       <height>47</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>52</width>
+       <height>47</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	border-image: url(:/cadastro/img/procurar-aluno.png);
+	background-color: rgba(0, 0, 0, 0);
+}
+QPushButton::hover{
+	border-image: url(:/cadastro/img/procurar-aluno-hover.png);
+}
+QPushButton::pressed{
+	border-image: url(:/cadastro/img/procurar-aluno-press.png);
 }</string>
      </property>
      <property name="text">
@@ -208,9 +239,10 @@ QPushButton::pressed{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel{
+      <string notr="true">QLabel, QCheckBox{
 	color: rgb(255, 255, 255);
 	font: 10pt &quot;Arial&quot;;
+	color: rgb(80, 250, 123);
 }
 QPushButton{
 	border-radius: 5%;
@@ -225,8 +257,125 @@ QPushButton::pressed{
 	border: 2px solid rgb(40, 42, 54);
 	background-color: rgb(173, 82, 135);
 }
-</string>
+QLineEdit{
+	font: 700 10pt &quot;Arial&quot;;
+	color: rgb(98, 114, 164);
+	border: none;
+	border-bottom: 2px solid  rgb(189, 147, 249);
+	background-color: rgba(189, 147, 249, 0.1);
+}
+QLineEdit::hover{
+	border-bottom: 2px solid  rgb(208, 99, 162);
+}
+QDateEdit{
+	color: rgb(98, 114, 164);
+}</string>
      </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="page">
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>465</x>
+         <y>250</y>
+         <width>350</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 600 italic 36pt &quot;Sitka Small Semibold&quot;;
+color: rgb(255, 184, 108);</string>
+       </property>
+       <property name="text">
+        <string>Pagamentos</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_pagamentos">
+       <property name="geometry">
+        <rect>
+         <x>465</x>
+         <y>320</y>
+         <width>351</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Matrícula/CPF</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_pesquisar_pagamentos">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>320</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/cadastro/img/lupa.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tw_pagamentos">
+       <property name="geometry">
+        <rect>
+         <x>34</x>
+         <y>350</y>
+         <width>1211</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:0;</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_imprimir_boleto">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>430</y>
+         <width>111</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Imprimir boleto</string>
+       </property>
+       <property name="icon">
+        <iconset resource="img.qrc">
+         <normaloff>:/grobal/img/imprimir.png</normaloff>:/grobal/img/imprimir.png</iconset>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_pagar_pix">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>430</y>
+         <width>101</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pagar com Pix</string>
+       </property>
+       <property name="icon">
+        <iconset resource="img.qrc">
+         <normaloff>:/grobal/img/pix.png</normaloff>:/grobal/img/pix.png</iconset>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label">
        <property name="geometry">
@@ -244,7 +393,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="le_nome_aluno">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -273,7 +422,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QDateEdit" name="dateEdit">
+      <widget class="QDateEdit" name="de_data_nascimento">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -305,7 +454,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="le_cpf_aluno">
        <property name="geometry">
         <rect>
          <x>480</x>
@@ -340,7 +489,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="le_celular_aluno">
        <property name="geometry">
         <rect>
          <x>640</x>
@@ -368,7 +517,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="cb_whatsapp_aluno">
        <property name="geometry">
         <rect>
          <x>830</x>
@@ -381,7 +530,7 @@ QPushButton::pressed{
         <string>Whatsapp</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_2">
+      <widget class="QCheckBox" name="cb_responsavel">
        <property name="geometry">
         <rect>
          <x>830</x>
@@ -394,7 +543,7 @@ QPushButton::pressed{
         <string>Responsável</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pb_ad_foto_aluno">
        <property name="geometry">
         <rect>
          <x>940</x>
@@ -415,7 +564,7 @@ QPushButton::pressed{
         <string/>
        </property>
       </widget>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="l_foto_aluno">
        <property name="geometry">
         <rect>
          <x>940</x>
@@ -444,7 +593,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="le_endereco_aluno">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -452,6 +601,9 @@ QPushButton::pressed{
          <width>271</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_7">
@@ -470,7 +622,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_5">
+      <widget class="QLineEdit" name="le_bairro_aluno">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -499,7 +651,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_6">
+      <widget class="QLineEdit" name="le_cep_aluno">
        <property name="geometry">
         <rect>
          <x>480</x>
@@ -507,6 +659,9 @@ QPushButton::pressed{
          <width>131</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_9">
@@ -525,7 +680,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_7">
+      <widget class="QLineEdit" name="le_cidade_aluno">
        <property name="geometry">
         <rect>
          <x>640</x>
@@ -533,6 +688,9 @@ QPushButton::pressed{
          <width>171</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_10">
@@ -551,7 +709,7 @@ QPushButton::pressed{
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_8">
+      <widget class="QLineEdit" name="le_email_aluno">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -559,6 +717,9 @@ QPushButton::pressed{
          <width>271</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox">
@@ -655,7 +816,7 @@ QPushButton::pressed{
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_9">
+       <widget class="QLineEdit" name="le_nome_responsavel">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -663,6 +824,9 @@ QPushButton::pressed{
           <width>271</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="label_15">
@@ -729,7 +893,7 @@ QPushButton::pressed{
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QDateEdit" name="dateEdit_2">
+       <widget class="QDateEdit" name="de_data_nascimento_responsavel">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -748,7 +912,7 @@ QPushButton::pressed{
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_10">
+       <widget class="QLineEdit" name="le_cpf_responsavel">
         <property name="geometry">
          <rect>
           <x>480</x>
@@ -757,8 +921,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_11">
+       <widget class="QLineEdit" name="le_celular_responsavel">
         <property name="geometry">
          <rect>
           <x>640</x>
@@ -767,8 +934,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_12">
+       <widget class="QLineEdit" name="le_endereco_responsavel">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -777,8 +947,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_13">
+       <widget class="QLineEdit" name="le_bairro_responsavel">
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -787,8 +960,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_14">
+       <widget class="QLineEdit" name="le_cep_responsavel">
         <property name="geometry">
          <rect>
           <x>480</x>
@@ -797,8 +973,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_15">
+       <widget class="QLineEdit" name="le_cidade_responsavel">
         <property name="geometry">
          <rect>
           <x>640</x>
@@ -806,6 +985,9 @@ QPushButton::pressed{
           <width>171</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="label_19">
@@ -818,13 +1000,13 @@ QPushButton::pressed{
          </rect>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>E-mail</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_16">
+       <widget class="QLineEdit" name="le_email_responsavel">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -833,8 +1015,11 @@ QPushButton::pressed{
           <height>22</height>
          </rect>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
        </widget>
-       <widget class="QLabel" name="label_20">
+       <widget class="QLabel" name="l_foto_responsavel">
         <property name="geometry">
          <rect>
           <x>940</x>
@@ -847,7 +1032,7 @@ QPushButton::pressed{
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="pb_ad_foto_responsavel">
         <property name="geometry">
          <rect>
           <x>940</x>
@@ -868,52 +1053,220 @@ QPushButton::pressed{
          <string/>
         </property>
        </widget>
-       <zorder>label_20</zorder>
+       <zorder>l_foto_responsavel</zorder>
        <zorder>label_11</zorder>
        <zorder>label_12</zorder>
        <zorder>label_13</zorder>
        <zorder>label_14</zorder>
-       <zorder>lineEdit_9</zorder>
+       <zorder>le_nome_responsavel</zorder>
        <zorder>label_15</zorder>
        <zorder>label_16</zorder>
        <zorder>label_17</zorder>
        <zorder>label_18</zorder>
-       <zorder>dateEdit_2</zorder>
-       <zorder>lineEdit_10</zorder>
-       <zorder>lineEdit_11</zorder>
-       <zorder>lineEdit_12</zorder>
-       <zorder>lineEdit_13</zorder>
-       <zorder>lineEdit_14</zorder>
-       <zorder>lineEdit_15</zorder>
+       <zorder>de_data_nascimento_responsavel</zorder>
+       <zorder>le_cpf_responsavel</zorder>
+       <zorder>le_celular_responsavel</zorder>
+       <zorder>le_endereco_responsavel</zorder>
+       <zorder>le_bairro_responsavel</zorder>
+       <zorder>le_cep_responsavel</zorder>
+       <zorder>le_cidade_responsavel</zorder>
        <zorder>label_19</zorder>
-       <zorder>lineEdit_16</zorder>
-       <zorder>pushButton_5</zorder>
+       <zorder>le_email_responsavel</zorder>
+       <zorder>pb_ad_foto_responsavel</zorder>
       </widget>
       <zorder>label</zorder>
-      <zorder>lineEdit</zorder>
+      <zorder>le_nome_aluno</zorder>
       <zorder>label_2</zorder>
-      <zorder>dateEdit</zorder>
+      <zorder>de_data_nascimento</zorder>
       <zorder>label_3</zorder>
-      <zorder>lineEdit_2</zorder>
+      <zorder>le_cpf_aluno</zorder>
       <zorder>label_4</zorder>
-      <zorder>lineEdit_3</zorder>
-      <zorder>checkBox</zorder>
-      <zorder>checkBox_2</zorder>
-      <zorder>label_5</zorder>
-      <zorder>pushButton_4</zorder>
+      <zorder>le_celular_aluno</zorder>
+      <zorder>cb_whatsapp_aluno</zorder>
+      <zorder>cb_responsavel</zorder>
+      <zorder>l_foto_aluno</zorder>
+      <zorder>pb_ad_foto_aluno</zorder>
       <zorder>label_6</zorder>
-      <zorder>lineEdit_4</zorder>
+      <zorder>le_endereco_aluno</zorder>
       <zorder>label_7</zorder>
-      <zorder>lineEdit_5</zorder>
+      <zorder>le_bairro_aluno</zorder>
       <zorder>label_8</zorder>
-      <zorder>lineEdit_6</zorder>
+      <zorder>le_cep_aluno</zorder>
       <zorder>label_9</zorder>
-      <zorder>lineEdit_7</zorder>
+      <zorder>le_cidade_aluno</zorder>
       <zorder>label_10</zorder>
-      <zorder>lineEdit_8</zorder>
+      <zorder>le_email_aluno</zorder>
       <zorder>groupBox</zorder>
      </widget>
-     <widget class="QWidget" name="page_2"/>
+     <widget class="QWidget" name="page_3">
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>465</x>
+         <y>250</y>
+         <width>350</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 600 italic 36pt &quot;Sitka Small Semibold&quot;;
+color: rgb(255, 184, 108);</string>
+       </property>
+       <property name="text">
+        <string>Excluir aluno</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_excluir_aluno">
+       <property name="geometry">
+        <rect>
+         <x>466</x>
+         <y>319</y>
+         <width>351</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Matrícula</string>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tw_exibir_excluir_aluno">
+       <property name="geometry">
+        <rect>
+         <x>34</x>
+         <y>350</y>
+         <width>1211</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:0;</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_excluir_aluno">
+       <property name="geometry">
+        <rect>
+         <x>602</x>
+         <y>430</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Excluir</string>
+       </property>
+       <property name="icon">
+        <iconset resource="img.qrc">
+         <normaloff>:/cadastro/img/excluir-aluno.png</normaloff>:/cadastro/img/excluir-aluno.png</iconset>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_pesquisar_excluir">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>320</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/cadastro/img/lupa.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <zorder>le_excluir_aluno</zorder>
+      <zorder>label_20</zorder>
+      <zorder>tw_exibir_excluir_aluno</zorder>
+      <zorder>pb_excluir_aluno</zorder>
+      <zorder>pb_pesquisar_excluir</zorder>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <widget class="QLineEdit" name="le_pesquisar_aluno">
+       <property name="geometry">
+        <rect>
+         <x>445</x>
+         <y>319</y>
+         <width>390</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Matrícula/Nome completo</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>435</x>
+         <y>250</y>
+         <width>411</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sitka Small Semibold</family>
+         <pointsize>36</pointsize>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 600 italic 36pt &quot;Sitka Small Semibold&quot;;
+color: rgb(255, 184, 108);</string>
+       </property>
+       <property name="text">
+        <string>Pesquisar aluno</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="tw_exibir_pesquisar_aluno">
+       <property name="geometry">
+        <rect>
+         <x>34</x>
+         <y>350</y>
+         <width>1211</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:0;</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pb_presquisar_aluno">
+       <property name="geometry">
+        <rect>
+         <x>810</x>
+         <y>320</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/cadastro/img/lupa.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

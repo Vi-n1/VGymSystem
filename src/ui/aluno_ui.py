@@ -47,12 +47,15 @@ from PySide6.QtWidgets import (
     QDateEdit,
     QFrame,
     QGroupBox,
+    QHeaderView,
     QLabel,
     QLineEdit,
     QMainWindow,
     QPushButton,
     QSizePolicy,
     QStackedWidget,
+    QTableWidget,
+    QTableWidgetItem,
     QWidget,
 )
 from .img_rc import *
@@ -92,12 +95,12 @@ class Ui_JanelaAluno(object):
         )
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
-        self.pushButton = QPushButton(self.frame)
-        self.pushButton.setObjectName('pushButton')
-        self.pushButton.setGeometry(QRect(10, 10, 50, 50))
-        self.pushButton.setMinimumSize(QSize(50, 50))
-        self.pushButton.setMaximumSize(QSize(50, 50))
-        self.pushButton.setStyleSheet(
+        self.pb_pagina_pagamento = QPushButton(self.frame)
+        self.pb_pagina_pagamento.setObjectName('pb_pagina_pagamento')
+        self.pb_pagina_pagamento.setGeometry(QRect(10, 10, 50, 50))
+        self.pb_pagina_pagamento.setMinimumSize(QSize(50, 50))
+        self.pb_pagina_pagamento.setMaximumSize(QSize(50, 50))
+        self.pb_pagina_pagamento.setStyleSheet(
             'QPushButton{\n'
             '	border-image: url(:/cadastro/img/dinheiro.png);\n'
             '	background-color: rgba(0, 0, 0, 0);\n'
@@ -109,12 +112,12 @@ class Ui_JanelaAluno(object):
             '	border-image: url(:/cadastro/img/dinheiro-press.png);\n'
             '}'
         )
-        self.pushButton_2 = QPushButton(self.frame)
-        self.pushButton_2.setObjectName('pushButton_2')
-        self.pushButton_2.setGeometry(QRect(90, 10, 50, 50))
-        self.pushButton_2.setMinimumSize(QSize(50, 50))
-        self.pushButton_2.setMaximumSize(QSize(50, 50))
-        self.pushButton_2.setStyleSheet(
+        self.pb_pagina_ad_aluno = QPushButton(self.frame)
+        self.pb_pagina_ad_aluno.setObjectName('pb_pagina_ad_aluno')
+        self.pb_pagina_ad_aluno.setGeometry(QRect(90, 10, 50, 50))
+        self.pb_pagina_ad_aluno.setMinimumSize(QSize(50, 50))
+        self.pb_pagina_ad_aluno.setMaximumSize(QSize(50, 50))
+        self.pb_pagina_ad_aluno.setStyleSheet(
             'QPushButton{\n'
             '	border-image: url(:/cadastro/img/ad-aluno.png);\n'
             '	background-color: rgba(0, 0, 0, 0);\n'
@@ -126,11 +129,11 @@ class Ui_JanelaAluno(object):
             '	border-image: url(:/cadastro/img/ad-aluno-press.png);\n'
             '}'
         )
-        self.pushButton_3 = QPushButton(self.frame)
-        self.pushButton_3.setObjectName('pushButton_3')
-        self.pushButton_3.setGeometry(QRect(170, 10, 50, 50))
-        self.pushButton_3.setMinimumSize(QSize(50, 50))
-        self.pushButton_3.setStyleSheet(
+        self.pb_pagina_excluir_aluno = QPushButton(self.frame)
+        self.pb_pagina_excluir_aluno.setObjectName('pb_pagina_excluir_aluno')
+        self.pb_pagina_excluir_aluno.setGeometry(QRect(170, 10, 50, 50))
+        self.pb_pagina_excluir_aluno.setMinimumSize(QSize(50, 50))
+        self.pb_pagina_excluir_aluno.setStyleSheet(
             'QPushButton{\n'
             '	border-image: url(:/cadastro/img/remove-aluno.png);\n'
             '	background-color: rgba(0, 0, 0, 0);\n'
@@ -140,6 +143,24 @@ class Ui_JanelaAluno(object):
             '}\n'
             'QPushButton::pressed{\n'
             '	border-image: url(:/cadastro/img/remove-aluno-press.png);\n'
+            '}'
+        )
+        self.pb_pagina_pesquisar_aluno = QPushButton(self.frame)
+        self.pb_pagina_pesquisar_aluno.setObjectName(
+            'pb_pagina_pesquisar_aluno'
+        )
+        self.pb_pagina_pesquisar_aluno.setGeometry(QRect(250, 15, 52, 47))
+        self.pb_pagina_pesquisar_aluno.setMinimumSize(QSize(52, 47))
+        self.pb_pagina_pesquisar_aluno.setStyleSheet(
+            'QPushButton{\n'
+            '	border-image: url(:/cadastro/img/procurar-aluno.png);\n'
+            '	background-color: rgba(0, 0, 0, 0);\n'
+            '}\n'
+            'QPushButton::hover{\n'
+            '	border-image: url(:/cadastro/img/procurar-aluno-hover.png);\n'
+            '}\n'
+            'QPushButton::pressed{\n'
+            '	border-image: url(:/cadastro/img/procurar-aluno-press.png);\n'
             '}'
         )
         self.frame_2 = QFrame(self.centralwidget)
@@ -154,9 +175,10 @@ class Ui_JanelaAluno(object):
         self.stackedWidget.setObjectName('stackedWidget')
         self.stackedWidget.setGeometry(QRect(0, 0, 1280, 660))
         self.stackedWidget.setStyleSheet(
-            'QLabel{\n'
+            'QLabel, QCheckBox{\n'
             '	color: rgb(255, 255, 255);\n'
             '	font: 10pt "Arial";\n'
+            '	color: rgb(80, 250, 123);\n'
             '}\n'
             'QPushButton{\n'
             '	border-radius: 5%;\n'
@@ -171,58 +193,110 @@ class Ui_JanelaAluno(object):
             '	border: 2px solid rgb(40, 42, 54);\n'
             '	background-color: rgb(173, 82, 135);\n'
             '}\n'
-            ''
+            'QLineEdit{\n'
+            '	font: 700 10pt "Arial";\n'
+            '	color: rgb(98, 114, 164);\n'
+            '	border: none;\n'
+            '	border-bottom: 2px solid  rgb(189, 147, 249);\n'
+            '	background-color: rgba(189, 147, 249, 0.1);\n'
+            '}\n'
+            'QLineEdit::hover{\n'
+            '	border-bottom: 2px solid  rgb(208, 99, 162);\n'
+            '}\n'
+            'QDateEdit{\n'
+            '	color: rgb(98, 114, 164);\n'
+            '}'
         )
         self.page = QWidget()
         self.page.setObjectName('page')
-        self.label = QLabel(self.page)
+        self.label_21 = QLabel(self.page)
+        self.label_21.setObjectName('label_21')
+        self.label_21.setGeometry(QRect(465, 250, 350, 61))
+        self.label_21.setStyleSheet(
+            'font: 600 italic 36pt "Sitka Small Semibold";\n'
+            'color: rgb(255, 184, 108);'
+        )
+        self.label_21.setAlignment(Qt.AlignCenter)
+        self.le_pagamentos = QLineEdit(self.page)
+        self.le_pagamentos.setObjectName('le_pagamentos')
+        self.le_pagamentos.setGeometry(QRect(465, 320, 351, 22))
+        self.le_pagamentos.setAlignment(Qt.AlignCenter)
+        self.pb_pesquisar_pagamentos = QPushButton(self.page)
+        self.pb_pesquisar_pagamentos.setObjectName('pb_pesquisar_pagamentos')
+        self.pb_pesquisar_pagamentos.setGeometry(QRect(790, 320, 21, 16))
+        self.pb_pesquisar_pagamentos.setStyleSheet(
+            'background-color: rgba(255, 255, 255, 0);\n'
+            'border-image: url(:/cadastro/img/lupa.png);'
+        )
+        self.tw_pagamentos = QTableWidget(self.page)
+        self.tw_pagamentos.setObjectName('tw_pagamentos')
+        self.tw_pagamentos.setGeometry(QRect(34, 350, 1211, 75))
+        self.tw_pagamentos.setStyleSheet('border:0;')
+        self.pb_imprimir_boleto = QPushButton(self.page)
+        self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
+        self.pb_imprimir_boleto.setGeometry(QRect(510, 430, 111, 24))
+        icon = QIcon()
+        icon.addFile(
+            ':/grobal/img/imprimir.png', QSize(), QIcon.Normal, QIcon.Off
+        )
+        self.pb_imprimir_boleto.setIcon(icon)
+        self.pb_pagar_pix = QPushButton(self.page)
+        self.pb_pagar_pix.setObjectName('pb_pagar_pix')
+        self.pb_pagar_pix.setGeometry(QRect(660, 430, 101, 24))
+        icon1 = QIcon()
+        icon1.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
+        self.pb_pagar_pix.setIcon(icon1)
+        self.stackedWidget.addWidget(self.page)
+        self.page1 = QWidget()
+        self.page1.setObjectName('page1')
+        self.label = QLabel(self.page1)
         self.label.setObjectName('label')
         self.label.setGeometry(QRect(0, 40, 271, 20))
         self.label.setAlignment(Qt.AlignCenter)
-        self.lineEdit = QLineEdit(self.page)
-        self.lineEdit.setObjectName('lineEdit')
-        self.lineEdit.setGeometry(QRect(0, 60, 271, 22))
-        self.lineEdit.setAlignment(Qt.AlignCenter)
-        self.label_2 = QLabel(self.page)
+        self.le_nome_aluno = QLineEdit(self.page1)
+        self.le_nome_aluno.setObjectName('le_nome_aluno')
+        self.le_nome_aluno.setGeometry(QRect(0, 60, 271, 22))
+        self.le_nome_aluno.setAlignment(Qt.AlignCenter)
+        self.label_2 = QLabel(self.page1)
         self.label_2.setObjectName('label_2')
         self.label_2.setGeometry(QRect(300, 40, 151, 20))
         self.label_2.setAlignment(Qt.AlignCenter)
-        self.dateEdit = QDateEdit(self.page)
-        self.dateEdit.setObjectName('dateEdit')
-        self.dateEdit.setGeometry(QRect(300, 60, 151, 22))
-        self.dateEdit.setAlignment(Qt.AlignCenter)
-        self.dateEdit.setCalendarPopup(True)
-        self.label_3 = QLabel(self.page)
+        self.de_data_nascimento = QDateEdit(self.page1)
+        self.de_data_nascimento.setObjectName('de_data_nascimento')
+        self.de_data_nascimento.setGeometry(QRect(300, 60, 151, 22))
+        self.de_data_nascimento.setAlignment(Qt.AlignCenter)
+        self.de_data_nascimento.setCalendarPopup(True)
+        self.label_3 = QLabel(self.page1)
         self.label_3.setObjectName('label_3')
         self.label_3.setGeometry(QRect(480, 40, 131, 20))
         self.label_3.setAlignment(Qt.AlignCenter)
-        self.lineEdit_2 = QLineEdit(self.page)
-        self.lineEdit_2.setObjectName('lineEdit_2')
-        self.lineEdit_2.setGeometry(QRect(480, 60, 131, 22))
-        self.lineEdit_2.setMaxLength(14)
-        self.lineEdit_2.setAlignment(Qt.AlignCenter)
-        self.label_4 = QLabel(self.page)
+        self.le_cpf_aluno = QLineEdit(self.page1)
+        self.le_cpf_aluno.setObjectName('le_cpf_aluno')
+        self.le_cpf_aluno.setGeometry(QRect(480, 60, 131, 22))
+        self.le_cpf_aluno.setMaxLength(14)
+        self.le_cpf_aluno.setAlignment(Qt.AlignCenter)
+        self.label_4 = QLabel(self.page1)
         self.label_4.setObjectName('label_4')
         self.label_4.setGeometry(QRect(640, 40, 171, 20))
         self.label_4.setAlignment(Qt.AlignCenter)
-        self.lineEdit_3 = QLineEdit(self.page)
-        self.lineEdit_3.setObjectName('lineEdit_3')
-        self.lineEdit_3.setGeometry(QRect(640, 60, 171, 22))
-        self.lineEdit_3.setText('()-')
-        self.lineEdit_3.setFrame(True)
-        self.lineEdit_3.setEchoMode(QLineEdit.Normal)
-        self.lineEdit_3.setCursorPosition(14)
-        self.lineEdit_3.setAlignment(Qt.AlignCenter)
-        self.checkBox = QCheckBox(self.page)
-        self.checkBox.setObjectName('checkBox')
-        self.checkBox.setGeometry(QRect(830, 66, 81, 20))
-        self.checkBox_2 = QCheckBox(self.page)
-        self.checkBox_2.setObjectName('checkBox_2')
-        self.checkBox_2.setGeometry(QRect(830, 46, 91, 20))
-        self.pushButton_4 = QPushButton(self.page)
-        self.pushButton_4.setObjectName('pushButton_4')
-        self.pushButton_4.setGeometry(QRect(940, 20, 271, 211))
-        self.pushButton_4.setStyleSheet(
+        self.le_celular_aluno = QLineEdit(self.page1)
+        self.le_celular_aluno.setObjectName('le_celular_aluno')
+        self.le_celular_aluno.setGeometry(QRect(640, 60, 171, 22))
+        self.le_celular_aluno.setText('()-')
+        self.le_celular_aluno.setFrame(True)
+        self.le_celular_aluno.setEchoMode(QLineEdit.Normal)
+        self.le_celular_aluno.setCursorPosition(14)
+        self.le_celular_aluno.setAlignment(Qt.AlignCenter)
+        self.cb_whatsapp_aluno = QCheckBox(self.page1)
+        self.cb_whatsapp_aluno.setObjectName('cb_whatsapp_aluno')
+        self.cb_whatsapp_aluno.setGeometry(QRect(830, 66, 81, 20))
+        self.cb_responsavel = QCheckBox(self.page1)
+        self.cb_responsavel.setObjectName('cb_responsavel')
+        self.cb_responsavel.setGeometry(QRect(830, 46, 91, 20))
+        self.pb_ad_foto_aluno = QPushButton(self.page1)
+        self.pb_ad_foto_aluno.setObjectName('pb_ad_foto_aluno')
+        self.pb_ad_foto_aluno.setGeometry(QRect(940, 20, 271, 211))
+        self.pb_ad_foto_aluno.setStyleSheet(
             'QPushButton{\n'
             '	border-radius: 5%;\n'
             '	border: 2px solid  rgb(208, 99, 162);\n'
@@ -230,46 +304,50 @@ class Ui_JanelaAluno(object):
             '}\n'
             ''
         )
-        self.label_5 = QLabel(self.page)
-        self.label_5.setObjectName('label_5')
-        self.label_5.setGeometry(QRect(940, 20, 271, 211))
-        self.label_6 = QLabel(self.page)
+        self.l_foto_aluno = QLabel(self.page1)
+        self.l_foto_aluno.setObjectName('l_foto_aluno')
+        self.l_foto_aluno.setGeometry(QRect(940, 20, 271, 211))
+        self.label_6 = QLabel(self.page1)
         self.label_6.setObjectName('label_6')
         self.label_6.setGeometry(QRect(0, 110, 271, 20))
         self.label_6.setAlignment(Qt.AlignCenter)
-        self.lineEdit_4 = QLineEdit(self.page)
-        self.lineEdit_4.setObjectName('lineEdit_4')
-        self.lineEdit_4.setGeometry(QRect(0, 130, 271, 22))
-        self.label_7 = QLabel(self.page)
+        self.le_endereco_aluno = QLineEdit(self.page1)
+        self.le_endereco_aluno.setObjectName('le_endereco_aluno')
+        self.le_endereco_aluno.setGeometry(QRect(0, 130, 271, 22))
+        self.le_endereco_aluno.setAlignment(Qt.AlignCenter)
+        self.label_7 = QLabel(self.page1)
         self.label_7.setObjectName('label_7')
         self.label_7.setGeometry(QRect(300, 110, 151, 20))
         self.label_7.setAlignment(Qt.AlignCenter)
-        self.lineEdit_5 = QLineEdit(self.page)
-        self.lineEdit_5.setObjectName('lineEdit_5')
-        self.lineEdit_5.setGeometry(QRect(300, 130, 151, 22))
-        self.lineEdit_5.setAlignment(Qt.AlignCenter)
-        self.label_8 = QLabel(self.page)
+        self.le_bairro_aluno = QLineEdit(self.page1)
+        self.le_bairro_aluno.setObjectName('le_bairro_aluno')
+        self.le_bairro_aluno.setGeometry(QRect(300, 130, 151, 22))
+        self.le_bairro_aluno.setAlignment(Qt.AlignCenter)
+        self.label_8 = QLabel(self.page1)
         self.label_8.setObjectName('label_8')
         self.label_8.setGeometry(QRect(480, 110, 131, 20))
         self.label_8.setAlignment(Qt.AlignCenter)
-        self.lineEdit_6 = QLineEdit(self.page)
-        self.lineEdit_6.setObjectName('lineEdit_6')
-        self.lineEdit_6.setGeometry(QRect(480, 130, 131, 22))
-        self.label_9 = QLabel(self.page)
+        self.le_cep_aluno = QLineEdit(self.page1)
+        self.le_cep_aluno.setObjectName('le_cep_aluno')
+        self.le_cep_aluno.setGeometry(QRect(480, 130, 131, 22))
+        self.le_cep_aluno.setAlignment(Qt.AlignCenter)
+        self.label_9 = QLabel(self.page1)
         self.label_9.setObjectName('label_9')
         self.label_9.setGeometry(QRect(640, 110, 171, 20))
         self.label_9.setAlignment(Qt.AlignCenter)
-        self.lineEdit_7 = QLineEdit(self.page)
-        self.lineEdit_7.setObjectName('lineEdit_7')
-        self.lineEdit_7.setGeometry(QRect(640, 130, 171, 22))
-        self.label_10 = QLabel(self.page)
+        self.le_cidade_aluno = QLineEdit(self.page1)
+        self.le_cidade_aluno.setObjectName('le_cidade_aluno')
+        self.le_cidade_aluno.setGeometry(QRect(640, 130, 171, 22))
+        self.le_cidade_aluno.setAlignment(Qt.AlignCenter)
+        self.label_10 = QLabel(self.page1)
         self.label_10.setObjectName('label_10')
         self.label_10.setGeometry(QRect(0, 170, 271, 20))
         self.label_10.setAlignment(Qt.AlignCenter)
-        self.lineEdit_8 = QLineEdit(self.page)
-        self.lineEdit_8.setObjectName('lineEdit_8')
-        self.lineEdit_8.setGeometry(QRect(0, 190, 271, 22))
-        self.groupBox = QGroupBox(self.page)
+        self.le_email_aluno = QLineEdit(self.page1)
+        self.le_email_aluno.setObjectName('le_email_aluno')
+        self.le_email_aluno.setGeometry(QRect(0, 190, 271, 22))
+        self.le_email_aluno.setAlignment(Qt.AlignCenter)
+        self.groupBox = QGroupBox(self.page1)
         self.groupBox.setObjectName('groupBox')
         self.groupBox.setGeometry(QRect(0, 240, 1280, 421))
         font = QFont()
@@ -302,9 +380,10 @@ class Ui_JanelaAluno(object):
         self.label_14.setObjectName('label_14')
         self.label_14.setGeometry(QRect(640, 40, 171, 20))
         self.label_14.setAlignment(Qt.AlignCenter)
-        self.lineEdit_9 = QLineEdit(self.groupBox)
-        self.lineEdit_9.setObjectName('lineEdit_9')
-        self.lineEdit_9.setGeometry(QRect(0, 60, 271, 22))
+        self.le_nome_responsavel = QLineEdit(self.groupBox)
+        self.le_nome_responsavel.setObjectName('le_nome_responsavel')
+        self.le_nome_responsavel.setGeometry(QRect(0, 60, 271, 22))
+        self.le_nome_responsavel.setAlignment(Qt.AlignCenter)
         self.label_15 = QLabel(self.groupBox)
         self.label_15.setObjectName('label_15')
         self.label_15.setGeometry(QRect(0, 110, 271, 20))
@@ -321,44 +400,57 @@ class Ui_JanelaAluno(object):
         self.label_18.setObjectName('label_18')
         self.label_18.setGeometry(QRect(640, 110, 171, 20))
         self.label_18.setAlignment(Qt.AlignCenter)
-        self.dateEdit_2 = QDateEdit(self.groupBox)
-        self.dateEdit_2.setObjectName('dateEdit_2')
-        self.dateEdit_2.setGeometry(QRect(300, 60, 151, 22))
-        self.dateEdit_2.setAlignment(Qt.AlignCenter)
-        self.dateEdit_2.setButtonSymbols(QAbstractSpinBox.UpDownArrows)
-        self.dateEdit_2.setCalendarPopup(True)
-        self.lineEdit_10 = QLineEdit(self.groupBox)
-        self.lineEdit_10.setObjectName('lineEdit_10')
-        self.lineEdit_10.setGeometry(QRect(480, 60, 131, 22))
-        self.lineEdit_11 = QLineEdit(self.groupBox)
-        self.lineEdit_11.setObjectName('lineEdit_11')
-        self.lineEdit_11.setGeometry(QRect(640, 60, 171, 22))
-        self.lineEdit_12 = QLineEdit(self.groupBox)
-        self.lineEdit_12.setObjectName('lineEdit_12')
-        self.lineEdit_12.setGeometry(QRect(0, 130, 271, 22))
-        self.lineEdit_13 = QLineEdit(self.groupBox)
-        self.lineEdit_13.setObjectName('lineEdit_13')
-        self.lineEdit_13.setGeometry(QRect(300, 130, 151, 22))
-        self.lineEdit_14 = QLineEdit(self.groupBox)
-        self.lineEdit_14.setObjectName('lineEdit_14')
-        self.lineEdit_14.setGeometry(QRect(480, 130, 131, 22))
-        self.lineEdit_15 = QLineEdit(self.groupBox)
-        self.lineEdit_15.setObjectName('lineEdit_15')
-        self.lineEdit_15.setGeometry(QRect(640, 130, 171, 22))
+        self.de_data_nascimento_responsavel = QDateEdit(self.groupBox)
+        self.de_data_nascimento_responsavel.setObjectName(
+            'de_data_nascimento_responsavel'
+        )
+        self.de_data_nascimento_responsavel.setGeometry(
+            QRect(300, 60, 151, 22)
+        )
+        self.de_data_nascimento_responsavel.setAlignment(Qt.AlignCenter)
+        self.de_data_nascimento_responsavel.setButtonSymbols(
+            QAbstractSpinBox.UpDownArrows
+        )
+        self.de_data_nascimento_responsavel.setCalendarPopup(True)
+        self.le_cpf_responsavel = QLineEdit(self.groupBox)
+        self.le_cpf_responsavel.setObjectName('le_cpf_responsavel')
+        self.le_cpf_responsavel.setGeometry(QRect(480, 60, 131, 22))
+        self.le_cpf_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_celular_responsavel = QLineEdit(self.groupBox)
+        self.le_celular_responsavel.setObjectName('le_celular_responsavel')
+        self.le_celular_responsavel.setGeometry(QRect(640, 60, 171, 22))
+        self.le_celular_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_endereco_responsavel = QLineEdit(self.groupBox)
+        self.le_endereco_responsavel.setObjectName('le_endereco_responsavel')
+        self.le_endereco_responsavel.setGeometry(QRect(0, 130, 271, 22))
+        self.le_endereco_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_bairro_responsavel = QLineEdit(self.groupBox)
+        self.le_bairro_responsavel.setObjectName('le_bairro_responsavel')
+        self.le_bairro_responsavel.setGeometry(QRect(300, 130, 151, 22))
+        self.le_bairro_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_cep_responsavel = QLineEdit(self.groupBox)
+        self.le_cep_responsavel.setObjectName('le_cep_responsavel')
+        self.le_cep_responsavel.setGeometry(QRect(480, 130, 131, 22))
+        self.le_cep_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_cidade_responsavel = QLineEdit(self.groupBox)
+        self.le_cidade_responsavel.setObjectName('le_cidade_responsavel')
+        self.le_cidade_responsavel.setGeometry(QRect(640, 130, 171, 22))
+        self.le_cidade_responsavel.setAlignment(Qt.AlignCenter)
         self.label_19 = QLabel(self.groupBox)
         self.label_19.setObjectName('label_19')
         self.label_19.setGeometry(QRect(0, 170, 271, 20))
         self.label_19.setAlignment(Qt.AlignCenter)
-        self.lineEdit_16 = QLineEdit(self.groupBox)
-        self.lineEdit_16.setObjectName('lineEdit_16')
-        self.lineEdit_16.setGeometry(QRect(0, 190, 271, 22))
-        self.label_20 = QLabel(self.groupBox)
-        self.label_20.setObjectName('label_20')
-        self.label_20.setGeometry(QRect(940, 90, 271, 211))
-        self.pushButton_5 = QPushButton(self.groupBox)
-        self.pushButton_5.setObjectName('pushButton_5')
-        self.pushButton_5.setGeometry(QRect(940, 90, 271, 211))
-        self.pushButton_5.setStyleSheet(
+        self.le_email_responsavel = QLineEdit(self.groupBox)
+        self.le_email_responsavel.setObjectName('le_email_responsavel')
+        self.le_email_responsavel.setGeometry(QRect(0, 190, 271, 22))
+        self.le_email_responsavel.setAlignment(Qt.AlignCenter)
+        self.l_foto_responsavel = QLabel(self.groupBox)
+        self.l_foto_responsavel.setObjectName('l_foto_responsavel')
+        self.l_foto_responsavel.setGeometry(QRect(940, 90, 271, 211))
+        self.pb_ad_foto_responsavel = QPushButton(self.groupBox)
+        self.pb_ad_foto_responsavel.setObjectName('pb_ad_foto_responsavel')
+        self.pb_ad_foto_responsavel.setGeometry(QRect(940, 90, 271, 211))
+        self.pb_ad_foto_responsavel.setStyleSheet(
             'QPushButton{\n'
             '	border-radius: 5%;\n'
             '	border: 2px solid  rgb(208, 99, 162);\n'
@@ -366,56 +458,132 @@ class Ui_JanelaAluno(object):
             '}\n'
             ''
         )
-        self.label_20.raise_()
+        self.l_foto_responsavel.raise_()
         self.label_11.raise_()
         self.label_12.raise_()
         self.label_13.raise_()
         self.label_14.raise_()
-        self.lineEdit_9.raise_()
+        self.le_nome_responsavel.raise_()
         self.label_15.raise_()
         self.label_16.raise_()
         self.label_17.raise_()
         self.label_18.raise_()
-        self.dateEdit_2.raise_()
-        self.lineEdit_10.raise_()
-        self.lineEdit_11.raise_()
-        self.lineEdit_12.raise_()
-        self.lineEdit_13.raise_()
-        self.lineEdit_14.raise_()
-        self.lineEdit_15.raise_()
+        self.de_data_nascimento_responsavel.raise_()
+        self.le_cpf_responsavel.raise_()
+        self.le_celular_responsavel.raise_()
+        self.le_endereco_responsavel.raise_()
+        self.le_bairro_responsavel.raise_()
+        self.le_cep_responsavel.raise_()
+        self.le_cidade_responsavel.raise_()
         self.label_19.raise_()
-        self.lineEdit_16.raise_()
-        self.pushButton_5.raise_()
-        self.stackedWidget.addWidget(self.page)
+        self.le_email_responsavel.raise_()
+        self.pb_ad_foto_responsavel.raise_()
+        self.stackedWidget.addWidget(self.page1)
         self.label.raise_()
-        self.lineEdit.raise_()
+        self.le_nome_aluno.raise_()
         self.label_2.raise_()
-        self.dateEdit.raise_()
+        self.de_data_nascimento.raise_()
         self.label_3.raise_()
-        self.lineEdit_2.raise_()
+        self.le_cpf_aluno.raise_()
         self.label_4.raise_()
-        self.lineEdit_3.raise_()
-        self.checkBox.raise_()
-        self.checkBox_2.raise_()
-        self.label_5.raise_()
-        self.pushButton_4.raise_()
+        self.le_celular_aluno.raise_()
+        self.cb_whatsapp_aluno.raise_()
+        self.cb_responsavel.raise_()
+        self.l_foto_aluno.raise_()
+        self.pb_ad_foto_aluno.raise_()
         self.label_6.raise_()
-        self.lineEdit_4.raise_()
+        self.le_endereco_aluno.raise_()
         self.label_7.raise_()
-        self.lineEdit_5.raise_()
+        self.le_bairro_aluno.raise_()
         self.label_8.raise_()
-        self.lineEdit_6.raise_()
+        self.le_cep_aluno.raise_()
         self.label_9.raise_()
-        self.lineEdit_7.raise_()
+        self.le_cidade_aluno.raise_()
         self.label_10.raise_()
-        self.lineEdit_8.raise_()
+        self.le_email_aluno.raise_()
         self.groupBox.raise_()
+        self.page_3 = QWidget()
+        self.page_3.setObjectName('page_3')
+        self.label_20 = QLabel(self.page_3)
+        self.label_20.setObjectName('label_20')
+        self.label_20.setGeometry(QRect(465, 250, 350, 61))
+        self.label_20.setStyleSheet(
+            'font: 600 italic 36pt "Sitka Small Semibold";\n'
+            'color: rgb(255, 184, 108);'
+        )
+        self.label_20.setAlignment(Qt.AlignCenter)
+        self.le_excluir_aluno = QLineEdit(self.page_3)
+        self.le_excluir_aluno.setObjectName('le_excluir_aluno')
+        self.le_excluir_aluno.setGeometry(QRect(466, 319, 351, 22))
+        self.le_excluir_aluno.setAlignment(Qt.AlignCenter)
+        self.tw_exibir_excluir_aluno = QTableWidget(self.page_3)
+        self.tw_exibir_excluir_aluno.setObjectName('tw_exibir_excluir_aluno')
+        self.tw_exibir_excluir_aluno.setGeometry(QRect(34, 350, 1211, 75))
+        self.tw_exibir_excluir_aluno.setStyleSheet('border:0;')
+        self.pb_excluir_aluno = QPushButton(self.page_3)
+        self.pb_excluir_aluno.setObjectName('pb_excluir_aluno')
+        self.pb_excluir_aluno.setGeometry(QRect(602, 430, 75, 24))
+        icon2 = QIcon()
+        icon2.addFile(
+            ':/cadastro/img/excluir-aluno.png',
+            QSize(),
+            QIcon.Normal,
+            QIcon.Off,
+        )
+        self.pb_excluir_aluno.setIcon(icon2)
+        self.pb_pesquisar_excluir = QPushButton(self.page_3)
+        self.pb_pesquisar_excluir.setObjectName('pb_pesquisar_excluir')
+        self.pb_pesquisar_excluir.setGeometry(QRect(790, 320, 21, 16))
+        self.pb_pesquisar_excluir.setStyleSheet(
+            'background-color: rgba(255, 255, 255, 0);\n'
+            'border-image: url(:/cadastro/img/lupa.png);'
+        )
+        self.stackedWidget.addWidget(self.page_3)
+        self.le_excluir_aluno.raise_()
+        self.label_20.raise_()
+        self.tw_exibir_excluir_aluno.raise_()
+        self.pb_excluir_aluno.raise_()
+        self.pb_pesquisar_excluir.raise_()
         self.page_2 = QWidget()
         self.page_2.setObjectName('page_2')
+        self.le_pesquisar_aluno = QLineEdit(self.page_2)
+        self.le_pesquisar_aluno.setObjectName('le_pesquisar_aluno')
+        self.le_pesquisar_aluno.setGeometry(QRect(445, 319, 390, 22))
+        self.le_pesquisar_aluno.setStyleSheet('')
+        self.le_pesquisar_aluno.setAlignment(Qt.AlignCenter)
+        self.label_5 = QLabel(self.page_2)
+        self.label_5.setObjectName('label_5')
+        self.label_5.setGeometry(QRect(435, 250, 411, 61))
+        font1 = QFont()
+        font1.setFamilies(['Sitka Small Semibold'])
+        font1.setPointSize(36)
+        font1.setBold(True)
+        font1.setItalic(True)
+        self.label_5.setFont(font1)
+        self.label_5.setStyleSheet(
+            'font: 600 italic 36pt "Sitka Small Semibold";\n'
+            'color: rgb(255, 184, 108);'
+        )
+        self.label_5.setAlignment(Qt.AlignCenter)
+        self.tw_exibir_pesquisar_aluno = QTableWidget(self.page_2)
+        self.tw_exibir_pesquisar_aluno.setObjectName(
+            'tw_exibir_pesquisar_aluno'
+        )
+        self.tw_exibir_pesquisar_aluno.setGeometry(QRect(34, 350, 1211, 75))
+        self.tw_exibir_pesquisar_aluno.setStyleSheet('border:0;')
+        self.pb_presquisar_aluno = QPushButton(self.page_2)
+        self.pb_presquisar_aluno.setObjectName('pb_presquisar_aluno')
+        self.pb_presquisar_aluno.setGeometry(QRect(810, 320, 21, 16))
+        self.pb_presquisar_aluno.setStyleSheet(
+            'background-color: rgba(255, 255, 255, 0);\n'
+            'border-image: url(:/cadastro/img/lupa.png);'
+        )
         self.stackedWidget.addWidget(self.page_2)
         JanelaAluno.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(JanelaAluno)
+
+        self.stackedWidget.setCurrentIndex(1)
 
         QMetaObject.connectSlotsByName(JanelaAluno)
 
@@ -425,9 +593,25 @@ class Ui_JanelaAluno(object):
         JanelaAluno.setWindowTitle(
             QCoreApplication.translate('JanelaAluno', 'Aluno', None)
         )
-        self.pushButton.setText('')
-        self.pushButton_2.setText('')
-        self.pushButton_3.setText('')
+        self.pb_pagina_pagamento.setText('')
+        self.pb_pagina_ad_aluno.setText('')
+        self.pb_pagina_excluir_aluno.setText('')
+        self.pb_pagina_pesquisar_aluno.setText('')
+        self.label_21.setText(
+            QCoreApplication.translate('JanelaAluno', 'Pagamentos', None)
+        )
+        self.le_pagamentos.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula/CPF', None
+            )
+        )
+        self.pb_pesquisar_pagamentos.setText('')
+        self.pb_imprimir_boleto.setText(
+            QCoreApplication.translate('JanelaAluno', 'Imprimir boleto', None)
+        )
+        self.pb_pagar_pix.setText(
+            QCoreApplication.translate('JanelaAluno', 'Pagar com Pix', None)
+        )
         self.label.setText(
             QCoreApplication.translate('JanelaAluno', 'Nome do aluno', None)
         )
@@ -437,23 +621,23 @@ class Ui_JanelaAluno(object):
         self.label_3.setText(
             QCoreApplication.translate('JanelaAluno', 'CPF', None)
         )
-        self.lineEdit_2.setInputMask(
+        self.le_cpf_aluno.setInputMask(
             QCoreApplication.translate('JanelaAluno', '999.999.999-99', None)
         )
         self.label_4.setText(
             QCoreApplication.translate('JanelaAluno', 'Celular', None)
         )
-        self.lineEdit_3.setInputMask(
+        self.le_celular_aluno.setInputMask(
             QCoreApplication.translate('JanelaAluno', '(99)9999999-99', None)
         )
-        self.checkBox.setText(
+        self.cb_whatsapp_aluno.setText(
             QCoreApplication.translate('JanelaAluno', 'Whatsapp', None)
         )
-        self.checkBox_2.setText(
+        self.cb_responsavel.setText(
             QCoreApplication.translate('JanelaAluno', 'Respons\u00e1vel', None)
         )
-        self.pushButton_4.setText('')
-        self.label_5.setText('')
+        self.pb_ad_foto_aluno.setText('')
+        self.l_foto_aluno.setText('')
         self.label_6.setText(
             QCoreApplication.translate('JanelaAluno', 'Endere\u00e7o', None)
         )
@@ -499,9 +683,28 @@ class Ui_JanelaAluno(object):
             QCoreApplication.translate('JanelaAluno', 'Cidade', None)
         )
         self.label_19.setText(
-            QCoreApplication.translate('JanelaAluno', 'TextLabel', None)
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
         )
-        self.label_20.setText('')
-        self.pushButton_5.setText('')
+        self.l_foto_responsavel.setText('')
+        self.pb_ad_foto_responsavel.setText('')
+        self.label_20.setText(
+            QCoreApplication.translate('JanelaAluno', 'Excluir aluno', None)
+        )
+        self.le_excluir_aluno.setPlaceholderText(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
+        )
+        self.pb_excluir_aluno.setText(
+            QCoreApplication.translate('JanelaAluno', 'Excluir', None)
+        )
+        self.pb_pesquisar_excluir.setText('')
+        self.le_pesquisar_aluno.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula/Nome completo', None
+            )
+        )
+        self.label_5.setText(
+            QCoreApplication.translate('JanelaAluno', 'Pesquisar aluno', None)
+        )
+        self.pb_presquisar_aluno.setText('')
 
     # retranslateUi
