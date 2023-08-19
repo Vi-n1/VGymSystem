@@ -1,0 +1,37 @@
+<RCC>
+  <qresource prefix="grobal">
+    <file>img/grafico.png</file>
+    <file>img/grafico-hover.png</file>
+    <file>img/grafico-press.png</file>
+    <file>img/fechar-hover.png</file>
+    <file>img/fechar-press.png</file>
+    <file>img/config.png</file>
+    <file>img/config-hover.png</file>
+    <file>img/config-press.png</file>
+  </qresource>
+  <qresource prefix="central">
+    <file>img/professor.png</file>
+    <file>img/professor-hover.png</file>
+    <file>img/professor-press.png</file>
+    <file>img/aluno.png</file>
+    <file>img/aluno-hover.png</file>
+    <file>img/aluno-press.png</file>
+    <file>img/cadastro.png</file>
+    <file>img/cadastro-hover.png</file>
+    <file>img/cadastro-press.png</file>
+    <file>img/logar-hover.png</file>
+    <file>img/logar-press.png</file>
+    <file>img/logar.png</file>
+  </qresource>
+  <qresource prefix="cadastro">
+    <file>img/remove-aluno.png</file>
+    <file>img/remove-aluno-hover.png</file>
+    <file>img/remove-aluno-press.png</file>
+    <file>img/ad-aluno-hover.png</file>
+    <file>img/ad-aluno-press.png</file>
+    <file>img/ad-aluno.png</file>
+    <file>img/dinheiro.png</file>
+    <file>img/dinheiro-hover.png</file>
+    <file>img/dinheiro-press.png</file>
+  </qresource>
+</RCC>
