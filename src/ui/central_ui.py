@@ -259,64 +259,47 @@ class Ui_JanelaCentral(object):
         self.page_2 = QWidget()
         self.page_2.setObjectName('page_2')
         self.page_2.setStyleSheet('')
-        self.gridLayout = QGridLayout(self.page_2)
-        self.gridLayout.setSpacing(0)
-        self.gridLayout.setObjectName('gridLayout')
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.le_senha = QLineEdit(self.page_2)
-        self.le_senha.setObjectName('le_senha')
-        self.le_senha.setMaximumSize(QSize(200, 20))
-        self.le_senha.setMaxLength(10)
-        self.le_senha.setEchoMode(QLineEdit.Password)
-        self.le_senha.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.le_senha, 5, 2, 1, 1)
-
-        self.verticalSpacer_7 = QSpacerItem(
-            20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed
+        self.horizontalLayout_4 = QHBoxLayout(self.page_2)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName('horizontalLayout_4')
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer_12 = QSpacerItem(
+            200, 20, QSizePolicy.Fixed, QSizePolicy.Minimum
         )
 
-        self.gridLayout.addItem(self.verticalSpacer_7, 7, 2, 1, 1)
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_12)
 
-        self.le_usuario = QLineEdit(self.page_2)
+        self.frame_2 = QFrame(self.page_2)
+        self.frame_2.setObjectName('frame_2')
+        self.frame_2.setMaximumSize(QSize(300, 300))
+        self.frame_2.setStyleSheet(
+            'QFrame{\n'
+            '	background-color: rgb(22, 33, 62);\n'
+            '	border: 2px solid  rgb(173, 82, 135) ;\n'
+            '	border-radius: 50%;\n'
+            '}'
+        )
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.le_usuario = QLineEdit(self.frame_2)
         self.le_usuario.setObjectName('le_usuario')
-        self.le_usuario.setMaximumSize(QSize(200, 20))
-        self.le_usuario.setMaxLength(10)
+        self.le_usuario.setGeometry(QRect(75, 100, 150, 22))
         self.le_usuario.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.le_usuario, 1, 2, 1, 1)
-
-        self.verticalSpacer_6 = QSpacerItem(
-            20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed
-        )
-
-        self.gridLayout.addItem(self.verticalSpacer_6, 3, 2, 1, 1)
-
-        self.verticalSpacer_4 = QSpacerItem(
-            20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding
-        )
-
-        self.gridLayout.addItem(self.verticalSpacer_4, 0, 2, 1, 1)
-
-        self.verticalSpacer_5 = QSpacerItem(
-            20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding
-        )
-
-        self.gridLayout.addItem(self.verticalSpacer_5, 11, 2, 1, 1)
-
-        self.pb_confirmar_usuario = QPushButton(self.page_2)
+        self.le_senha = QLineEdit(self.frame_2)
+        self.le_senha.setObjectName('le_senha')
+        self.le_senha.setGeometry(QRect(75, 150, 150, 22))
+        self.le_senha.setAlignment(Qt.AlignCenter)
+        self.pb_confirmar_usuario = QPushButton(self.frame_2)
         self.pb_confirmar_usuario.setObjectName('pb_confirmar_usuario')
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(20)
-        sizePolicy.setHeightForWidth(
-            self.pb_confirmar_usuario.sizePolicy().hasHeightForWidth()
-        )
-        self.pb_confirmar_usuario.setSizePolicy(sizePolicy)
-        self.pb_confirmar_usuario.setMaximumSize(QSize(60, 16777215))
-        self.pb_confirmar_usuario.setFlat(False)
+        self.pb_confirmar_usuario.setGeometry(QRect(112, 200, 75, 24))
 
-        self.gridLayout.addWidget(self.pb_confirmar_usuario, 8, 2, 1, 1)
+        self.horizontalLayout_4.addWidget(self.frame_2)
+
+        self.horizontalSpacer_13 = QSpacerItem(
+            200, 30, QSizePolicy.Fixed, QSizePolicy.Minimum
+        )
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_13)
 
         self.stackedWidget.addWidget(self.page_2)
         self.page1 = QWidget()
@@ -541,14 +524,14 @@ class Ui_JanelaCentral(object):
                 None,
             )
         )
+        self.le_usuario.setPlaceholderText(
+            QCoreApplication.translate('JanelaCentral', 'Us\u00faario', None)
+        )
         self.le_senha.setPlaceholderText(
             QCoreApplication.translate('JanelaCentral', 'Senha', None)
         )
-        self.le_usuario.setPlaceholderText(
-            QCoreApplication.translate('JanelaCentral', 'Usu\u00e1rio', None)
-        )
         self.pb_confirmar_usuario.setText(
-            QCoreApplication.translate('JanelaCentral', 'confirmar', None)
+            QCoreApplication.translate('JanelaCentral', 'Confirmar', None)
         )
         self.pb_professor.setText('')
         self.pb_aluno.setText('')
@@ -560,7 +543,9 @@ class Ui_JanelaCentral(object):
             )
         )
         self.label_4.setText(
-            QCoreApplication.translate('JanelaCentral', 'Administrador', None)
+            QCoreApplication.translate(
+                'JanelaCentral', '{Administrador}', None
+            )
         )
         self.label_2.setText(
             QCoreApplication.translate(

@@ -74,7 +74,7 @@ QPushButton::pressed{
     <widget class="QPushButton" name="pb_pagina_pagamento">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>510</x>
        <y>10</y>
        <width>50</width>
        <height>50</height>
@@ -111,7 +111,7 @@ QPushButton::pressed{
     <widget class="QPushButton" name="pb_pagina_ad_aluno">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>580</x>
        <y>10</y>
        <width>50</width>
        <height>50</height>
@@ -148,7 +148,7 @@ QPushButton::pressed{
     <widget class="QPushButton" name="pb_pagina_excluir_aluno">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>650</x>
        <y>10</y>
        <width>50</width>
        <height>50</height>
@@ -179,7 +179,7 @@ QPushButton::pressed{
     <widget class="QPushButton" name="pb_pagina_pesquisar_aluno">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>720</x>
        <y>15</y>
        <width>52</width>
        <height>47</height>
@@ -207,6 +207,10 @@ QPushButton::pressed{
       <string/>
      </property>
     </widget>
+    <zorder>pb_pagina_pagamento</zorder>
+    <zorder>pb_pagina_excluir_aluno</zorder>
+    <zorder>pb_pagina_pesquisar_aluno</zorder>
+    <zorder>pb_pagina_ad_aluno</zorder>
    </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
@@ -272,7 +276,7 @@ QDateEdit{
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_21">
@@ -434,6 +438,20 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="maximumDate">
+        <date>
+         <year>2013</year>
+         <month>1</month>
+         <day>2</day>
+        </date>
+       </property>
+       <property name="minimumDate">
+        <date>
+         <year>1900</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
+       </property>
        <property name="calendarPopup">
         <bool>true</bool>
        </property>
@@ -552,6 +570,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
          <height>211</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>Click para adicionar uma foto</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	border-radius: 5%;
@@ -576,40 +597,14 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        <property name="text">
         <string/>
        </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>110</y>
-         <width>271</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Endereço</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_endereco_aluno">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>130</y>
-         <width>271</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>0</x>
          <y>110</y>
          <width>151</width>
          <height>20</height>
@@ -625,7 +620,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLineEdit" name="le_bairro_aluno">
        <property name="geometry">
         <rect>
-         <x>300</x>
+         <x>0</x>
          <y>130</y>
          <width>151</width>
          <height>22</height>
@@ -638,7 +633,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLabel" name="label_8">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>180</x>
          <y>110</y>
          <width>131</width>
          <height>20</height>
@@ -654,7 +649,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLineEdit" name="le_cep_aluno">
        <property name="geometry">
         <rect>
-         <x>480</x>
+         <x>180</x>
          <y>130</y>
          <width>131</width>
          <height>22</height>
@@ -667,7 +662,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
-         <x>640</x>
+         <x>340</x>
          <y>110</y>
          <width>171</width>
          <height>20</height>
@@ -683,7 +678,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLineEdit" name="le_cidade_aluno">
        <property name="geometry">
         <rect>
-         <x>640</x>
+         <x>340</x>
          <y>130</y>
          <width>171</width>
          <height>22</height>
@@ -696,8 +691,8 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>170</y>
+         <x>540</x>
+         <y>110</y>
          <width>271</width>
          <height>20</height>
         </rect>
@@ -712,8 +707,8 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <widget class="QLineEdit" name="le_email_aluno">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>190</y>
+         <x>540</x>
+         <y>130</y>
          <width>271</width>
          <height>22</height>
         </rect>
@@ -817,6 +812,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_nome_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -829,26 +827,10 @@ border-image: url(:/cadastro/img/lupa.png);</string>
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>110</y>
-          <width>271</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Endereço</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_16">
         <property name="geometry">
          <rect>
-          <x>300</x>
+          <x>0</x>
           <y>110</y>
           <width>151</width>
           <height>20</height>
@@ -864,7 +846,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        <widget class="QLabel" name="label_17">
         <property name="geometry">
          <rect>
-          <x>480</x>
+          <x>180</x>
           <y>110</y>
           <width>131</width>
           <height>20</height>
@@ -880,7 +862,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        <widget class="QLabel" name="label_18">
         <property name="geometry">
          <rect>
-          <x>640</x>
+          <x>340</x>
           <y>110</y>
           <width>171</width>
           <height>20</height>
@@ -894,6 +876,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QDateEdit" name="de_data_nascimento_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>300</x>
@@ -908,11 +893,28 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::UpDownArrows</enum>
         </property>
+        <property name="maximumDate">
+         <date>
+          <year>2013</year>
+          <month>1</month>
+          <day>2</day>
+         </date>
+        </property>
+        <property name="minimumDate">
+         <date>
+          <year>1900</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
         <property name="calendarPopup">
          <bool>true</bool>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_cpf_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>480</x>
@@ -926,6 +928,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_celular_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>640</x>
@@ -938,23 +943,13 @@ border-image: url(:/cadastro/img/lupa.png);</string>
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QLineEdit" name="le_endereco_responsavel">
+       <widget class="QLineEdit" name="le_bairro_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>130</y>
-          <width>271</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_bairro_responsavel">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
           <y>130</y>
           <width>151</width>
           <height>22</height>
@@ -965,9 +960,12 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_cep_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>480</x>
+          <x>180</x>
           <y>130</y>
           <width>131</width>
           <height>22</height>
@@ -978,9 +976,12 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_cidade_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>640</x>
+          <x>340</x>
           <y>130</y>
           <width>171</width>
           <height>22</height>
@@ -993,8 +994,8 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        <widget class="QLabel" name="label_19">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>170</y>
+          <x>540</x>
+          <y>110</y>
           <width>271</width>
           <height>20</height>
          </rect>
@@ -1007,10 +1008,13 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="le_email_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>190</y>
+          <x>540</x>
+          <y>130</y>
           <width>271</width>
           <height>22</height>
          </rect>
@@ -1031,8 +1035,14 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         <property name="text">
          <string/>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
        </widget>
        <widget class="QPushButton" name="pb_ad_foto_responsavel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>940</x>
@@ -1040,6 +1050,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
           <width>271</width>
           <height>211</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>Click para adicionar uma foto</string>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
@@ -1053,26 +1066,65 @@ border-image: url(:/cadastro/img/lupa.png);</string>
          <string/>
         </property>
        </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>1020</x>
+          <y>70</y>
+          <width>111</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Adicione uma foto</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_salvar_dados">
+        <property name="geometry">
+         <rect>
+          <x>603</x>
+          <y>370</y>
+          <width>75</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Salvar</string>
+        </property>
+       </widget>
        <zorder>l_foto_responsavel</zorder>
        <zorder>label_11</zorder>
        <zorder>label_12</zorder>
        <zorder>label_13</zorder>
        <zorder>label_14</zorder>
        <zorder>le_nome_responsavel</zorder>
-       <zorder>label_15</zorder>
        <zorder>label_16</zorder>
        <zorder>label_17</zorder>
        <zorder>label_18</zorder>
        <zorder>de_data_nascimento_responsavel</zorder>
        <zorder>le_cpf_responsavel</zorder>
        <zorder>le_celular_responsavel</zorder>
-       <zorder>le_endereco_responsavel</zorder>
        <zorder>le_bairro_responsavel</zorder>
        <zorder>le_cep_responsavel</zorder>
        <zorder>le_cidade_responsavel</zorder>
        <zorder>label_19</zorder>
        <zorder>le_email_responsavel</zorder>
        <zorder>pb_ad_foto_responsavel</zorder>
+       <zorder>label_15</zorder>
+       <zorder>pb_salvar_dados</zorder>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>1020</x>
+         <y>0</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Adicione uma foto</string>
+       </property>
       </widget>
       <zorder>label</zorder>
       <zorder>le_nome_aluno</zorder>
@@ -1086,8 +1138,6 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <zorder>cb_responsavel</zorder>
       <zorder>l_foto_aluno</zorder>
       <zorder>pb_ad_foto_aluno</zorder>
-      <zorder>label_6</zorder>
-      <zorder>le_endereco_aluno</zorder>
       <zorder>label_7</zorder>
       <zorder>le_bairro_aluno</zorder>
       <zorder>label_8</zorder>
@@ -1097,6 +1147,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
       <zorder>label_10</zorder>
       <zorder>le_email_aluno</zorder>
       <zorder>groupBox</zorder>
+      <zorder>label_6</zorder>
      </widget>
      <widget class="QWidget" name="page_3">
       <widget class="QLabel" name="label_20">

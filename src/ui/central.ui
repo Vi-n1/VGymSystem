@@ -353,7 +353,10 @@ QPushButton::pressed{
              <property name="styleSheet">
               <string notr="true"/>
              </property>
-             <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0,0,0,0,0">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>0</number>
+              </property>
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -366,129 +369,105 @@ QPushButton::pressed{
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item row="5" column="2">
-               <widget class="QLineEdit" name="le_senha">
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="maxLength">
-                 <number>10</number>
-                </property>
-                <property name="echoMode">
-                 <enum>QLineEdit::Password</enum>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="placeholderText">
-                 <string>Senha</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <spacer name="verticalSpacer_7">
+              <item>
+               <spacer name="horizontalSpacer_12">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Horizontal</enum>
                 </property>
                 <property name="sizeType">
                  <enum>QSizePolicy::Fixed</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>20</width>
+                  <width>200</width>
                   <height>20</height>
                  </size>
                 </property>
                </spacer>
               </item>
-              <item row="1" column="2">
-               <widget class="QLineEdit" name="le_usuario">
+              <item>
+               <widget class="QFrame" name="frame_2">
                 <property name="maximumSize">
                  <size>
-                  <width>200</width>
-                  <height>20</height>
+                  <width>300</width>
+                  <height>300</height>
                  </size>
                 </property>
-                <property name="maxLength">
-                 <number>10</number>
+                <property name="styleSheet">
+                 <string notr="true">QFrame{
+	background-color: rgb(22, 33, 62);
+	border: 2px solid  rgb(173, 82, 135) ;
+	border-radius: 50%;
+}</string>
                 </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
-                <property name="placeholderText">
-                 <string>Usuário</string>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
+                <widget class="QLineEdit" name="le_usuario">
+                 <property name="geometry">
+                  <rect>
+                   <x>75</x>
+                   <y>100</y>
+                   <width>150</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Usúario</string>
+                 </property>
+                </widget>
+                <widget class="QLineEdit" name="le_senha">
+                 <property name="geometry">
+                  <rect>
+                   <x>75</x>
+                   <y>150</y>
+                   <width>150</width>
+                   <height>22</height>
+                  </rect>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Senha</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="pb_confirmar_usuario">
+                 <property name="geometry">
+                  <rect>
+                   <x>112</x>
+                   <y>200</y>
+                   <width>75</width>
+                   <height>24</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Confirmar</string>
+                 </property>
+                </widget>
                </widget>
               </item>
-              <item row="3" column="2">
-               <spacer name="verticalSpacer_6">
+              <item>
+               <spacer name="horizontalSpacer_13">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Horizontal</enum>
                 </property>
                 <property name="sizeType">
                  <enum>QSizePolicy::Fixed</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>20</width>
-                  <height>20</height>
+                  <width>200</width>
+                  <height>30</height>
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item row="0" column="2">
-               <spacer name="verticalSpacer_4">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="11" column="2">
-               <spacer name="verticalSpacer_5">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="8" column="2">
-               <widget class="QPushButton" name="pb_confirmar_usuario">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>20</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>confirmar</string>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
               </item>
              </layout>
             </widget>
@@ -717,7 +696,7 @@ QProgressBar::chunk {
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>Administrador</string>
+             <string>{Administrador}</string>
             </property>
            </widget>
           </item>

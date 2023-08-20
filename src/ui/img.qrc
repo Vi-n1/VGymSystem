@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="grobal">
+    <file>img/excel.png</file>
+    <file>img/pdf.png</file>
     <file>img/pix.png</file>
     <file>img/imprimir.png</file>
     <file>img/grafico.png</file>
