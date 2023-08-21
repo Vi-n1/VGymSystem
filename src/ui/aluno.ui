@@ -517,7 +517,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </rect>
        </property>
        <property name="inputMask">
-        <string>(99)9999999-99</string>
+        <string>(99)99999-9999</string>
        </property>
        <property name="text">
         <string notr="true">()-</string>
@@ -655,6 +655,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
          <height>22</height>
         </rect>
        </property>
+       <property name="inputMask">
+        <string>99999999</string>
+       </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -715,6 +718,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>exemplo123@gmail.com</string>
        </property>
       </widget>
       <widget class="QGroupBox" name="groupBox">
@@ -923,6 +929,12 @@ border-image: url(:/cadastro/img/lupa.png);</string>
           <height>22</height>
          </rect>
         </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhNone</set>
+        </property>
+        <property name="inputMask">
+         <string>999.999.999-99</string>
+        </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
@@ -938,6 +950,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
           <width>171</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="inputMask">
+         <string>(99)99999-9999</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -970,6 +985,12 @@ border-image: url(:/cadastro/img/lupa.png);</string>
           <width>131</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="inputMethodHints">
+         <set>Qt::ImhNone</set>
+        </property>
+        <property name="inputMask">
+         <string>99999999</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -1021,6 +1042,9 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="placeholderText">
+         <string>exemplo123@gmail.com</string>
         </property>
        </widget>
        <widget class="QLabel" name="l_foto_responsavel">

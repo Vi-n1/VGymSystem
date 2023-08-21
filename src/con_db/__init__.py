@@ -23,12 +23,13 @@ if not os.path.exists(dir_db):
         matricula_responsavel INTEGER NOT NULL PRIMARY KEY,
         nome_aluno TEXT NOT NULL,
         data_nascimento TEXT NOT NULL,
-        cpf INTEGER NOT NULL UNIQUE,
-        celular INTEGER NOT NULL,
+        cpf TEXT NOT NULL UNIQUE,
+        celular TEXT NOT NULL,
         whatsapp INTEGER NOT NULL,
         bairro TEXT NOT NULL,
-        cep INTEGER NOT NULL,
+        cep TEXT NOT NULL,
         cidade TEXT NOT NULL,
+        email TEXT NOT NULL,
         foto TEXT);
         """
     )
@@ -38,12 +39,13 @@ if not os.path.exists(dir_db):
         matricula_aluno INTEGER NOT NULL PRIMARY KEY,
         nome_aluno TEXT NOT NULL,
         data_nascimento TEXT NOT NULL,
-        cpf INTEGER NOT NULL UNIQUE,
-        celular INTEGER NOT NULL,
+        cpf TEXT NOT NULL UNIQUE,
+        celular TEXT NOT NULL,
         whatsapp INTEGER NOT NULL,
         bairro TEXT,
-        cep INTEGER,
+        cep TEXT,
         cidade TEXT,
+        email TEXT,
         foto TEXT,
         matricula_responsavel INTEGER,
         FOREIGN KEY (matricula_responsavel)

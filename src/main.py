@@ -52,6 +52,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             self.progress_bar_armazenamento.setValue(armazenamento_usado)
             sleep(2)
 
+    # se a janela for fechada a instância do banco de dados é fechado
     def closeEvent(self, event):
         self.aplicacao_ativa = False
         self.vgymsystem_db.fechar_db()

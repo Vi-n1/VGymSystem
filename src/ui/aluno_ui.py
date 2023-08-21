@@ -415,6 +415,7 @@ class Ui_JanelaAluno(object):
         self.le_cpf_responsavel.setObjectName('le_cpf_responsavel')
         self.le_cpf_responsavel.setEnabled(True)
         self.le_cpf_responsavel.setGeometry(QRect(480, 60, 131, 22))
+        self.le_cpf_responsavel.setInputMethodHints(Qt.ImhNone)
         self.le_cpf_responsavel.setAlignment(Qt.AlignCenter)
         self.le_celular_responsavel = QLineEdit(self.groupBox)
         self.le_celular_responsavel.setObjectName('le_celular_responsavel')
@@ -430,6 +431,7 @@ class Ui_JanelaAluno(object):
         self.le_cep_responsavel.setObjectName('le_cep_responsavel')
         self.le_cep_responsavel.setEnabled(True)
         self.le_cep_responsavel.setGeometry(QRect(180, 130, 131, 22))
+        self.le_cep_responsavel.setInputMethodHints(Qt.ImhNone)
         self.le_cep_responsavel.setAlignment(Qt.AlignCenter)
         self.le_cidade_responsavel = QLineEdit(self.groupBox)
         self.le_cidade_responsavel.setObjectName('le_cidade_responsavel')
@@ -639,7 +641,7 @@ class Ui_JanelaAluno(object):
             QCoreApplication.translate('JanelaAluno', 'Celular', None)
         )
         self.le_celular_aluno.setInputMask(
-            QCoreApplication.translate('JanelaAluno', '(99)9999999-99', None)
+            QCoreApplication.translate('JanelaAluno', '(99)99999-9999', None)
         )
         self.cb_whatsapp_aluno.setText(
             QCoreApplication.translate('JanelaAluno', 'Whatsapp', None)
@@ -662,11 +664,19 @@ class Ui_JanelaAluno(object):
         self.label_8.setText(
             QCoreApplication.translate('JanelaAluno', 'CEP', None)
         )
+        self.le_cep_aluno.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '99999999', None)
+        )
         self.label_9.setText(
             QCoreApplication.translate('JanelaAluno', 'Cidade', None)
         )
         self.label_10.setText(
             QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        self.le_email_aluno.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'exemplo123@gmail.com', None
+            )
         )
         self.groupBox.setTitle(
             QCoreApplication.translate('JanelaAluno', 'Respons\u00e1vel', None)
@@ -694,8 +704,22 @@ class Ui_JanelaAluno(object):
         self.label_18.setText(
             QCoreApplication.translate('JanelaAluno', 'Cidade', None)
         )
+        self.le_cpf_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '999.999.999-99', None)
+        )
+        self.le_celular_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '(99)99999-9999', None)
+        )
+        self.le_cep_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '99999999', None)
+        )
         self.label_19.setText(
             QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        self.le_email_responsavel.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'exemplo123@gmail.com', None
+            )
         )
         self.l_foto_responsavel.setText('')
         # if QT_CONFIG(tooltip)
