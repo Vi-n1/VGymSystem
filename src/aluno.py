@@ -3,8 +3,7 @@ import sys
 from PySide6.QtWidgets import (
     QMainWindow,
     QFileDialog,
-    QMessageBox,
-    QApplication,
+    QMessageBox
 )
 from PySide6.QtGui import QPixmap
 from ui.aluno_ui import Ui_JanelaAluno
@@ -257,10 +256,3 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         erro.setWindowTitle(titulo)
         erro.setText(mensagem)
         erro.open()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    janela = Aluno()
-    janela.show()
-    sys.exit(app.exec())
