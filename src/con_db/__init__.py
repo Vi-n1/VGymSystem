@@ -8,7 +8,7 @@ Módulo responsável por criar o banco de dados na primeira vez.
 dir_db = './Banco de dados'
 if not os.path.exists(dir_db):
     os.mkdir(dir_db)
-    con = sqlite3.connect(dir_db + '/SystemFit.db')
+    con = sqlite3.connect(dir_db + '/VGymSystem.db')
     cursor = con.cursor()
     cursor.execute(
         """
@@ -25,6 +25,7 @@ if not os.path.exists(dir_db):
         data_nascimento TEXT NOT NULL,
         cpf INTEGER NOT NULL UNIQUE,
         celular INTEGER NOT NULL,
+        whatsapp INTEGER NOT NULL,
         bairro TEXT NOT NULL,
         cep INTEGER NOT NULL,
         cidade TEXT NOT NULL,
@@ -39,6 +40,7 @@ if not os.path.exists(dir_db):
         data_nascimento TEXT NOT NULL,
         cpf INTEGER NOT NULL UNIQUE,
         celular INTEGER NOT NULL,
+        whatsapp INTEGER NOT NULL,
         bairro TEXT,
         cep INTEGER,
         cidade TEXT,

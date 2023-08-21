@@ -54,6 +54,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
 
     def closeEvent(self, event):
         self.aplicacao_ativa = False
+        self.vgymsystem_db.fechar_db()
 
 
 if __name__ == '__main__':
