@@ -21,11 +21,14 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         # binário das fotos
         self.binario_foto_aluno = ''
         self.binario_foto_responsavel = ''
+
         # números máximo de valores aceitos
         self.NUM_MAXIMO_VALOR_ACEITO = 14
         self.NUM_MAXIMO_CEP = 8
+
         # instância do banco
         self.vgymsystem_db = VGymSystemDB()
+
         # atribuindo as funções para trocar de página
         self.pb_pagina_pagamento.clicked.connect(
             lambda: self.stackedWidget.setCurrentIndex(0)
@@ -39,26 +42,31 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         self.pb_pagina_pesquisar_aluno.clicked.connect(
             lambda: self.stackedWidget.setCurrentIndex(3)
         )
+
         # atribuindo os métodos de adicionar imagem
         self.pb_ad_foto_aluno.clicked.connect(self.adicionar_foto_aluno)
         self.pb_ad_foto_responsavel.clicked.connect(
             self.adicionar_foto_responsavel
         )
+
         # se o estado do  ComboBox for alterado é chamado o método
         self.cb_responsavel.stateChanged.connect(self.aluno_independente)
+
         # chama o método que salva os dados no banco de dados
         self.pb_salvar_dados.clicked.connect(self.tratamento_dados)
 
     # Converte a foto do aluno para binário e mostra uma visualização.
     def adicionar_foto_aluno(self):
         caminho_foto_aluno = QFileDialog.getOpenFileName()[0]
+
         # obtendo o binário da foto
         with open(caminho_foto_aluno, 'rb') as file:
             cabecalho_foto = file.read(53)
             dados_pixel = file.read()
             imagem_montada = cabecalho_foto + dados_pixel
+
         foto = QPixmap()
-        # se selecionar um arquivo inválido e exibido uma mensagem de erro
+        # se selecionar um arquivo inválido é exibido uma mensagem de erro
         if foto.loadFromData(imagem_montada):
             self.l_foto_aluno.setPixmap(foto)
             self.binario_foto_aluno = imagem_montada
@@ -71,11 +79,13 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
     # Converte a foto do responsável para binário e mostra uma visualização.
     def adicionar_foto_responsavel(self):
         caminho_foto_responsavel = QFileDialog.getOpenFileName()[0]
+
         # obtendo o binário da foto
         with open(caminho_foto_responsavel, 'rb') as file:
             cabecalho_foto = file.read(53)
             dados_pixel = file.read()
             imagem_montada = cabecalho_foto + dados_pixel
+
         foto = QPixmap()
         # se selecionar um arquivo inválido e exibido uma mensagem de erro
         if foto.loadFromData(imagem_montada):
@@ -100,18 +110,15 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         self.le_email_responsavel.setEnabled(responsavel_selecionado)
         self.pb_ad_foto_responsavel.setEnabled(responsavel_selecionado)
 
+    # Verifica se os dados estão corretos e retorna os dados tratados
     def tratamento_dados(self):
-        """
-        Verifica se os dados estão corretos e retorna os dados tratados
 
-        Returns:
-            list | list[list, list]: Se o aluno é independente é retornado uma lista caso contrário e retornado duas
-        """
         # verifica se tem algum número no nome
         if not self.le_nome_aluno.text().replace(' ', '').isalpha():
             self.exibir_mensagem(
                 'Nome inválido', 'Digite novamente o nome do aluno'
             )
+
         # verifica a quantidade de valores digitado
         elif len(self.le_cpf_aluno.text()) < self.NUM_MAXIMO_VALOR_ACEITO:
             self.exibir_mensagem(
@@ -122,22 +129,31 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 'Número inválido',
                 'Digite novamente o número de celular do aluno',
             )
+
+        # verifica se tem algum número no nome
         elif not self.le_bairro_aluno.text().replace(' ', '').isalpha():
             self.exibir_mensagem(
                 'Bairro inválido', 'Digite novamente o nome do bairro do aluno'
             )
+
+        # verifica a quantidade de valores digitado
         elif len(self.le_cep_aluno.text()) < self.NUM_MAXIMO_CEP:
             self.exibir_mensagem(
                 'CEP inválido', 'Digite novamente o CEP do aluno'
             )
+
+        # verifica se tem algum número no nome
         elif not self.le_cidade_aluno.text().replace(' ', '').isalpha():
             self.exibir_mensagem(
                 'Cidade inválida', 'Digite novamente o nome da cidade do aluno'
             )
+
+        # verifica se tem algum arroba no nome
         elif self.le_email_aluno.text().count('@') != 1:
             self.exibir_mensagem(
                 'E-mail inválido', 'Digite novamente o e-mail do aluno'
             )
+
         else:
             # retira os espaços em branco
             nome_aluno = self.le_nome_aluno.text().replace(' ', '')
@@ -156,11 +172,13 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
             # de xxxxx-xxx para xxxxxxxx
             cep_aluno = self.le_cep_aluno.text().replace('-', '')
+
             # verifica se o número é whatsapp
             if self.cb_whatsapp_aluno.isChecked():
                 whatsapp = 1
             else:
                 whatsapp = 0
+
             # obtem os dados digitados
             dados_aluno = [
                 nome_aluno,
@@ -177,6 +195,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 str(self.binario_foto_aluno),
             ]
             if not self.cb_responsavel.isChecked():
+
                 # verifica se tem algum número no nome
                 if (
                     not self.le_nome_responsavel.text()
@@ -187,6 +206,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         'Nome inválido',
                         'Digite novamente o nome do responsável',
                     )
+
                 # verifica a quantidade de valores digitado
                 elif (
                     len(self.le_cpf_responsavel.text())
@@ -203,6 +223,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         'Número inválido',
                         'Digite novamente o número de celular do responsável',
                     )
+
+                # verifica se tem algum número no nome
                 elif (
                     not self.le_bairro_responsavel.text()
                     .replace(' ', '')
@@ -212,10 +234,14 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         'Bairro inválido',
                         'Digite novamente o nome do bairro do responsável',
                     )
+
+                # verifica a quantidade de valores digitado
                 elif len(self.le_cep_responsavel.text()) < self.NUM_MAXIMO_CEP:
                     self.exibir_mensagem(
                         'CEP inválido', 'Digite novamente o CEP do responsável'
                     )
+
+                # verifica se tem algum número no nome
                 elif (
                     not self.le_cidade_responsavel.text()
                     .replace(' ', '')
@@ -225,11 +251,14 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         'Cidade inválida',
                         'Digite novamente o nome da cidade do responsável',
                     )
+
+                # verifica se tem algum arroba no nome
                 elif self.le_email_responsavel.text().count('@') != 1:
                     self.exibir_mensagem(
                         'E-mail inválido',
                         'Digite novamente o e-mail do responsável',
                     )
+
                 else:
                     # retira os espaços em branco
                     nome_responsavel = self.le_nome_responsavel.text().replace(
@@ -266,6 +295,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     cep_responsavel = self.le_cep_responsavel.text().replace(
                         '-', ''
                     )
+
                     # obtem os dados digitados
                     dados_responsavel = [
                         nome_responsavel,
@@ -277,7 +307,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         cep_responsavel,
                         cidade_responsavel,
                         email_responsavel,
-                        str(self.binario_foto_responsavel),
+                        str(self.binario_foto_responsavel)
                     ]
                     dados = [dados_aluno, dados_responsavel]
                     self.salvar_dados(dados)
@@ -286,28 +316,35 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
     def salvar_dados(self, dados_tratados):
         contem_responsavel = 2
+
         # se o tamanho de :dados_tratados: for 2 o aluno é dependente
         if len(dados_tratados) == contem_responsavel:
             matricula_aluno = self.vgymsystem_db.get_nova_matricula_aluno()
             matricula_responsavel = (
                 self.vgymsystem_db.get_nova_matricula_responsavel()
             )
+
             # insere a matrícula do aluno na primeira posição
             dados_tratados[0].insert(0, matricula_aluno)
+
             # insere a matrícula do responsável na última posição
             dados_tratados[0].insert(
                 len(dados_tratados[0]), matricula_responsavel
             )
+
             # inserindo dados do aluno dependente e obtendo o resultado da transação
             commit_aluno = self.vgymsystem_db.set_novo_aluno(
                 *dados_tratados[0]
             )
+
             # inserindo dados do responsável primeira posição
             dados_tratados[1].insert(0, matricula_responsavel)
+
             # inserindo dados do responsável e obtendo o resultado da transação
             commit_responsavel = self.vgymsystem_db.set_novo_responsavel(
                 *dados_tratados[1]
             )
+
             # verifica se ocorreu algum erro na transação
             if not commit_aluno and commit_responsavel:
                 self.exibir_mensagem(
@@ -318,10 +355,13 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
         else:
             matricula_aluno = self.vgymsystem_db.get_nova_matricula_aluno()
+
             # insere a matrícula do aluno na primeira posição
             dados_tratados.insert(0, matricula_aluno)
+
             # insere a matrícula do aluno na última posição
             dados_tratados.insert(len(dados_tratados), matricula_aluno)
+
             # inserindo dados do aluno independente e obtendo o resultado da transação
             commit_aluno = self.vgymsystem_db.set_novo_aluno(*dados_tratados)
             if not commit_aluno:
