@@ -21,7 +21,7 @@ if not os.path.exists(dir_db):
         """
         CREATE TABLE Responsavel(
         matricula_responsavel INTEGER NOT NULL PRIMARY KEY,
-        nome_aluno TEXT NOT NULL,
+        nome TEXT NOT NULL,
         data_nascimento TEXT NOT NULL,
         cpf TEXT NOT NULL UNIQUE,
         celular TEXT NOT NULL,
@@ -46,6 +46,8 @@ if not os.path.exists(dir_db):
         cep TEXT,
         cidade TEXT,
         email TEXT,
+        data_pagamento INTEGER,
+        valor_pagamento INTEGER,
         foto TEXT,
         matricula_responsavel INTEGER,
         FOREIGN KEY (matricula_responsavel)
