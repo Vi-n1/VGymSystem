@@ -159,6 +159,7 @@ class VGymSystemDB:
         """
         # resultado da consulta no banco de dados
         sql = 'SELECT matricula_responsavel FROM Aluno'
+
         resultado_pesquisa_responsavel = self._cursor.execute(sql).fetchall()
         # nova matrícula gerada
         num_matricula_responsavel = randint(
@@ -180,6 +181,33 @@ class VGymSystemDB:
                     self._NUM_MATRICULA_MINIMA, self._NUM_MATRICULA_MAXIMA
                 )
             return num_matricula_responsavel
+
+    def get_aluno_por_matricula(self, matricula: str) -> list:
+        """
+        Busca dados da matrícula informada.
+        Args:
+            matricula (str): Matrícula do aluno.
+
+        Returns:
+            list: Lista com os dados do aluno.
+        """
+        if matricula.isnumeric():
+            quantidade_num_matricula = 5
+            if len(matricula) == quantidade_num_matricula:
+                self._get_aluno_por_matricula(matricula)
+
+    def get_aluno_por_cpf(self, cpf: str) -> list:
+        """
+        Busca dados do CPF informado.
+        Args:
+            cpf (str): CPF do aluno.
+        Returns:
+            list: Lista com os dados do aluno.
+        """
+        if cpf.isnumeric():
+            quantidade_num_cpf = 11
+            if len(cpf) == quantidade_num_cpf:
+                self._get_aluno_por_cpf(cpf)
 
     def _set_novo_aluno(self, *args: list) -> None:
         """
@@ -207,17 +235,37 @@ class VGymSystemDB:
         except sqlite3.IntegrityError as erro:
             raise erro
 
-    def _get_aluno_por_matricula(self, matricula):
+    def _get_aluno_por_matricula(self, matricula: str) -> list:
+        """
+        Busca os dados da matrícula informada.
+        Args:
+            matricula (str): Lista com os dados.
+        Returns:
+            list: Lista com os dados do aluno.
+        """
         sql = f'SELECT * FROM Aluno WHERE matricula_aluno == "{matricula}"'
         dados_brutos = self._cursor.execute(sql).fetchall()
         dados_filtrados = list(dados_brutos[0])
         return dados_filtrados
 
-    def _get_aluno_por_nome(self, nome_completo) -> list:
-        sql = f'SELECT * FROM Aluno WERE nome_aluno == "{nome_completo}"'
+    def _get_aluno_por_cpf(self, cpf: str) -> list:
+        """
+        Busca dados do CPF informado.
+        Args:
+            cpf (str): CPF do aluno.
+        Returns:
+            list: Lista com os dados do aluno.
+        """
+        sql = f'SELECT * FROM Aluno WHERE cpf == "{cpf}"'
         dados_brutos = self._cursor.execute(sql).fetchall()
         dados_filtrados = list(dados_brutos[0])
         return dados_filtrados
+
+    def _get_aluno_por_nome(self, nome_completo: str) -> None:
+        """
+        Implementação futura.
+        """
+        pass
 
     def fechar_db(self):
         """
