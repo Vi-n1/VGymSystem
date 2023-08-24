@@ -41,6 +41,7 @@ from PySide6.QtGui import (
     QTransform,
 )
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QAbstractSpinBox,
     QApplication,
     QCheckBox,
@@ -53,6 +54,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QPushButton,
     QSizePolicy,
+    QSpinBox,
     QStackedWidget,
     QTableWidget,
     QTableWidgetItem,
@@ -197,14 +199,14 @@ class Ui_JanelaAluno(object):
             '	border: 2px solid rgb(40, 42, 54);\n'
             '	background-color: rgb(173, 82, 135);\n'
             '}\n'
-            'QLineEdit{\n'
+            'QLineEdit, QSpinBox{\n'
             '	font: 700 10pt "Arial";\n'
             '	color: rgb(98, 114, 164);\n'
             '	border: none;\n'
             '	border-bottom: 2px solid  rgb(189, 147, 249);\n'
             '	background-color: rgba(189, 147, 249, 0.1);\n'
             '}\n'
-            'QLineEdit::hover{\n'
+            'QLineEdit::hover, QSpinBox::hover{\n'
             '	border-bottom: 2px solid  rgb(208, 99, 162);\n'
             '}\n'
             'QDateEdit{\n'
@@ -233,9 +235,43 @@ class Ui_JanelaAluno(object):
             'border-image: url(:/cadastro/img/lupa.png);'
         )
         self.tw_pagamentos = QTableWidget(self.page)
+        if self.tw_pagamentos.columnCount() < 13:
+            self.tw_pagamentos.setColumnCount(13)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(6, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(9, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(10, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(11, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.tw_pagamentos.setHorizontalHeaderItem(12, __qtablewidgetitem12)
         self.tw_pagamentos.setObjectName('tw_pagamentos')
         self.tw_pagamentos.setGeometry(QRect(34, 350, 1211, 75))
         self.tw_pagamentos.setStyleSheet('border:0;')
+        self.tw_pagamentos.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tw_pagamentos.setProperty('showDropIndicator', False)
+        self.tw_pagamentos.setDragDropOverwriteMode(False)
+        self.tw_pagamentos.setSelectionMode(QAbstractItemView.NoSelection)
+        self.tw_pagamentos.horizontalHeader().setVisible(True)
+        self.tw_pagamentos.verticalHeader().setVisible(False)
         self.pb_imprimir_boleto = QPushButton(self.page)
         self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
         self.pb_imprimir_boleto.setGeometry(QRect(510, 430, 111, 24))
@@ -255,11 +291,11 @@ class Ui_JanelaAluno(object):
         self.page1.setObjectName('page1')
         self.label = QLabel(self.page1)
         self.label.setObjectName('label')
-        self.label.setGeometry(QRect(0, 40, 271, 20))
+        self.label.setGeometry(QRect(1, 40, 271, 20))
         self.label.setAlignment(Qt.AlignCenter)
         self.le_nome_aluno = QLineEdit(self.page1)
         self.le_nome_aluno.setObjectName('le_nome_aluno')
-        self.le_nome_aluno.setGeometry(QRect(0, 60, 271, 22))
+        self.le_nome_aluno.setGeometry(QRect(1, 60, 271, 22))
         self.le_nome_aluno.setAlignment(Qt.AlignCenter)
         self.label_2 = QLabel(self.page1)
         self.label_2.setObjectName('label_2')
@@ -269,7 +305,7 @@ class Ui_JanelaAluno(object):
         self.de_data_nascimento.setObjectName('de_data_nascimento')
         self.de_data_nascimento.setGeometry(QRect(300, 60, 151, 22))
         self.de_data_nascimento.setAlignment(Qt.AlignCenter)
-        self.de_data_nascimento.setMaximumDate(QDate(2013, 1, 2))
+        self.de_data_nascimento.setMaximumDate(QDate(2013, 12, 30))
         self.de_data_nascimento.setMinimumDate(QDate(1900, 1, 1))
         self.de_data_nascimento.setCalendarPopup(True)
         self.label_3 = QLabel(self.page1)
@@ -316,11 +352,11 @@ class Ui_JanelaAluno(object):
         self.l_foto_aluno.setScaledContents(True)
         self.label_7 = QLabel(self.page1)
         self.label_7.setObjectName('label_7')
-        self.label_7.setGeometry(QRect(0, 110, 151, 20))
+        self.label_7.setGeometry(QRect(1, 110, 151, 20))
         self.label_7.setAlignment(Qt.AlignCenter)
         self.le_bairro_aluno = QLineEdit(self.page1)
         self.le_bairro_aluno.setObjectName('le_bairro_aluno')
-        self.le_bairro_aluno.setGeometry(QRect(0, 130, 151, 22))
+        self.le_bairro_aluno.setGeometry(QRect(1, 130, 151, 22))
         self.le_bairro_aluno.setAlignment(Qt.AlignCenter)
         self.label_8 = QLabel(self.page1)
         self.label_8.setObjectName('label_8')
@@ -348,7 +384,7 @@ class Ui_JanelaAluno(object):
         self.le_email_aluno.setAlignment(Qt.AlignCenter)
         self.groupBox = QGroupBox(self.page1)
         self.groupBox.setObjectName('groupBox')
-        self.groupBox.setGeometry(QRect(0, 240, 1280, 421))
+        self.groupBox.setGeometry(QRect(0, 240, 1280, 422))
         font = QFont()
         font.setFamilies(['Arial'])
         font.setPointSize(10)
@@ -365,96 +401,44 @@ class Ui_JanelaAluno(object):
         self.groupBox.setAlignment(Qt.AlignCenter)
         self.label_11 = QLabel(self.groupBox)
         self.label_11.setObjectName('label_11')
-        self.label_11.setGeometry(QRect(0, 40, 271, 20))
+        self.label_11.setGeometry(QRect(1, 90, 271, 20))
         self.label_11.setAlignment(Qt.AlignCenter)
         self.label_12 = QLabel(self.groupBox)
         self.label_12.setObjectName('label_12')
-        self.label_12.setGeometry(QRect(300, 40, 151, 20))
+        self.label_12.setGeometry(QRect(300, 90, 151, 20))
         self.label_12.setAlignment(Qt.AlignCenter)
         self.label_13 = QLabel(self.groupBox)
         self.label_13.setObjectName('label_13')
-        self.label_13.setGeometry(QRect(480, 40, 131, 20))
+        self.label_13.setGeometry(QRect(480, 90, 131, 20))
         self.label_13.setAlignment(Qt.AlignCenter)
         self.label_14 = QLabel(self.groupBox)
         self.label_14.setObjectName('label_14')
-        self.label_14.setGeometry(QRect(640, 40, 171, 20))
+        self.label_14.setGeometry(QRect(640, 90, 171, 20))
         self.label_14.setAlignment(Qt.AlignCenter)
-        self.le_nome_responsavel = QLineEdit(self.groupBox)
-        self.le_nome_responsavel.setObjectName('le_nome_responsavel')
-        self.le_nome_responsavel.setEnabled(True)
-        self.le_nome_responsavel.setGeometry(QRect(0, 60, 271, 22))
-        self.le_nome_responsavel.setAlignment(Qt.AlignCenter)
         self.label_16 = QLabel(self.groupBox)
         self.label_16.setObjectName('label_16')
-        self.label_16.setGeometry(QRect(0, 110, 151, 20))
+        self.label_16.setGeometry(QRect(1, 160, 151, 20))
         self.label_16.setAlignment(Qt.AlignCenter)
         self.label_17 = QLabel(self.groupBox)
         self.label_17.setObjectName('label_17')
-        self.label_17.setGeometry(QRect(180, 110, 131, 20))
+        self.label_17.setGeometry(QRect(180, 160, 131, 20))
         self.label_17.setAlignment(Qt.AlignCenter)
         self.label_18 = QLabel(self.groupBox)
         self.label_18.setObjectName('label_18')
-        self.label_18.setGeometry(QRect(340, 110, 171, 20))
+        self.label_18.setGeometry(QRect(340, 160, 171, 20))
         self.label_18.setAlignment(Qt.AlignCenter)
-        self.de_data_nascimento_responsavel = QDateEdit(self.groupBox)
-        self.de_data_nascimento_responsavel.setObjectName(
-            'de_data_nascimento_responsavel'
-        )
-        self.de_data_nascimento_responsavel.setEnabled(True)
-        self.de_data_nascimento_responsavel.setGeometry(
-            QRect(300, 60, 151, 22)
-        )
-        self.de_data_nascimento_responsavel.setAlignment(Qt.AlignCenter)
-        self.de_data_nascimento_responsavel.setButtonSymbols(
-            QAbstractSpinBox.UpDownArrows
-        )
-        self.de_data_nascimento_responsavel.setMaximumDate(QDate(2013, 1, 2))
-        self.de_data_nascimento_responsavel.setMinimumDate(QDate(1900, 1, 1))
-        self.de_data_nascimento_responsavel.setCalendarPopup(True)
-        self.le_cpf_responsavel = QLineEdit(self.groupBox)
-        self.le_cpf_responsavel.setObjectName('le_cpf_responsavel')
-        self.le_cpf_responsavel.setEnabled(True)
-        self.le_cpf_responsavel.setGeometry(QRect(480, 60, 131, 22))
-        self.le_cpf_responsavel.setInputMethodHints(Qt.ImhNone)
-        self.le_cpf_responsavel.setAlignment(Qt.AlignCenter)
-        self.le_celular_responsavel = QLineEdit(self.groupBox)
-        self.le_celular_responsavel.setObjectName('le_celular_responsavel')
-        self.le_celular_responsavel.setEnabled(True)
-        self.le_celular_responsavel.setGeometry(QRect(640, 60, 171, 22))
-        self.le_celular_responsavel.setAlignment(Qt.AlignCenter)
-        self.le_bairro_responsavel = QLineEdit(self.groupBox)
-        self.le_bairro_responsavel.setObjectName('le_bairro_responsavel')
-        self.le_bairro_responsavel.setEnabled(True)
-        self.le_bairro_responsavel.setGeometry(QRect(0, 130, 151, 22))
-        self.le_bairro_responsavel.setAlignment(Qt.AlignCenter)
-        self.le_cep_responsavel = QLineEdit(self.groupBox)
-        self.le_cep_responsavel.setObjectName('le_cep_responsavel')
-        self.le_cep_responsavel.setEnabled(True)
-        self.le_cep_responsavel.setGeometry(QRect(180, 130, 131, 22))
-        self.le_cep_responsavel.setInputMethodHints(Qt.ImhNone)
-        self.le_cep_responsavel.setAlignment(Qt.AlignCenter)
-        self.le_cidade_responsavel = QLineEdit(self.groupBox)
-        self.le_cidade_responsavel.setObjectName('le_cidade_responsavel')
-        self.le_cidade_responsavel.setEnabled(True)
-        self.le_cidade_responsavel.setGeometry(QRect(340, 130, 171, 22))
-        self.le_cidade_responsavel.setAlignment(Qt.AlignCenter)
         self.label_19 = QLabel(self.groupBox)
         self.label_19.setObjectName('label_19')
-        self.label_19.setGeometry(QRect(540, 110, 271, 20))
+        self.label_19.setGeometry(QRect(540, 160, 271, 20))
         self.label_19.setAlignment(Qt.AlignCenter)
-        self.le_email_responsavel = QLineEdit(self.groupBox)
-        self.le_email_responsavel.setObjectName('le_email_responsavel')
-        self.le_email_responsavel.setEnabled(True)
-        self.le_email_responsavel.setGeometry(QRect(540, 130, 271, 22))
-        self.le_email_responsavel.setAlignment(Qt.AlignCenter)
         self.l_foto_responsavel = QLabel(self.groupBox)
         self.l_foto_responsavel.setObjectName('l_foto_responsavel')
-        self.l_foto_responsavel.setGeometry(QRect(940, 90, 271, 211))
+        self.l_foto_responsavel.setGeometry(QRect(940, 20, 271, 211))
         self.l_foto_responsavel.setScaledContents(True)
         self.pb_ad_foto_responsavel = QPushButton(self.groupBox)
         self.pb_ad_foto_responsavel.setObjectName('pb_ad_foto_responsavel')
         self.pb_ad_foto_responsavel.setEnabled(True)
-        self.pb_ad_foto_responsavel.setGeometry(QRect(940, 90, 271, 211))
+        self.pb_ad_foto_responsavel.setGeometry(QRect(940, 20, 271, 211))
         self.pb_ad_foto_responsavel.setStyleSheet(
             'QPushButton{\n'
             '	border-radius: 5%;\n'
@@ -465,33 +449,98 @@ class Ui_JanelaAluno(object):
         )
         self.label_15 = QLabel(self.groupBox)
         self.label_15.setObjectName('label_15')
-        self.label_15.setGeometry(QRect(1020, 70, 111, 16))
+        self.label_15.setGeometry(QRect(1020, 0, 111, 16))
+        self.le_nome_responsavel = QLineEdit(self.groupBox)
+        self.le_nome_responsavel.setObjectName('le_nome_responsavel')
+        self.le_nome_responsavel.setGeometry(QRect(1, 110, 271, 22))
+        self.le_nome_responsavel.setAlignment(Qt.AlignCenter)
+        self.de_data_nascimento_responsavel = QDateEdit(self.groupBox)
+        self.de_data_nascimento_responsavel.setObjectName(
+            'de_data_nascimento_responsavel'
+        )
+        self.de_data_nascimento_responsavel.setGeometry(
+            QRect(300, 110, 151, 22)
+        )
+        self.de_data_nascimento_responsavel.setAlignment(Qt.AlignCenter)
+        self.de_data_nascimento_responsavel.setAccelerated(False)
+        self.de_data_nascimento_responsavel.setMaximumDate(QDate(2013, 12, 30))
+        self.de_data_nascimento_responsavel.setMinimumDate(QDate(1900, 1, 1))
+        self.de_data_nascimento_responsavel.setCalendarPopup(True)
+        self.le_cpf_responsavel = QLineEdit(self.groupBox)
+        self.le_cpf_responsavel.setObjectName('le_cpf_responsavel')
+        self.le_cpf_responsavel.setGeometry(QRect(480, 110, 131, 22))
+        self.le_cpf_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_celular_responsavel = QLineEdit(self.groupBox)
+        self.le_celular_responsavel.setObjectName('le_celular_responsavel')
+        self.le_celular_responsavel.setGeometry(QRect(640, 110, 171, 22))
+        self.le_celular_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_bairro_responsavel = QLineEdit(self.groupBox)
+        self.le_bairro_responsavel.setObjectName('le_bairro_responsavel')
+        self.le_bairro_responsavel.setGeometry(QRect(1, 180, 151, 22))
+        self.le_bairro_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_cep_responsavel = QLineEdit(self.groupBox)
+        self.le_cep_responsavel.setObjectName('le_cep_responsavel')
+        self.le_cep_responsavel.setGeometry(QRect(180, 180, 131, 22))
+        self.le_cep_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_cidade_responsavel = QLineEdit(self.groupBox)
+        self.le_cidade_responsavel.setObjectName('le_cidade_responsavel')
+        self.le_cidade_responsavel.setGeometry(QRect(340, 180, 171, 22))
+        self.le_cidade_responsavel.setAlignment(Qt.AlignCenter)
+        self.le_email_responsavel = QLineEdit(self.groupBox)
+        self.le_email_responsavel.setObjectName('le_email_responsavel')
+        self.le_email_responsavel.setGeometry(QRect(540, 180, 271, 22))
+        self.le_email_responsavel.setAlignment(Qt.AlignCenter)
         self.pb_salvar_dados = QPushButton(self.groupBox)
         self.pb_salvar_dados.setObjectName('pb_salvar_dados')
-        self.pb_salvar_dados.setGeometry(QRect(603, 370, 75, 24))
+        self.pb_salvar_dados.setGeometry(QRect(602, 340, 75, 24))
+        font1 = QFont()
+        font1.setFamilies(['Arial'])
+        font1.setPointSize(10)
+        self.pb_salvar_dados.setFont(font1)
         self.l_foto_responsavel.raise_()
         self.label_11.raise_()
         self.label_12.raise_()
         self.label_13.raise_()
         self.label_14.raise_()
-        self.le_nome_responsavel.raise_()
         self.label_16.raise_()
         self.label_17.raise_()
         self.label_18.raise_()
+        self.label_19.raise_()
+        self.pb_ad_foto_responsavel.raise_()
+        self.label_15.raise_()
+        self.le_nome_responsavel.raise_()
         self.de_data_nascimento_responsavel.raise_()
         self.le_cpf_responsavel.raise_()
         self.le_celular_responsavel.raise_()
         self.le_bairro_responsavel.raise_()
         self.le_cep_responsavel.raise_()
         self.le_cidade_responsavel.raise_()
-        self.label_19.raise_()
         self.le_email_responsavel.raise_()
-        self.pb_ad_foto_responsavel.raise_()
-        self.label_15.raise_()
         self.pb_salvar_dados.raise_()
         self.label_6 = QLabel(self.page1)
         self.label_6.setObjectName('label_6')
         self.label_6.setGeometry(QRect(1020, 0, 111, 20))
+        self.label_22 = QLabel(self.page1)
+        self.label_22.setObjectName('label_22')
+        self.label_22.setGeometry(QRect(1, 180, 151, 20))
+        self.label_22.setAlignment(Qt.AlignCenter)
+        self.sb_data_pagamento = QSpinBox(self.page1)
+        self.sb_data_pagamento.setObjectName('sb_data_pagamento')
+        self.sb_data_pagamento.setGeometry(QRect(1, 200, 151, 22))
+        self.sb_data_pagamento.setAlignment(Qt.AlignCenter)
+        self.sb_data_pagamento.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_data_pagamento.setMinimum(1)
+        self.sb_data_pagamento.setMaximum(30)
+        self.label_23 = QLabel(self.page1)
+        self.label_23.setObjectName('label_23')
+        self.label_23.setGeometry(QRect(190, 180, 121, 20))
+        self.label_23.setAlignment(Qt.AlignCenter)
+        self.sb_valor_pagamento = QSpinBox(self.page1)
+        self.sb_valor_pagamento.setObjectName('sb_valor_pagamento')
+        self.sb_valor_pagamento.setGeometry(QRect(190, 200, 121, 22))
+        self.sb_valor_pagamento.setAlignment(Qt.AlignCenter)
+        self.sb_valor_pagamento.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_valor_pagamento.setMaximum(9999999)
         self.stackedWidget.addWidget(self.page1)
         self.label.raise_()
         self.le_nome_aluno.raise_()
@@ -515,6 +564,10 @@ class Ui_JanelaAluno(object):
         self.le_email_aluno.raise_()
         self.groupBox.raise_()
         self.label_6.raise_()
+        self.label_22.raise_()
+        self.sb_data_pagamento.raise_()
+        self.label_23.raise_()
+        self.sb_valor_pagamento.raise_()
         self.page_3 = QWidget()
         self.page_3.setObjectName('page_3')
         self.label_20 = QLabel(self.page_3)
@@ -533,6 +586,16 @@ class Ui_JanelaAluno(object):
         self.tw_exibir_excluir_aluno.setObjectName('tw_exibir_excluir_aluno')
         self.tw_exibir_excluir_aluno.setGeometry(QRect(34, 350, 1211, 75))
         self.tw_exibir_excluir_aluno.setStyleSheet('border:0;')
+        self.tw_exibir_excluir_aluno.setEditTriggers(
+            QAbstractItemView.NoEditTriggers
+        )
+        self.tw_exibir_excluir_aluno.setTabKeyNavigation(False)
+        self.tw_exibir_excluir_aluno.setProperty('showDropIndicator', True)
+        self.tw_exibir_excluir_aluno.setDragDropOverwriteMode(False)
+        self.tw_exibir_excluir_aluno.setSelectionMode(
+            QAbstractItemView.NoSelection
+        )
+        self.tw_exibir_excluir_aluno.verticalHeader().setVisible(False)
         self.pb_excluir_aluno = QPushButton(self.page_3)
         self.pb_excluir_aluno.setObjectName('pb_excluir_aluno')
         self.pb_excluir_aluno.setGeometry(QRect(602, 430, 75, 24))
@@ -567,12 +630,12 @@ class Ui_JanelaAluno(object):
         self.label_5 = QLabel(self.page_2)
         self.label_5.setObjectName('label_5')
         self.label_5.setGeometry(QRect(435, 250, 411, 61))
-        font1 = QFont()
-        font1.setFamilies(['Sitka Small Semibold'])
-        font1.setPointSize(36)
-        font1.setBold(True)
-        font1.setItalic(True)
-        self.label_5.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies(['Sitka Small Semibold'])
+        font2.setPointSize(36)
+        font2.setBold(True)
+        font2.setItalic(True)
+        self.label_5.setFont(font2)
         self.label_5.setStyleSheet(
             'font: 600 italic 36pt "Sitka Small Semibold";\n'
             'color: rgb(255, 184, 108);'
@@ -584,6 +647,15 @@ class Ui_JanelaAluno(object):
         )
         self.tw_exibir_pesquisar_aluno.setGeometry(QRect(34, 350, 1211, 75))
         self.tw_exibir_pesquisar_aluno.setStyleSheet('border:0;')
+        self.tw_exibir_pesquisar_aluno.setEditTriggers(
+            QAbstractItemView.NoEditTriggers
+        )
+        self.tw_exibir_pesquisar_aluno.setProperty('showDropIndicator', False)
+        self.tw_exibir_pesquisar_aluno.setDragDropOverwriteMode(False)
+        self.tw_exibir_pesquisar_aluno.setSelectionMode(
+            QAbstractItemView.NoSelection
+        )
+        self.tw_exibir_pesquisar_aluno.verticalHeader().setVisible(False)
         self.pb_presquisar_aluno = QPushButton(self.page_2)
         self.pb_presquisar_aluno.setObjectName('pb_presquisar_aluno')
         self.pb_presquisar_aluno.setGeometry(QRect(810, 320, 21, 16))
@@ -619,6 +691,58 @@ class Ui_JanelaAluno(object):
             )
         )
         self.pb_pesquisar_pagamentos.setText('')
+        ___qtablewidgetitem = self.tw_pagamentos.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
+        )
+        ___qtablewidgetitem1 = self.tw_pagamentos.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(
+            QCoreApplication.translate('JanelaAluno', 'Nome', None)
+        )
+        ___qtablewidgetitem2 = self.tw_pagamentos.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
+        )
+        ___qtablewidgetitem3 = self.tw_pagamentos.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(
+            QCoreApplication.translate('JanelaAluno', 'CPF', None)
+        )
+        ___qtablewidgetitem4 = self.tw_pagamentos.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(
+            QCoreApplication.translate('JanelaAluno', 'Celular', None)
+        )
+        ___qtablewidgetitem5 = self.tw_pagamentos.horizontalHeaderItem(5)
+        ___qtablewidgetitem5.setText(
+            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
+        )
+        ___qtablewidgetitem6 = self.tw_pagamentos.horizontalHeaderItem(6)
+        ___qtablewidgetitem6.setText(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        ___qtablewidgetitem7 = self.tw_pagamentos.horizontalHeaderItem(7)
+        ___qtablewidgetitem7.setText(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        ___qtablewidgetitem8 = self.tw_pagamentos.horizontalHeaderItem(8)
+        ___qtablewidgetitem8.setText(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        ___qtablewidgetitem9 = self.tw_pagamentos.horizontalHeaderItem(9)
+        ___qtablewidgetitem9.setText(
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        ___qtablewidgetitem10 = self.tw_pagamentos.horizontalHeaderItem(10)
+        ___qtablewidgetitem10.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
+        )
+        ___qtablewidgetitem11 = self.tw_pagamentos.horizontalHeaderItem(11)
+        ___qtablewidgetitem11.setText(
+            QCoreApplication.translate('JanelaAluno', 'Valor', None)
+        )
+        ___qtablewidgetitem12 = self.tw_pagamentos.horizontalHeaderItem(12)
+        ___qtablewidgetitem12.setText(
+            QCoreApplication.translate('JanelaAluno', 'Respons\u00e1vel', None)
+        )
         self.pb_imprimir_boleto.setText(
             QCoreApplication.translate('JanelaAluno', 'Imprimir boleto', None)
         )
@@ -665,7 +789,7 @@ class Ui_JanelaAluno(object):
             QCoreApplication.translate('JanelaAluno', 'CEP', None)
         )
         self.le_cep_aluno.setInputMask(
-            QCoreApplication.translate('JanelaAluno', '99999999', None)
+            QCoreApplication.translate('JanelaAluno', '99999-999', None)
         )
         self.label_9.setText(
             QCoreApplication.translate('JanelaAluno', 'Cidade', None)
@@ -704,22 +828,8 @@ class Ui_JanelaAluno(object):
         self.label_18.setText(
             QCoreApplication.translate('JanelaAluno', 'Cidade', None)
         )
-        self.le_cpf_responsavel.setInputMask(
-            QCoreApplication.translate('JanelaAluno', '999.999.999-99', None)
-        )
-        self.le_celular_responsavel.setInputMask(
-            QCoreApplication.translate('JanelaAluno', '(99)99999-9999', None)
-        )
-        self.le_cep_responsavel.setInputMask(
-            QCoreApplication.translate('JanelaAluno', '99999999', None)
-        )
         self.label_19.setText(
             QCoreApplication.translate('JanelaAluno', 'E-mail', None)
-        )
-        self.le_email_responsavel.setPlaceholderText(
-            QCoreApplication.translate(
-                'JanelaAluno', 'exemplo123@gmail.com', None
-            )
         )
         self.l_foto_responsavel.setText('')
         # if QT_CONFIG(tooltip)
@@ -735,6 +845,15 @@ class Ui_JanelaAluno(object):
                 'JanelaAluno', 'Adicione uma foto', None
             )
         )
+        self.le_cpf_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '999.999.999-99', None)
+        )
+        self.le_celular_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '(99)99999-9999', None)
+        )
+        self.le_cep_responsavel.setInputMask(
+            QCoreApplication.translate('JanelaAluno', '99999-999', None)
+        )
         self.pb_salvar_dados.setText(
             QCoreApplication.translate('JanelaAluno', 'Salvar', None)
         )
@@ -742,6 +861,19 @@ class Ui_JanelaAluno(object):
             QCoreApplication.translate(
                 'JanelaAluno', 'Adicione uma foto', None
             )
+        )
+        self.label_22.setText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Data do pagamento', None
+            )
+        )
+        self.label_23.setText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Valor do pagamento', None
+            )
+        )
+        self.sb_valor_pagamento.setPrefix(
+            QCoreApplication.translate('JanelaAluno', 'R$', None)
         )
         self.label_20.setText(
             QCoreApplication.translate('JanelaAluno', 'Excluir aluno', None)
