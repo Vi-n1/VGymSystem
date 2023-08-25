@@ -194,7 +194,8 @@ class VGymSystemDB:
         if matricula.isnumeric():
             quantidade_num_matricula = 5
             if len(matricula) == quantidade_num_matricula:
-                self._get_aluno_por_matricula(matricula)
+                dados = self._get_aluno_por_matricula(matricula)
+                return dados
 
     def get_aluno_por_cpf(self, cpf: str) -> list:
         """
@@ -207,7 +208,8 @@ class VGymSystemDB:
         if cpf.isnumeric():
             quantidade_num_cpf = 11
             if len(cpf) == quantidade_num_cpf:
-                self._get_aluno_por_cpf(cpf)
+                dados = self._get_aluno_por_cpf(cpf)
+                return dados
 
     def _set_novo_aluno(self, *args: list) -> None:
         """
