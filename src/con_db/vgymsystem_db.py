@@ -6,14 +6,16 @@ from numpy.random import randint
 
 class VGymSystemDB:
     """
-    Classe responsável pela a modificação e manipulação do banco de dados.
+    Classe responsável por modifica e manipular do banco de dados.
     """
 
     def __init__(self):
         _caminho_db = str(Path('./Banco de dados/VGymSystem.db'))
         self._con = sqlite3.connect(_caminho_db)
         self._cursor = self._con.cursor()
-        self._NUM_MATRICULA_MINIMA = 00000
+        _habilita_chaves_estrangeiras = 'PRAGMA foreign_keys=ON'
+        self._cursor.execute(_habilita_chaves_estrangeiras)
+        self._NUM_MATRICULA_MINIMA = 11111
         self._NUM_MATRICULA_MAXIMA = 99999
 
     def set_novo_aluno(
@@ -211,6 +213,14 @@ class VGymSystemDB:
                 dados = self._get_aluno_por_cpf(cpf)
                 return dados
 
+    def excluir_aluno(self, matricula: str) -> None:
+        """
+        Excluí dados do aluno, se o aluno é independente a matrícula é do aluno.
+        Args:
+            matricula (str): Matrícula do responsável
+        """
+        self._excluir_aluno(matricula)
+
     def _set_novo_aluno(self, *args: list) -> None:
         """
         Salva dados de um novo aluno.
@@ -263,11 +273,15 @@ class VGymSystemDB:
         dados_filtrados = list(dados_brutos[0])
         return dados_filtrados
 
-    def _get_aluno_por_nome(self, nome_completo: str) -> None:
+    def _excluir_aluno(self, matricula) -> None:
         """
-        Implementação futura.
+        Excluí  os dados do aluno.
+        Args:
+            matricula (str): Matrícula do responsável
         """
-        pass
+        sql = f'DELETE FROM Aluno WHERE matricula_responsavel == "{matricula}"'
+        self._cursor.execute(sql)
+        self._con.commit()
 
     def fechar_db(self):
         """

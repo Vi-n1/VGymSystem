@@ -50,7 +50,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         )
 
         # Se o estado do  ComboBox for alterado é chamado o método.
-        self.cb_responsavel.stateChanged.connect(self.aluno_independente)
+        self.cb_responsavel.stateChanged.connect(self.sessao_responsavel)
 
         # Chama o método que salva os dados no banco de dados.
         self.pb_salvar_dados.clicked.connect(self.tratamento_dados)
@@ -59,6 +59,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         self.pb_pesquisar_excluir.clicked.connect(
             self.visualizar_excluir_aluno
         )
+        self.pb_excluir_aluno.clicked.connect(self.excluir_aluno)
 
     # Converte a foto do aluno para binário e mostra uma visualização.
     def adicionar_foto_aluno(self):
@@ -103,7 +104,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             )
 
     # Desativa a sessão de responsável se o checkBox estiver ativo e ativa se o checkBox estiver desativado.
-    def aluno_independente(self):
+    def sessao_responsavel(self):
         responsavel_selecionado = not (self.cb_responsavel.isChecked())
         self.le_nome_responsavel.setEnabled(responsavel_selecionado)
         self.de_data_nascimento_responsavel.setEnabled(responsavel_selecionado)
@@ -319,6 +320,14 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             else:
                 self.salvar_dados(dados_aluno)
 
+    # Excluí o aluno do banco de dados.
+    def excluir_aluno(self):
+        matricula = self.le_excluir_aluno.text()
+        if matricula.isnumeric():
+            quantidade_num_matricula = 5
+            if len(matricula) == quantidade_num_matricula:
+                self.vgymsystem_db.excluir_aluno(matricula)
+
     # Exibi dados na tabela da página de 'pagamentos'.
     def visualizar_debitos(self):
         identificador_informado = self.le_pagamentos.text()
@@ -407,6 +416,14 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 self.vgymsystem_db.get_nova_matricula_responsavel()
             )
 
+            # Inserindo dados do responsável primeira posição.
+            dados_tratados[1].insert(0, matricula_responsavel)
+
+            # Inserindo dados do responsável e obtendo o resultado da transação.
+            commit_responsavel = self.vgymsystem_db.set_novo_responsavel(
+                *dados_tratados[1]
+            )
+
             # Insere a matrícula do aluno na primeira posição.
             dados_tratados[0].insert(0, matricula_aluno)
 
@@ -418,14 +435,6 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             # Inserindo dados do aluno dependente e obtendo o resultado da transação.
             commit_aluno = self.vgymsystem_db.set_novo_aluno(
                 *dados_tratados[0]
-            )
-
-            # Inserindo dados do responsável primeira posição.
-            dados_tratados[1].insert(0, matricula_responsavel)
-
-            # Inserindo dados do responsável e obtendo o resultado da transação.
-            commit_responsavel = self.vgymsystem_db.set_novo_responsavel(
-                *dados_tratados[1]
             )
 
             # Verifica se ocorreu algum erro na transação.
@@ -442,8 +451,9 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             # Insere a matrícula do aluno na primeira posição.
             dados_tratados.insert(0, matricula_aluno)
 
-            # Insere a matrícula do aluno na última posição.
-            dados_tratados.insert(len(dados_tratados), matricula_aluno)
+            # Insere NULL na matrícula responsável na última posição.
+            null = None
+            dados_tratados.insert(len(dados_tratados), null)
 
             # Inserindo dados do aluno independente e obtendo o resultado da transação.
             commit_aluno = self.vgymsystem_db.set_novo_aluno(*dados_tratados)

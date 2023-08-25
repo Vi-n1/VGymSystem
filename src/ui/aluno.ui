@@ -1343,7 +1343,7 @@ color: rgb(255, 184, 108);</string>
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
-        <string>Matrícula/CPF</string>
+        <string>Matrícula do responsável</string>
        </property>
       </widget>
       <widget class="QTableWidget" name="tw_exibir_excluir_aluno">

@@ -990,7 +990,7 @@ class Ui_JanelaAluno(object):
         )
         self.le_excluir_aluno.setPlaceholderText(
             QCoreApplication.translate(
-                'JanelaAluno', 'Matr\u00edcula/CPF', None
+                'JanelaAluno', 'Matr\u00edcula do respons\u00e1vel', None
             )
         )
         ___qtablewidgetitem13 = (

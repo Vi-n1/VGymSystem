@@ -51,7 +51,8 @@ if not os.path.exists(dir_db):
         foto TEXT,
         matricula_responsavel INTEGER,
         FOREIGN KEY (matricula_responsavel)
-        REFERENCES Responsavel (matricula_responsavel));
+        REFERENCES Responsavel (matricula_responsavel)
+        ON DELETE CASCADE);
         """
     )
     con.commit()
