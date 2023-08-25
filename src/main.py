@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
 import psutil
-from time import sleep
 from threading import Thread
 from PySide6.QtWidgets import QApplication, QMainWindow
 from ui.central_ui import Ui_JanelaCentral
@@ -45,12 +44,10 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         self.progress_bar_memoria.setMaximum(total_memoria)
         total_armazenamento = psutil.disk_usage('.').total / self.GIGABYTE
         self.progress_bar_armazenamento.setMaximum(total_armazenamento)
-        while self.aplicacao_ativa:
-            memoria_usada = psutil.virtual_memory().used / self.GIGABYTE
-            self.progress_bar_memoria.setValue(memoria_usada)
-            armazenamento_usado = psutil.disk_usage('.').used / self.GIGABYTE
-            self.progress_bar_armazenamento.setValue(armazenamento_usado)
-            sleep(2)
+        memoria_usada = psutil.virtual_memory().used / self.GIGABYTE
+        self.progress_bar_memoria.setValue(memoria_usada)
+        armazenamento_usado = psutil.disk_usage('.').used / self.GIGABYTE
+        self.progress_bar_armazenamento.setValue(armazenamento_usado)
 
     # se a janela for fechada a instância do banco de dados é fechado
     def closeEvent(self, event):
