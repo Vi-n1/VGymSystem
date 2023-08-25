@@ -181,7 +181,7 @@ class Ui_JanelaAluno(object):
         self.stackedWidget.setObjectName('stackedWidget')
         self.stackedWidget.setGeometry(QRect(0, 0, 1280, 660))
         self.stackedWidget.setStyleSheet(
-            'QLabel, QCheckBox{\n'
+            'QLabel, QCheckBox, QTableWidget{\n'
             '	color: rgb(255, 255, 255);\n'
             '	font: 10pt "Arial";\n'
             '	color: rgb(80, 250, 123);\n'
@@ -583,6 +583,60 @@ class Ui_JanelaAluno(object):
         self.le_excluir_aluno.setGeometry(QRect(466, 319, 351, 22))
         self.le_excluir_aluno.setAlignment(Qt.AlignCenter)
         self.tw_exibir_excluir_aluno = QTableWidget(self.page_3)
+        if self.tw_exibir_excluir_aluno.columnCount() < 13:
+            self.tw_exibir_excluir_aluno.setColumnCount(13)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            0, __qtablewidgetitem13
+        )
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            1, __qtablewidgetitem14
+        )
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            2, __qtablewidgetitem15
+        )
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            3, __qtablewidgetitem16
+        )
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            4, __qtablewidgetitem17
+        )
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            5, __qtablewidgetitem18
+        )
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            6, __qtablewidgetitem19
+        )
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            7, __qtablewidgetitem20
+        )
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            8, __qtablewidgetitem21
+        )
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            9, __qtablewidgetitem22
+        )
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            10, __qtablewidgetitem23
+        )
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            11, __qtablewidgetitem24
+        )
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
+            12, __qtablewidgetitem25
+        )
         self.tw_exibir_excluir_aluno.setObjectName('tw_exibir_excluir_aluno')
         self.tw_exibir_excluir_aluno.setGeometry(QRect(34, 350, 1211, 75))
         self.tw_exibir_excluir_aluno.setStyleSheet('border:0;')
@@ -642,6 +696,60 @@ class Ui_JanelaAluno(object):
         )
         self.label_5.setAlignment(Qt.AlignCenter)
         self.tw_exibir_pesquisar_aluno = QTableWidget(self.page_2)
+        if self.tw_exibir_pesquisar_aluno.columnCount() < 13:
+            self.tw_exibir_pesquisar_aluno.setColumnCount(13)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            0, __qtablewidgetitem26
+        )
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            1, __qtablewidgetitem27
+        )
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            2, __qtablewidgetitem28
+        )
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            3, __qtablewidgetitem29
+        )
+        __qtablewidgetitem30 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            4, __qtablewidgetitem30
+        )
+        __qtablewidgetitem31 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            5, __qtablewidgetitem31
+        )
+        __qtablewidgetitem32 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            6, __qtablewidgetitem32
+        )
+        __qtablewidgetitem33 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            7, __qtablewidgetitem33
+        )
+        __qtablewidgetitem34 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            8, __qtablewidgetitem34
+        )
+        __qtablewidgetitem35 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            9, __qtablewidgetitem35
+        )
+        __qtablewidgetitem36 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            10, __qtablewidgetitem36
+        )
+        __qtablewidgetitem37 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            11, __qtablewidgetitem37
+        )
+        __qtablewidgetitem38 = QTableWidgetItem()
+        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
+            12, __qtablewidgetitem38
+        )
         self.tw_exibir_pesquisar_aluno.setObjectName(
             'tw_exibir_pesquisar_aluno'
         )
@@ -656,10 +764,10 @@ class Ui_JanelaAluno(object):
             QAbstractItemView.NoSelection
         )
         self.tw_exibir_pesquisar_aluno.verticalHeader().setVisible(False)
-        self.pb_presquisar_aluno = QPushButton(self.page_2)
-        self.pb_presquisar_aluno.setObjectName('pb_presquisar_aluno')
-        self.pb_presquisar_aluno.setGeometry(QRect(810, 320, 21, 16))
-        self.pb_presquisar_aluno.setStyleSheet(
+        self.pb_pesquisar_aluno = QPushButton(self.page_2)
+        self.pb_pesquisar_aluno.setObjectName('pb_pesquisar_aluno')
+        self.pb_pesquisar_aluno.setGeometry(QRect(810, 320, 21, 16))
+        self.pb_pesquisar_aluno.setStyleSheet(
             'background-color: rgba(255, 255, 255, 0);\n'
             'border-image: url(:/cadastro/img/lupa.png);'
         )
@@ -741,7 +849,9 @@ class Ui_JanelaAluno(object):
         )
         ___qtablewidgetitem12 = self.tw_pagamentos.horizontalHeaderItem(12)
         ___qtablewidgetitem12.setText(
-            QCoreApplication.translate('JanelaAluno', 'Respons\u00e1vel', None)
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+            )
         )
         self.pb_imprimir_boleto.setText(
             QCoreApplication.translate('JanelaAluno', 'Imprimir boleto', None)
@@ -879,7 +989,89 @@ class Ui_JanelaAluno(object):
             QCoreApplication.translate('JanelaAluno', 'Excluir aluno', None)
         )
         self.le_excluir_aluno.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula/CPF', None
+            )
+        )
+        ___qtablewidgetitem13 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(0)
+        )
+        ___qtablewidgetitem13.setText(
             QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
+        )
+        ___qtablewidgetitem14 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(1)
+        )
+        ___qtablewidgetitem14.setText(
+            QCoreApplication.translate('JanelaAluno', 'Nome', None)
+        )
+        ___qtablewidgetitem15 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(2)
+        )
+        ___qtablewidgetitem15.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
+        )
+        ___qtablewidgetitem16 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(3)
+        )
+        ___qtablewidgetitem16.setText(
+            QCoreApplication.translate('JanelaAluno', 'CPF', None)
+        )
+        ___qtablewidgetitem17 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(4)
+        )
+        ___qtablewidgetitem17.setText(
+            QCoreApplication.translate('JanelaAluno', 'Celular', None)
+        )
+        ___qtablewidgetitem18 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(5)
+        )
+        ___qtablewidgetitem18.setText(
+            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
+        )
+        ___qtablewidgetitem19 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(6)
+        )
+        ___qtablewidgetitem19.setText(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        ___qtablewidgetitem20 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(7)
+        )
+        ___qtablewidgetitem20.setText(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        ___qtablewidgetitem21 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(8)
+        )
+        ___qtablewidgetitem21.setText(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        ___qtablewidgetitem22 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(9)
+        )
+        ___qtablewidgetitem22.setText(
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        ___qtablewidgetitem23 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(10)
+        )
+        ___qtablewidgetitem23.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
+        )
+        ___qtablewidgetitem24 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(11)
+        )
+        ___qtablewidgetitem24.setText(
+            QCoreApplication.translate('JanelaAluno', 'Valor', None)
+        )
+        ___qtablewidgetitem25 = (
+            self.tw_exibir_excluir_aluno.horizontalHeaderItem(12)
+        )
+        ___qtablewidgetitem25.setText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+            )
         )
         self.pb_excluir_aluno.setText(
             QCoreApplication.translate('JanelaAluno', 'Excluir', None)
@@ -887,12 +1079,92 @@ class Ui_JanelaAluno(object):
         self.pb_pesquisar_excluir.setText('')
         self.le_pesquisar_aluno.setPlaceholderText(
             QCoreApplication.translate(
-                'JanelaAluno', 'Matr\u00edcula/Nome completo', None
+                'JanelaAluno', 'Matr\u00edcula/CPF', None
             )
         )
         self.label_5.setText(
             QCoreApplication.translate('JanelaAluno', 'Pesquisar aluno', None)
         )
-        self.pb_presquisar_aluno.setText('')
+        ___qtablewidgetitem26 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(0)
+        )
+        ___qtablewidgetitem26.setText(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
+        )
+        ___qtablewidgetitem27 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(1)
+        )
+        ___qtablewidgetitem27.setText(
+            QCoreApplication.translate('JanelaAluno', 'Nome', None)
+        )
+        ___qtablewidgetitem28 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(2)
+        )
+        ___qtablewidgetitem28.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
+        )
+        ___qtablewidgetitem29 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(3)
+        )
+        ___qtablewidgetitem29.setText(
+            QCoreApplication.translate('JanelaAluno', 'CPF', None)
+        )
+        ___qtablewidgetitem30 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(4)
+        )
+        ___qtablewidgetitem30.setText(
+            QCoreApplication.translate('JanelaAluno', 'Celular', None)
+        )
+        ___qtablewidgetitem31 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(5)
+        )
+        ___qtablewidgetitem31.setText(
+            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
+        )
+        ___qtablewidgetitem32 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(6)
+        )
+        ___qtablewidgetitem32.setText(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        ___qtablewidgetitem33 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(7)
+        )
+        ___qtablewidgetitem33.setText(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        ___qtablewidgetitem34 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(8)
+        )
+        ___qtablewidgetitem34.setText(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        ___qtablewidgetitem35 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(9)
+        )
+        ___qtablewidgetitem35.setText(
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        ___qtablewidgetitem36 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(10)
+        )
+        ___qtablewidgetitem36.setText(
+            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
+        )
+        ___qtablewidgetitem37 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(11)
+        )
+        ___qtablewidgetitem37.setText(
+            QCoreApplication.translate('JanelaAluno', 'Valor', None)
+        )
+        ___qtablewidgetitem38 = (
+            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(12)
+        )
+        ___qtablewidgetitem38.setText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+            )
+        )
+        self.pb_pesquisar_aluno.setText('')
 
     # retranslateUi

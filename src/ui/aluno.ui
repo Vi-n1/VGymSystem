@@ -243,7 +243,7 @@ QPushButton::pressed{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel, QCheckBox{
+      <string notr="true">QLabel, QCheckBox, QTableWidget{
 	color: rgb(255, 255, 255);
 	font: 10pt &quot;Arial&quot;;
 	color: rgb(80, 250, 123);
@@ -424,7 +424,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
        </column>
        <column>
         <property name="text">
-         <string>Responsável</string>
+         <string>Matrícula responsável</string>
         </property>
        </column>
       </widget>
@@ -1343,7 +1343,7 @@ color: rgb(255, 184, 108);</string>
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
-        <string>Matrícula</string>
+        <string>Matrícula/CPF</string>
        </property>
       </widget>
       <widget class="QTableWidget" name="tw_exibir_excluir_aluno">
@@ -1376,6 +1376,71 @@ color: rgb(255, 184, 108);</string>
        <attribute name="verticalHeaderVisible">
         <bool>false</bool>
        </attribute>
+       <column>
+        <property name="text">
+         <string>Matrícula</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nome</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Data nascimento</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>CPF</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Celular</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>É Whatsapp</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Bairro</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>CEP</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Cidade</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>E-mail</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Data pagamento</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Valor</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Matrícula responsável</string>
+        </property>
+       </column>
       </widget>
       <widget class="QPushButton" name="pb_excluir_aluno">
        <property name="geometry">
@@ -1434,7 +1499,7 @@ border-image: url(:/cadastro/img/lupa.png);</string>
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
-        <string>Matrícula/Nome completo</string>
+        <string>Matrícula/CPF</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_5">
@@ -1492,8 +1557,73 @@ color: rgb(255, 184, 108);</string>
        <attribute name="verticalHeaderVisible">
         <bool>false</bool>
        </attribute>
+       <column>
+        <property name="text">
+         <string>Matrícula</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Nome</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Data nascimento</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>CPF</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Celular</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>É Whatsapp</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Bairro</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>CEP</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Cidade</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>E-mail</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Data pagamento</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Valor</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Matrícula responsável</string>
+        </property>
+       </column>
       </widget>
-      <widget class="QPushButton" name="pb_presquisar_aluno">
+      <widget class="QPushButton" name="pb_pesquisar_aluno">
        <property name="geometry">
         <rect>
          <x>810</x>
