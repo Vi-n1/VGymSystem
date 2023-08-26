@@ -52,13 +52,21 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         # Se o estado do  ComboBox for alterado é chamado o método.
         self.cb_responsavel.stateChanged.connect(self.sessao_responsavel)
 
-        # Chama o método que salva os dados no banco de dados.
+        # Atribuindo ao método que faz o tratamento de dados e salva os dados no banco.
         self.pb_salvar_dados.clicked.connect(self.tratamento_dados)
-        self.pb_pesquisar_pagamentos.clicked.connect(self.visualizar_debitos)
-        self.pb_pesquisar_aluno.clicked.connect(self.visualizar_aluno)
-        self.pb_pesquisar_excluir.clicked.connect(
-            self.visualizar_excluir_aluno
+
+        # Atribuindo aos métodos de exibir dados.
+        self.pb_pg_pagamentos_pesquisar.clicked.connect(
+            self.exibir_dados_pg_pagamentos
         )
+        self.pb_pg_excluir_pesquisar.clicked.connect(
+            self.exibir_dados_pg_excluir
+        )
+        self.pb_pg_informacoes_pesquisar.clicked.connect(
+            self.exibir_dados_pg_informacoes
+        )
+
+        #
         self.pb_excluir_aluno.clicked.connect(self.excluir_aluno)
 
     # Converte a foto do aluno para binário e mostra uma visualização.
@@ -198,7 +206,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 email_aluno,
                 self.sb_data_pagamento.value(),
                 self.sb_valor_pagamento.value(),
-                str(self.binario_foto_aluno),
+                self.binario_foto_aluno,
             ]
             if not self.cb_responsavel.isChecked():
 
@@ -313,7 +321,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                         cep_responsavel,
                         cidade_responsavel,
                         email_responsavel,
-                        str(self.binario_foto_responsavel),
+                        self.binario_foto_responsavel,
                     ]
                     dados = [dados_aluno, dados_responsavel]
                     self.salvar_dados(dados)
@@ -328,41 +336,65 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             if len(matricula) == quantidade_num_matricula:
                 self.vgymsystem_db.excluir_aluno(matricula)
 
-    # Exibi dados na tabela da página de 'pagamentos'.
-    def visualizar_debitos(self):
+    # Exibi dados na página de 'pagamentos'.
+    def exibir_dados_pg_pagamentos(self):
         identificador_informado = self.le_pagamentos.text()
         dados = self.pesquisar_dados(identificador_informado)
-        self.tw_pagamentos.setRowCount(1)
-        linha = 0
+        self.l_pg_pagamentos_matricula.setText(f'{dados[0]}')
+        self.l_pg_pagamentos_nome.setText(dados[1])
+        self.l_pg_pagamentos_data_nascimento.setText(dados[2])
+        self.l_pg_pagamentos_cpf.setText(dados[3])
+        self.l_pg_pagamentos_celular.setText(dados[4])
+        self.l_pg_pagamentos_bairro.setText(dados[6])
+        self.l_pg_pagamentos_cep.setText(dados[7])
+        self.l_pg_pagamentos_cidade.setText(dados[8])
+        self.l_pg_pagamentos_email.setText(dados[9])
+        self.l_pg_pagamentos_data_pagamento.setText(f'{dados[10]}')
+        self.l_pg_pagamentos_valor.setText(f'{dados[11]}')
+        foto = QPixmap()
+        foto.loadFromData(dados[12])
+        self.l_pg_pagamentos_foto.setPixmap(foto)
+        self.l_pg_pagamentos_responsavel.setText(f'{dados[13]}')
 
-        # Adicionando valor na tabela.
-        for coluna in range(0, len(dados)):
-            valor = QTableWidgetItem(f'{dados[coluna]}')
-            self.tw_pagamentos.setItem(linha, coluna, valor)
-
-    # Exibi dados na tabela da página de 'pesquisar alunos'.
-    def visualizar_aluno(self):
-        identificador_informado = self.le_pesquisar_aluno.text()
-        dados = self.pesquisar_dados(identificador_informado)
-        self.tw_exibir_pesquisar_aluno.setRowCount(1)
-        linha = 0
-
-        # Adicionando valor na tabela.
-        for coluna in range(0, len(dados)):
-            valor = QTableWidgetItem(f'{dados[coluna]}')
-            self.tw_exibir_pesquisar_aluno.setItem(linha, coluna, valor)
-
-    # Exibi dados na tabela da página de 'excluir alunos'.
-    def visualizar_excluir_aluno(self):
+    # Exibi dados na  página de 'Excluir aluno'.
+    def exibir_dados_pg_excluir(self):
         identificador_informado = self.le_excluir_aluno.text()
         dados = self.pesquisar_dados(identificador_informado)
-        self.tw_exibir_excluir_aluno.setRowCount(1)
-        linha = 0
+        self.l_pg_excluir_matricula.setText(f'{dados[0]}')
+        self.l_pg_excluir_nome.setText(dados[1])
+        self.l_pg_excluir_data_nascimento.setText(dados[2])
+        self.l_pg_excluir_cpf.setText(dados[3])
+        self.l_pg_excluir_celular.setText(dados[4])
+        self.l_pg_excluir_bairro.setText(dados[6])
+        self.l_pg_excluir_cep.setText(dados[7])
+        self.l_pg_excluir_cidade.setText(dados[8])
+        self.l_pg_excluir_email.setText(dados[9])
+        self.l_pg_excluir_data_pagamento.setText(f'{dados[10]}')
+        self.l_pg_excluir_valor.setText(f'{dados[11]}')
+        foto = QPixmap()
+        foto.loadFromData(dados[12])
+        self.l_pg_excluir_foto.setPixmap(foto)
+        self.l_pg_excluir_responsavel.setText(f'{dados[13]}')
 
-        # Adicionando valor na tabela.
-        for coluna in range(0, len(dados)):
-            valor = QTableWidgetItem(f'{dados[coluna]}')
-            self.tw_exibir_excluir_aluno.setItem(linha, coluna, valor)
+    # Exibi dados na página de 'Informações do aluno'.
+    def exibir_dados_pg_informacoes(self):
+        identificador_informado = self.le_pg_informacoes_pesquisar_aluno.text()
+        dados = self.pesquisar_dados(identificador_informado)
+        self.l_pg_informacoes_matricula.setText(f'{dados[0]}')
+        self.l_pg_informacoes_nome.setText(dados[1])
+        self.l_pg_informacoes_data_nascimento.setText(dados[2])
+        self.l_pg_informacoes_cpf.setText(dados[3])
+        self.l_pg_informacoes_celular.setText(dados[4])
+        self.l_pg_informacoes_bairro.setText(dados[6])
+        self.l_pg_informacoes_cep.setText(dados[7])
+        self.l_pg_informacoes_cidade.setText(dados[8])
+        self.l_pg_informacoes_email.setText(dados[9])
+        self.l_pg_informacoes_data_pagamento.setText(f'{dados[10]}')
+        self.l_pg_informacoes_valor.setText(f'{dados[11]}')
+        foto = QPixmap()
+        foto.loadFromData(dados[12])
+        self.l_pg_informacoes_foto.setPixmap(foto)
+        self.l_pg_informacoes_responsavel.setText(f'{dados[13]}')
 
     def pesquisar_dados(self, identificador_unico: str) -> list:
         """
@@ -397,8 +429,6 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             )
             return []
         else:
-            index_foto = -2
-            dados.pop(index_foto)
             return dados
 
     def salvar_dados(self, dados_tratados: list | list[list, list]):
