@@ -41,14 +41,12 @@ from PySide6.QtGui import (
     QTransform,
 )
 from PySide6.QtWidgets import (
-    QAbstractItemView,
     QAbstractSpinBox,
     QApplication,
     QCheckBox,
     QDateEdit,
     QFrame,
     QGroupBox,
-    QHeaderView,
     QLabel,
     QLineEdit,
     QMainWindow,
@@ -56,8 +54,6 @@ from PySide6.QtWidgets import (
     QSizePolicy,
     QSpinBox,
     QStackedWidget,
-    QTableWidget,
-    QTableWidgetItem,
     QWidget,
 )
 from .img_rc import *
@@ -182,7 +178,6 @@ class Ui_JanelaAluno(object):
         self.stackedWidget.setGeometry(QRect(0, 0, 1280, 660))
         self.stackedWidget.setStyleSheet(
             'QLabel, QCheckBox, QTableWidget{\n'
-            '	color: rgb(255, 255, 255);\n'
             '	font: 10pt "Arial";\n'
             '	color: rgb(80, 250, 123);\n'
             '}\n'
@@ -211,13 +206,16 @@ class Ui_JanelaAluno(object):
             '}\n'
             'QDateEdit{\n'
             '	color: rgb(98, 114, 164);\n'
+            '}\n'
+            'QToolTip{\n'
+            '	background-color: rgb(0, 0, 0);\n'
             '}'
         )
         self.page = QWidget()
         self.page.setObjectName('page')
         self.label_21 = QLabel(self.page)
         self.label_21.setObjectName('label_21')
-        self.label_21.setGeometry(QRect(465, 250, 350, 61))
+        self.label_21.setGeometry(QRect(465, 20, 350, 61))
         self.label_21.setStyleSheet(
             'font: 600 italic 36pt "Sitka Small Semibold";\n'
             'color: rgb(255, 184, 108);'
@@ -225,68 +223,217 @@ class Ui_JanelaAluno(object):
         self.label_21.setAlignment(Qt.AlignCenter)
         self.le_pagamentos = QLineEdit(self.page)
         self.le_pagamentos.setObjectName('le_pagamentos')
-        self.le_pagamentos.setGeometry(QRect(465, 320, 351, 22))
+        self.le_pagamentos.setGeometry(QRect(465, 90, 351, 22))
         self.le_pagamentos.setAlignment(Qt.AlignCenter)
-        self.pb_pesquisar_pagamentos = QPushButton(self.page)
-        self.pb_pesquisar_pagamentos.setObjectName('pb_pesquisar_pagamentos')
-        self.pb_pesquisar_pagamentos.setGeometry(QRect(790, 320, 21, 16))
-        self.pb_pesquisar_pagamentos.setStyleSheet(
+        self.pb_pg_pagamentos_pesquisar = QPushButton(self.page)
+        self.pb_pg_pagamentos_pesquisar.setObjectName(
+            'pb_pg_pagamentos_pesquisar'
+        )
+        self.pb_pg_pagamentos_pesquisar.setGeometry(QRect(790, 90, 21, 16))
+        self.pb_pg_pagamentos_pesquisar.setStyleSheet(
             'background-color: rgba(255, 255, 255, 0);\n'
             'border-image: url(:/cadastro/img/lupa.png);'
         )
-        self.tw_pagamentos = QTableWidget(self.page)
-        if self.tw_pagamentos.columnCount() < 13:
-            self.tw_pagamentos.setColumnCount(13)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(6, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(7, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(8, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(9, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(10, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(11, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.tw_pagamentos.setHorizontalHeaderItem(12, __qtablewidgetitem12)
-        self.tw_pagamentos.setObjectName('tw_pagamentos')
-        self.tw_pagamentos.setGeometry(QRect(34, 350, 1211, 75))
-        self.tw_pagamentos.setStyleSheet('border:0;')
-        self.tw_pagamentos.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.tw_pagamentos.setProperty('showDropIndicator', False)
-        self.tw_pagamentos.setDragDropOverwriteMode(False)
-        self.tw_pagamentos.setSelectionMode(QAbstractItemView.NoSelection)
-        self.tw_pagamentos.horizontalHeader().setVisible(True)
-        self.tw_pagamentos.verticalHeader().setVisible(False)
-        self.pb_imprimir_boleto = QPushButton(self.page)
-        self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
-        self.pb_imprimir_boleto.setGeometry(QRect(510, 430, 111, 24))
+        self.frame_3 = QFrame(self.page)
+        self.frame_3.setObjectName('frame_3')
+        self.frame_3.setGeometry(QRect(460, 130, 361, 521))
+        self.frame_3.setStyleSheet(
+            'QFrame{\n'
+            'background-color: rgb(53, 58, 75);\n'
+            'border-radius: 30px;\n'
+            '}\n'
+            'QFrame::hover{\n'
+            '	border: 1px solid  rgb(173, 82, 135);\n'
+            '	color: rgb(189, 147, 249);\n'
+            '}\n'
+            'QLabel{\n'
+            '	color: rgb(80, 250, 123);\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.42, x2:0, y2:1, stop:0 rgba(53, 58, 75, 255), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}'
+        )
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.l_pg_pagamentos_nome = QLabel(self.frame_3)
+        self.l_pg_pagamentos_nome.setObjectName('l_pg_pagamentos_nome')
+        self.l_pg_pagamentos_nome.setGeometry(QRect(1, 200, 131, 20))
+        font = QFont()
+        font.setFamilies(['Arial'])
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        self.l_pg_pagamentos_nome.setFont(font)
+        self.l_pg_pagamentos_nome.setStyleSheet('')
+        self.l_pg_pagamentos_nome.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_foto = QLabel(self.frame_3)
+        self.l_pg_pagamentos_foto.setObjectName('l_pg_pagamentos_foto')
+        self.l_pg_pagamentos_foto.setGeometry(QRect(111, 20, 140, 140))
+        self.l_pg_pagamentos_foto.setStyleSheet(
+            'background-color: rgb(255, 255, 255);'
+        )
+        self.l_pg_pagamentos_foto.setScaledContents(True)
+        self.l_pg_pagamentos_matricula = QLabel(self.frame_3)
+        self.l_pg_pagamentos_matricula.setObjectName(
+            'l_pg_pagamentos_matricula'
+        )
+        self.l_pg_pagamentos_matricula.setGeometry(QRect(115, 170, 131, 20))
+        self.l_pg_pagamentos_matricula.setStyleSheet('')
+        self.l_pg_pagamentos_matricula.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_matricula.setTextInteractionFlags(
+            Qt.LinksAccessibleByMouse | Qt.TextSelectableByMouse
+        )
+        self.l_pg_pagamentos_data_nascimento = QLabel(self.frame_3)
+        self.l_pg_pagamentos_data_nascimento.setObjectName(
+            'l_pg_pagamentos_data_nascimento'
+        )
+        self.l_pg_pagamentos_data_nascimento.setGeometry(
+            QRect(135, 200, 131, 20)
+        )
+        self.l_pg_pagamentos_data_nascimento.setStyleSheet('')
+        self.l_pg_pagamentos_data_nascimento.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_cpf = QLabel(self.frame_3)
+        self.l_pg_pagamentos_cpf.setObjectName('l_pg_pagamentos_cpf')
+        self.l_pg_pagamentos_cpf.setGeometry(QRect(270, 200, 81, 20))
+        self.l_pg_pagamentos_cpf.setStyleSheet('')
+        self.l_pg_pagamentos_cpf.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_celular = QLabel(self.frame_3)
+        self.l_pg_pagamentos_celular.setObjectName('l_pg_pagamentos_celular')
+        self.l_pg_pagamentos_celular.setGeometry(QRect(1, 240, 131, 20))
+        self.l_pg_pagamentos_celular.setStyleSheet('')
+        self.l_pg_pagamentos_celular.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_email = QLabel(self.frame_3)
+        self.l_pg_pagamentos_email.setObjectName('l_pg_pagamentos_email')
+        self.l_pg_pagamentos_email.setGeometry(QRect(135, 240, 216, 20))
+        self.l_pg_pagamentos_email.setStyleSheet('')
+        self.l_pg_pagamentos_email.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_cidade = QLabel(self.frame_3)
+        self.l_pg_pagamentos_cidade.setObjectName('l_pg_pagamentos_cidade')
+        self.l_pg_pagamentos_cidade.setGeometry(QRect(1, 280, 131, 20))
+        self.l_pg_pagamentos_cidade.setStyleSheet('')
+        self.l_pg_pagamentos_cidade.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_bairro = QLabel(self.frame_3)
+        self.l_pg_pagamentos_bairro.setObjectName('l_pg_pagamentos_bairro')
+        self.l_pg_pagamentos_bairro.setGeometry(QRect(135, 280, 131, 20))
+        self.l_pg_pagamentos_bairro.setStyleSheet('')
+        self.l_pg_pagamentos_bairro.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_cep = QLabel(self.frame_3)
+        self.l_pg_pagamentos_cep.setObjectName('l_pg_pagamentos_cep')
+        self.l_pg_pagamentos_cep.setGeometry(QRect(270, 280, 81, 20))
+        self.l_pg_pagamentos_cep.setStyleSheet('')
+        self.l_pg_pagamentos_cep.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_data_pagamento = QLabel(self.frame_3)
+        self.l_pg_pagamentos_data_pagamento.setObjectName(
+            'l_pg_pagamentos_data_pagamento'
+        )
+        self.l_pg_pagamentos_data_pagamento.setGeometry(QRect(1, 320, 181, 20))
+        self.l_pg_pagamentos_data_pagamento.setStyleSheet('')
+        self.l_pg_pagamentos_data_pagamento.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_data_pagamento.setIndent(-1)
+        self.l_pg_pagamentos_valor = QLabel(self.frame_3)
+        self.l_pg_pagamentos_valor.setObjectName('l_pg_pagamentos_valor')
+        self.l_pg_pagamentos_valor.setGeometry(QRect(190, 320, 161, 20))
+        self.l_pg_pagamentos_valor.setStyleSheet('')
+        self.l_pg_pagamentos_valor.setAlignment(Qt.AlignCenter)
+        self.l_pg_pagamentos_responsavel = QLabel(self.frame_3)
+        self.l_pg_pagamentos_responsavel.setObjectName(
+            'l_pg_pagamentos_responsavel'
+        )
+        self.l_pg_pagamentos_responsavel.setGeometry(QRect(114, 370, 131, 20))
+        self.l_pg_pagamentos_responsavel.setStyleSheet('')
+        self.l_pg_pagamentos_responsavel.setAlignment(Qt.AlignCenter)
+        self.pb_pagar_pix = QPushButton(self.frame_3)
+        self.pb_pagar_pix.setObjectName('pb_pagar_pix')
+        self.pb_pagar_pix.setGeometry(QRect(190, 460, 101, 24))
         icon = QIcon()
-        icon.addFile(
+        icon.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
+        self.pb_pagar_pix.setIcon(icon)
+        self.pb_imprimir_boleto = QPushButton(self.frame_3)
+        self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
+        self.pb_imprimir_boleto.setGeometry(QRect(70, 460, 111, 24))
+        icon1 = QIcon()
+        icon1.addFile(
             ':/grobal/img/imprimir.png', QSize(), QIcon.Normal, QIcon.Off
         )
-        self.pb_imprimir_boleto.setIcon(icon)
-        self.pb_pagar_pix = QPushButton(self.page)
-        self.pb_pagar_pix.setObjectName('pb_pagar_pix')
-        self.pb_pagar_pix.setGeometry(QRect(660, 430, 101, 24))
-        icon1 = QIcon()
-        icon1.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
-        self.pb_pagar_pix.setIcon(icon1)
+        self.pb_imprimir_boleto.setIcon(icon1)
+        self.label_24 = QLabel(self.frame_3)
+        self.label_24.setObjectName('label_24')
+        self.label_24.setGeometry(QRect(0, 130, 111, 4))
+        self.label_24.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_25 = QLabel(self.frame_3)
+        self.label_25.setObjectName('label_25')
+        self.label_25.setGeometry(QRect(250, 50, 111, 4))
+        self.label_25.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_24.raise_()
+        self.label_25.raise_()
+        self.l_pg_pagamentos_nome.raise_()
+        self.l_pg_pagamentos_foto.raise_()
+        self.l_pg_pagamentos_matricula.raise_()
+        self.l_pg_pagamentos_data_nascimento.raise_()
+        self.l_pg_pagamentos_cpf.raise_()
+        self.l_pg_pagamentos_celular.raise_()
+        self.l_pg_pagamentos_email.raise_()
+        self.l_pg_pagamentos_cidade.raise_()
+        self.l_pg_pagamentos_bairro.raise_()
+        self.l_pg_pagamentos_cep.raise_()
+        self.l_pg_pagamentos_data_pagamento.raise_()
+        self.l_pg_pagamentos_valor.raise_()
+        self.l_pg_pagamentos_responsavel.raise_()
+        self.pb_pagar_pix.raise_()
+        self.pb_imprimir_boleto.raise_()
+        self.label_34 = QLabel(self.page)
+        self.label_34.setObjectName('label_34')
+        self.label_34.setGeometry(QRect(710, 220, 111, 4))
+        self.label_34.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_35 = QLabel(self.page)
+        self.label_35.setObjectName('label_35')
+        self.label_35.setGeometry(QRect(820, 610, 261, 16))
+        self.label_35.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_36 = QLabel(self.page)
+        self.label_36.setObjectName('label_36')
+        self.label_36.setGeometry(QRect(900, 640, 381, 16))
+        self.label_36.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_37 = QLabel(self.page)
+        self.label_37.setObjectName('label_37')
+        self.label_37.setGeometry(QRect(920, 590, 361, 16))
+        self.label_37.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_38 = QLabel(self.page)
+        self.label_38.setObjectName('label_38')
+        self.label_38.setGeometry(QRect(820, 570, 381, 16))
+        self.label_38.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_39 = QLabel(self.page)
+        self.label_39.setObjectName('label_39')
+        self.label_39.setGeometry(QRect(980, 540, 301, 16))
+        self.label_39.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_40 = QLabel(self.page)
+        self.label_40.setObjectName('label_40')
+        self.label_40.setGeometry(QRect(0, 40, 381, 16))
+        self.label_40.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_41 = QLabel(self.page)
+        self.label_41.setObjectName('label_41')
+        self.label_41.setGeometry(QRect(160, 20, 311, 16))
+        self.label_41.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_43 = QLabel(self.page)
+        self.label_43.setObjectName('label_43')
+        self.label_43.setGeometry(QRect(0, 80, 261, 16))
+        self.label_43.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_44 = QLabel(self.page)
+        self.label_44.setObjectName('label_44')
+        self.label_44.setGeometry(QRect(55, 60, 411, 16))
+        self.label_44.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.stackedWidget.addWidget(self.page)
+        self.label_36.raise_()
+        self.label_35.raise_()
+        self.label_38.raise_()
+        self.label_44.raise_()
+        self.label_41.raise_()
+        self.label_21.raise_()
+        self.le_pagamentos.raise_()
+        self.pb_pg_pagamentos_pesquisar.raise_()
+        self.frame_3.raise_()
+        self.label_34.raise_()
+        self.label_37.raise_()
+        self.label_39.raise_()
+        self.label_40.raise_()
+        self.label_43.raise_()
         self.page1 = QWidget()
         self.page1.setObjectName('page1')
         self.label = QLabel(self.page1)
@@ -385,11 +532,11 @@ class Ui_JanelaAluno(object):
         self.groupBox = QGroupBox(self.page1)
         self.groupBox.setObjectName('groupBox')
         self.groupBox.setGeometry(QRect(0, 240, 1280, 422))
-        font = QFont()
-        font.setFamilies(['Arial'])
-        font.setPointSize(10)
-        font.setBold(True)
-        self.groupBox.setFont(font)
+        font1 = QFont()
+        font1.setFamilies(['Arial'])
+        font1.setPointSize(10)
+        font1.setBold(True)
+        self.groupBox.setFont(font1)
         self.groupBox.setStyleSheet(
             'QGroupBox::title {\n'
             '	color: rgb(255, 255, 255);\n'
@@ -493,10 +640,159 @@ class Ui_JanelaAluno(object):
         self.pb_salvar_dados = QPushButton(self.groupBox)
         self.pb_salvar_dados.setObjectName('pb_salvar_dados')
         self.pb_salvar_dados.setGeometry(QRect(602, 340, 75, 24))
-        font1 = QFont()
-        font1.setFamilies(['Arial'])
-        font1.setPointSize(10)
-        self.pb_salvar_dados.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies(['Arial'])
+        font2.setPointSize(10)
+        self.pb_salvar_dados.setFont(font2)
+        self.label_62 = QLabel(self.groupBox)
+        self.label_62.setObjectName('label_62')
+        self.label_62.setGeometry(QRect(10, 280, 16, 141))
+        self.label_62.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_63 = QLabel(self.groupBox)
+        self.label_63.setObjectName('label_63')
+        self.label_63.setGeometry(QRect(50, 370, 10, 51))
+        self.label_63.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_64 = QLabel(self.groupBox)
+        self.label_64.setObjectName('label_64')
+        self.label_64.setGeometry(QRect(120, 300, 10, 120))
+        self.label_64.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_65 = QLabel(self.groupBox)
+        self.label_65.setObjectName('label_65')
+        self.label_65.setGeometry(QRect(390, 366, 20, 61))
+        self.label_65.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_66 = QLabel(self.groupBox)
+        self.label_66.setObjectName('label_66')
+        self.label_66.setGeometry(QRect(130, 240, 10, 120))
+        self.label_66.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_67 = QLabel(self.groupBox)
+        self.label_67.setObjectName('label_67')
+        self.label_67.setGeometry(QRect(395, 250, 10, 120))
+        self.label_67.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_68 = QLabel(self.groupBox)
+        self.label_68.setObjectName('label_68')
+        self.label_68.setGeometry(QRect(770, 300, 10, 120))
+        self.label_68.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_69 = QLabel(self.groupBox)
+        self.label_69.setObjectName('label_69')
+        self.label_69.setGeometry(QRect(780, 270, 10, 50))
+        self.label_69.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_70 = QLabel(self.groupBox)
+        self.label_70.setObjectName('label_70')
+        self.label_70.setGeometry(QRect(790, 300, 10, 50))
+        self.label_70.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_71 = QLabel(self.groupBox)
+        self.label_71.setObjectName('label_71')
+        self.label_71.setGeometry(QRect(800, 240, 10, 70))
+        self.label_71.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_72 = QLabel(self.groupBox)
+        self.label_72.setObjectName('label_72')
+        self.label_72.setGeometry(QRect(920, 370, 10, 50))
+        self.label_72.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_73 = QLabel(self.groupBox)
+        self.label_73.setObjectName('label_73')
+        self.label_73.setGeometry(QRect(930, 330, 10, 50))
+        self.label_73.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_74 = QLabel(self.groupBox)
+        self.label_74.setObjectName('label_74')
+        self.label_74.setGeometry(QRect(920, 300, 10, 50))
+        self.label_74.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_75 = QLabel(self.groupBox)
+        self.label_75.setObjectName('label_75')
+        self.label_75.setGeometry(QRect(850, 370, 10, 50))
+        self.label_75.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_76 = QLabel(self.groupBox)
+        self.label_76.setObjectName('label_76')
+        self.label_76.setGeometry(QRect(860, 350, 10, 50))
+        self.label_76.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_77 = QLabel(self.groupBox)
+        self.label_77.setObjectName('label_77')
+        self.label_77.setGeometry(QRect(870, 320, 10, 50))
+        self.label_77.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_78 = QLabel(self.groupBox)
+        self.label_78.setObjectName('label_78')
+        self.label_78.setGeometry(QRect(860, 280, 10, 50))
+        self.label_78.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_79 = QLabel(self.groupBox)
+        self.label_79.setObjectName('label_79')
+        self.label_79.setGeometry(QRect(880, 300, 10, 50))
+        self.label_79.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_80 = QLabel(self.groupBox)
+        self.label_80.setObjectName('label_80')
+        self.label_80.setGeometry(QRect(1250, 220, 10, 200))
+        self.label_80.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_81 = QLabel(self.groupBox)
+        self.label_81.setObjectName('label_81')
+        self.label_81.setGeometry(QRect(1180, 230, 10, 50))
+        self.label_81.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_82 = QLabel(self.groupBox)
+        self.label_82.setObjectName('label_82')
+        self.label_82.setGeometry(QRect(1190, 270, 10, 50))
+        self.label_82.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_83 = QLabel(self.groupBox)
+        self.label_83.setObjectName('label_83')
+        self.label_83.setGeometry(QRect(1090, 230, 10, 50))
+        self.label_83.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_84 = QLabel(self.groupBox)
+        self.label_84.setObjectName('label_84')
+        self.label_84.setGeometry(QRect(1110, 230, 10, 30))
+        self.label_84.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_85 = QLabel(self.groupBox)
+        self.label_85.setObjectName('label_85')
+        self.label_85.setGeometry(QRect(1010, 230, 10, 50))
+        self.label_85.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_86 = QLabel(self.groupBox)
+        self.label_86.setObjectName('label_86')
+        self.label_86.setGeometry(QRect(1020, 270, 10, 50))
+        self.label_86.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_87 = QLabel(self.groupBox)
+        self.label_87.setObjectName('label_87')
+        self.label_87.setGeometry(QRect(1030, 290, 10, 50))
+        self.label_87.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_88 = QLabel(self.groupBox)
+        self.label_88.setObjectName('label_88')
+        self.label_88.setGeometry(QRect(1040, 310, 10, 50))
+        self.label_88.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_89 = QLabel(self.groupBox)
+        self.label_89.setObjectName('label_89')
+        self.label_89.setGeometry(QRect(1030, 350, 10, 50))
+        self.label_89.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_90 = QLabel(self.groupBox)
+        self.label_90.setObjectName('label_90')
+        self.label_90.setGeometry(QRect(390, 280, 10, 50))
+        self.label_90.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_91 = QLabel(self.groupBox)
+        self.label_91.setObjectName('label_91')
+        self.label_91.setGeometry(QRect(140, 290, 10, 50))
+        self.label_91.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_92 = QLabel(self.groupBox)
+        self.label_92.setObjectName('label_92')
+        self.label_92.setGeometry(QRect(270, 370, 10, 50))
+        self.label_92.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_93 = QLabel(self.groupBox)
+        self.label_93.setObjectName('label_93')
+        self.label_93.setGeometry(QRect(230, 200, 10, 50))
+        self.label_93.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_94 = QLabel(self.groupBox)
+        self.label_94.setObjectName('label_94')
+        self.label_94.setGeometry(QRect(610, 290, 10, 50))
+        self.label_94.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_95 = QLabel(self.groupBox)
+        self.label_95.setObjectName('label_95')
+        self.label_95.setGeometry(QRect(620, 360, 10, 50))
+        self.label_95.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_96 = QLabel(self.groupBox)
+        self.label_96.setObjectName('label_96')
+        self.label_96.setGeometry(QRect(690, 200, 21, 50))
+        self.label_96.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_97 = QLabel(self.groupBox)
+        self.label_97.setObjectName('label_97')
+        self.label_97.setGeometry(QRect(696, 250, 10, 50))
+        self.label_97.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_96.raise_()
+        self.label_95.raise_()
+        self.label_94.raise_()
+        self.label_93.raise_()
+        self.label_65.raise_()
         self.l_foto_responsavel.raise_()
         self.label_11.raise_()
         self.label_12.raise_()
@@ -517,6 +813,37 @@ class Ui_JanelaAluno(object):
         self.le_cidade_responsavel.raise_()
         self.le_email_responsavel.raise_()
         self.pb_salvar_dados.raise_()
+        self.label_62.raise_()
+        self.label_63.raise_()
+        self.label_64.raise_()
+        self.label_66.raise_()
+        self.label_67.raise_()
+        self.label_68.raise_()
+        self.label_69.raise_()
+        self.label_70.raise_()
+        self.label_71.raise_()
+        self.label_72.raise_()
+        self.label_73.raise_()
+        self.label_74.raise_()
+        self.label_75.raise_()
+        self.label_76.raise_()
+        self.label_77.raise_()
+        self.label_78.raise_()
+        self.label_79.raise_()
+        self.label_80.raise_()
+        self.label_81.raise_()
+        self.label_82.raise_()
+        self.label_83.raise_()
+        self.label_84.raise_()
+        self.label_85.raise_()
+        self.label_86.raise_()
+        self.label_87.raise_()
+        self.label_88.raise_()
+        self.label_89.raise_()
+        self.label_90.raise_()
+        self.label_91.raise_()
+        self.label_92.raise_()
+        self.label_97.raise_()
         self.label_6 = QLabel(self.page1)
         self.label_6.setObjectName('label_6')
         self.label_6.setGeometry(QRect(1020, 0, 111, 20))
@@ -541,7 +868,32 @@ class Ui_JanelaAluno(object):
         self.sb_valor_pagamento.setAlignment(Qt.AlignCenter)
         self.sb_valor_pagamento.setButtonSymbols(QAbstractSpinBox.NoButtons)
         self.sb_valor_pagamento.setMaximum(9999999)
+        self.label_98 = QLabel(self.page1)
+        self.label_98.setObjectName('label_98')
+        self.label_98.setGeometry(QRect(1210, 90, 10, 50))
+        self.label_98.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_99 = QLabel(self.page1)
+        self.label_99.setObjectName('label_99')
+        self.label_99.setGeometry(QRect(930, 150, 10, 50))
+        self.label_99.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_100 = QLabel(self.page1)
+        self.label_100.setObjectName('label_100')
+        self.label_100.setGeometry(QRect(930, 30, 10, 50))
+        self.label_100.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_101 = QLabel(self.page1)
+        self.label_101.setObjectName('label_101')
+        self.label_101.setGeometry(QRect(1210, 250, 10, 50))
+        self.label_101.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_102 = QLabel(self.page1)
+        self.label_102.setObjectName('label_102')
+        self.label_102.setGeometry(QRect(930, 390, 10, 50))
+        self.label_102.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.stackedWidget.addWidget(self.page1)
+        self.label_99.raise_()
+        self.label_98.raise_()
+        self.label_101.raise_()
+        self.label_102.raise_()
+        self.label_100.raise_()
         self.label.raise_()
         self.le_nome_aluno.raise_()
         self.label_2.raise_()
@@ -572,7 +924,7 @@ class Ui_JanelaAluno(object):
         self.page_3.setObjectName('page_3')
         self.label_20 = QLabel(self.page_3)
         self.label_20.setObjectName('label_20')
-        self.label_20.setGeometry(QRect(465, 250, 350, 61))
+        self.label_20.setGeometry(QRect(465, 20, 350, 61))
         self.label_20.setStyleSheet(
             'font: 600 italic 36pt "Sitka Small Semibold";\n'
             'color: rgb(255, 184, 108);'
@@ -580,79 +932,116 @@ class Ui_JanelaAluno(object):
         self.label_20.setAlignment(Qt.AlignCenter)
         self.le_excluir_aluno = QLineEdit(self.page_3)
         self.le_excluir_aluno.setObjectName('le_excluir_aluno')
-        self.le_excluir_aluno.setGeometry(QRect(466, 319, 351, 22))
+        self.le_excluir_aluno.setGeometry(QRect(466, 90, 351, 22))
         self.le_excluir_aluno.setAlignment(Qt.AlignCenter)
-        self.tw_exibir_excluir_aluno = QTableWidget(self.page_3)
-        if self.tw_exibir_excluir_aluno.columnCount() < 13:
-            self.tw_exibir_excluir_aluno.setColumnCount(13)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            0, __qtablewidgetitem13
+        self.pb_pg_excluir_pesquisar = QPushButton(self.page_3)
+        self.pb_pg_excluir_pesquisar.setObjectName('pb_pg_excluir_pesquisar')
+        self.pb_pg_excluir_pesquisar.setGeometry(QRect(790, 90, 21, 16))
+        self.pb_pg_excluir_pesquisar.setStyleSheet(
+            'background-color: rgba(255, 255, 255, 0);\n'
+            'border-image: url(:/cadastro/img/lupa.png);'
         )
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            1, __qtablewidgetitem14
+        self.frame_5 = QFrame(self.page_3)
+        self.frame_5.setObjectName('frame_5')
+        self.frame_5.setGeometry(QRect(460, 130, 361, 521))
+        self.frame_5.setStyleSheet(
+            'QFrame{\n'
+            'background-color: rgb(53, 58, 75);\n'
+            'border-radius: 30px;\n'
+            '}\n'
+            'QFrame::hover{\n'
+            '	border: 1px solid  rgb(173, 82, 135);\n'
+            '	color: rgb(189, 147, 249);\n'
+            '}\n'
+            'QLabel{\n'
+            '	color: rgb(80, 250, 123);\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.42, x2:0, y2:1, stop:0 rgba(53, 58, 75, 255), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}\n'
+            'Line{\n'
+            '	background-color: rgb(173, 82, 135);\n'
+            '}'
         )
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            2, __qtablewidgetitem15
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.l_pg_excluir_nome = QLabel(self.frame_5)
+        self.l_pg_excluir_nome.setObjectName('l_pg_excluir_nome')
+        self.l_pg_excluir_nome.setGeometry(QRect(1, 200, 131, 20))
+        self.l_pg_excluir_nome.setFont(font)
+        self.l_pg_excluir_nome.setStyleSheet('')
+        self.l_pg_excluir_nome.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_foto = QLabel(self.frame_5)
+        self.l_pg_excluir_foto.setObjectName('l_pg_excluir_foto')
+        self.l_pg_excluir_foto.setGeometry(QRect(111, 20, 140, 140))
+        self.l_pg_excluir_foto.setStyleSheet(
+            'background-color: rgb(255, 255, 255);'
         )
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            3, __qtablewidgetitem16
+        self.l_pg_excluir_foto.setScaledContents(True)
+        self.l_pg_excluir_matricula = QLabel(self.frame_5)
+        self.l_pg_excluir_matricula.setObjectName('l_pg_excluir_matricula')
+        self.l_pg_excluir_matricula.setGeometry(QRect(115, 170, 131, 20))
+        self.l_pg_excluir_matricula.setStyleSheet('')
+        self.l_pg_excluir_matricula.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_matricula.setTextInteractionFlags(
+            Qt.LinksAccessibleByMouse | Qt.TextSelectableByMouse
         )
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            4, __qtablewidgetitem17
+        self.l_pg_excluir_data_nascimento = QLabel(self.frame_5)
+        self.l_pg_excluir_data_nascimento.setObjectName(
+            'l_pg_excluir_data_nascimento'
         )
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            5, __qtablewidgetitem18
+        self.l_pg_excluir_data_nascimento.setGeometry(QRect(135, 200, 131, 20))
+        self.l_pg_excluir_data_nascimento.setStyleSheet('')
+        self.l_pg_excluir_data_nascimento.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_cpf = QLabel(self.frame_5)
+        self.l_pg_excluir_cpf.setObjectName('l_pg_excluir_cpf')
+        self.l_pg_excluir_cpf.setGeometry(QRect(270, 200, 81, 20))
+        self.l_pg_excluir_cpf.setStyleSheet('')
+        self.l_pg_excluir_cpf.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_celular = QLabel(self.frame_5)
+        self.l_pg_excluir_celular.setObjectName('l_pg_excluir_celular')
+        self.l_pg_excluir_celular.setGeometry(QRect(1, 240, 131, 20))
+        self.l_pg_excluir_celular.setStyleSheet('')
+        self.l_pg_excluir_celular.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_email = QLabel(self.frame_5)
+        self.l_pg_excluir_email.setObjectName('l_pg_excluir_email')
+        self.l_pg_excluir_email.setGeometry(QRect(135, 240, 216, 20))
+        self.l_pg_excluir_email.setStyleSheet('')
+        self.l_pg_excluir_email.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_cidade = QLabel(self.frame_5)
+        self.l_pg_excluir_cidade.setObjectName('l_pg_excluir_cidade')
+        self.l_pg_excluir_cidade.setGeometry(QRect(1, 280, 131, 20))
+        self.l_pg_excluir_cidade.setStyleSheet('')
+        self.l_pg_excluir_cidade.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_bairro = QLabel(self.frame_5)
+        self.l_pg_excluir_bairro.setObjectName('l_pg_excluir_bairro')
+        self.l_pg_excluir_bairro.setGeometry(QRect(135, 280, 131, 20))
+        self.l_pg_excluir_bairro.setStyleSheet('')
+        self.l_pg_excluir_bairro.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_cep = QLabel(self.frame_5)
+        self.l_pg_excluir_cep.setObjectName('l_pg_excluir_cep')
+        self.l_pg_excluir_cep.setGeometry(QRect(270, 280, 81, 20))
+        self.l_pg_excluir_cep.setStyleSheet('')
+        self.l_pg_excluir_cep.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_data_pagamento = QLabel(self.frame_5)
+        self.l_pg_excluir_data_pagamento.setObjectName(
+            'l_pg_excluir_data_pagamento'
         )
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            6, __qtablewidgetitem19
-        )
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            7, __qtablewidgetitem20
-        )
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            8, __qtablewidgetitem21
-        )
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            9, __qtablewidgetitem22
-        )
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            10, __qtablewidgetitem23
-        )
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            11, __qtablewidgetitem24
-        )
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.tw_exibir_excluir_aluno.setHorizontalHeaderItem(
-            12, __qtablewidgetitem25
-        )
-        self.tw_exibir_excluir_aluno.setObjectName('tw_exibir_excluir_aluno')
-        self.tw_exibir_excluir_aluno.setGeometry(QRect(34, 350, 1211, 75))
-        self.tw_exibir_excluir_aluno.setStyleSheet('border:0;')
-        self.tw_exibir_excluir_aluno.setEditTriggers(
-            QAbstractItemView.NoEditTriggers
-        )
-        self.tw_exibir_excluir_aluno.setTabKeyNavigation(False)
-        self.tw_exibir_excluir_aluno.setProperty('showDropIndicator', True)
-        self.tw_exibir_excluir_aluno.setDragDropOverwriteMode(False)
-        self.tw_exibir_excluir_aluno.setSelectionMode(
-            QAbstractItemView.NoSelection
-        )
-        self.tw_exibir_excluir_aluno.verticalHeader().setVisible(False)
-        self.pb_excluir_aluno = QPushButton(self.page_3)
+        self.l_pg_excluir_data_pagamento.setGeometry(QRect(1, 320, 181, 20))
+        self.l_pg_excluir_data_pagamento.setStyleSheet('')
+        self.l_pg_excluir_data_pagamento.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_data_pagamento.setIndent(-1)
+        self.l_pg_excluir_valor = QLabel(self.frame_5)
+        self.l_pg_excluir_valor.setObjectName('l_pg_excluir_valor')
+        self.l_pg_excluir_valor.setGeometry(QRect(190, 320, 161, 20))
+        self.l_pg_excluir_valor.setStyleSheet('')
+        self.l_pg_excluir_valor.setAlignment(Qt.AlignCenter)
+        self.l_pg_excluir_responsavel = QLabel(self.frame_5)
+        self.l_pg_excluir_responsavel.setObjectName('l_pg_excluir_responsavel')
+        self.l_pg_excluir_responsavel.setGeometry(QRect(114, 370, 131, 20))
+        self.l_pg_excluir_responsavel.setStyleSheet('')
+        self.l_pg_excluir_responsavel.setAlignment(Qt.AlignCenter)
+        self.pb_excluir_aluno = QPushButton(self.frame_5)
         self.pb_excluir_aluno.setObjectName('pb_excluir_aluno')
-        self.pb_excluir_aluno.setGeometry(QRect(602, 430, 75, 24))
+        self.pb_excluir_aluno.setGeometry(QRect(143, 440, 75, 24))
         icon2 = QIcon()
         icon2.addFile(
             ':/cadastro/img/excluir-aluno.png',
@@ -661,117 +1050,296 @@ class Ui_JanelaAluno(object):
             QIcon.Off,
         )
         self.pb_excluir_aluno.setIcon(icon2)
-        self.pb_pesquisar_excluir = QPushButton(self.page_3)
-        self.pb_pesquisar_excluir.setObjectName('pb_pesquisar_excluir')
-        self.pb_pesquisar_excluir.setGeometry(QRect(790, 320, 21, 16))
-        self.pb_pesquisar_excluir.setStyleSheet(
-            'background-color: rgba(255, 255, 255, 0);\n'
-            'border-image: url(:/cadastro/img/lupa.png);'
-        )
+        self.label_31 = QLabel(self.frame_5)
+        self.label_31.setObjectName('label_31')
+        self.label_31.setGeometry(QRect(0, 50, 111, 4))
+        self.label_31.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_32 = QLabel(self.frame_5)
+        self.label_32.setObjectName('label_32')
+        self.label_32.setGeometry(QRect(250, 130, 111, 4))
+        self.label_32.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_33 = QLabel(self.frame_5)
+        self.label_33.setObjectName('label_33')
+        self.label_33.setGeometry(QRect(0, 90, 111, 4))
+        self.label_33.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_49 = QLabel(self.page_3)
+        self.label_49.setObjectName('label_49')
+        self.label_49.setGeometry(QRect(900, 10, 381, 16))
+        self.label_49.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_50 = QLabel(self.page_3)
+        self.label_50.setObjectName('label_50')
+        self.label_50.setGeometry(QRect(0, 640, 381, 16))
+        self.label_50.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_51 = QLabel(self.page_3)
+        self.label_51.setObjectName('label_51')
+        self.label_51.setGeometry(QRect(250, 440, 211, 16))
+        self.label_51.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_52 = QLabel(self.page_3)
+        self.label_52.setObjectName('label_52')
+        self.label_52.setGeometry(QRect(820, 290, 31, 16))
+        self.label_52.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_53 = QLabel(self.page_3)
+        self.label_53.setObjectName('label_53')
+        self.label_53.setGeometry(QRect(820, 160, 71, 16))
+        self.label_53.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_54 = QLabel(self.page_3)
+        self.label_54.setObjectName('label_54')
+        self.label_54.setGeometry(QRect(310, 370, 151, 10))
+        self.label_54.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_55 = QLabel(self.page_3)
+        self.label_55.setObjectName('label_55')
+        self.label_55.setGeometry(QRect(840, 280, 151, 10))
+        self.label_55.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_56 = QLabel(self.page_3)
+        self.label_56.setObjectName('label_56')
+        self.label_56.setGeometry(QRect(970, 290, 151, 10))
+        self.label_56.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_57 = QLabel(self.page_3)
+        self.label_57.setObjectName('label_57')
+        self.label_57.setGeometry(QRect(280, 430, 151, 10))
+        self.label_57.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.stackedWidget.addWidget(self.page_3)
+        self.label_57.raise_()
+        self.label_55.raise_()
+        self.label_53.raise_()
+        self.label_52.raise_()
+        self.label_51.raise_()
         self.le_excluir_aluno.raise_()
         self.label_20.raise_()
-        self.tw_exibir_excluir_aluno.raise_()
-        self.pb_excluir_aluno.raise_()
-        self.pb_pesquisar_excluir.raise_()
+        self.pb_pg_excluir_pesquisar.raise_()
+        self.frame_5.raise_()
+        self.label_49.raise_()
+        self.label_50.raise_()
+        self.label_54.raise_()
+        self.label_56.raise_()
         self.page_2 = QWidget()
         self.page_2.setObjectName('page_2')
-        self.le_pesquisar_aluno = QLineEdit(self.page_2)
-        self.le_pesquisar_aluno.setObjectName('le_pesquisar_aluno')
-        self.le_pesquisar_aluno.setGeometry(QRect(445, 319, 390, 22))
-        self.le_pesquisar_aluno.setStyleSheet('')
-        self.le_pesquisar_aluno.setAlignment(Qt.AlignCenter)
+        self.le_pg_informacoes_pesquisar_aluno = QLineEdit(self.page_2)
+        self.le_pg_informacoes_pesquisar_aluno.setObjectName(
+            'le_pg_informacoes_pesquisar_aluno'
+        )
+        self.le_pg_informacoes_pesquisar_aluno.setGeometry(
+            QRect(445, 90, 390, 22)
+        )
+        self.le_pg_informacoes_pesquisar_aluno.setStyleSheet('')
+        self.le_pg_informacoes_pesquisar_aluno.setAlignment(Qt.AlignCenter)
         self.label_5 = QLabel(self.page_2)
         self.label_5.setObjectName('label_5')
-        self.label_5.setGeometry(QRect(435, 250, 411, 61))
-        font2 = QFont()
-        font2.setFamilies(['Sitka Small Semibold'])
-        font2.setPointSize(36)
-        font2.setBold(True)
-        font2.setItalic(True)
-        self.label_5.setFont(font2)
+        self.label_5.setGeometry(QRect(370, 20, 541, 61))
+        font3 = QFont()
+        font3.setFamilies(['Sitka Small Semibold'])
+        font3.setPointSize(36)
+        font3.setBold(True)
+        font3.setItalic(True)
+        self.label_5.setFont(font3)
         self.label_5.setStyleSheet(
             'font: 600 italic 36pt "Sitka Small Semibold";\n'
             'color: rgb(255, 184, 108);'
         )
         self.label_5.setAlignment(Qt.AlignCenter)
-        self.tw_exibir_pesquisar_aluno = QTableWidget(self.page_2)
-        if self.tw_exibir_pesquisar_aluno.columnCount() < 13:
-            self.tw_exibir_pesquisar_aluno.setColumnCount(13)
-        __qtablewidgetitem26 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            0, __qtablewidgetitem26
+        self.pb_pg_informacoes_pesquisar = QPushButton(self.page_2)
+        self.pb_pg_informacoes_pesquisar.setObjectName(
+            'pb_pg_informacoes_pesquisar'
         )
-        __qtablewidgetitem27 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            1, __qtablewidgetitem27
-        )
-        __qtablewidgetitem28 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            2, __qtablewidgetitem28
-        )
-        __qtablewidgetitem29 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            3, __qtablewidgetitem29
-        )
-        __qtablewidgetitem30 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            4, __qtablewidgetitem30
-        )
-        __qtablewidgetitem31 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            5, __qtablewidgetitem31
-        )
-        __qtablewidgetitem32 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            6, __qtablewidgetitem32
-        )
-        __qtablewidgetitem33 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            7, __qtablewidgetitem33
-        )
-        __qtablewidgetitem34 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            8, __qtablewidgetitem34
-        )
-        __qtablewidgetitem35 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            9, __qtablewidgetitem35
-        )
-        __qtablewidgetitem36 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            10, __qtablewidgetitem36
-        )
-        __qtablewidgetitem37 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            11, __qtablewidgetitem37
-        )
-        __qtablewidgetitem38 = QTableWidgetItem()
-        self.tw_exibir_pesquisar_aluno.setHorizontalHeaderItem(
-            12, __qtablewidgetitem38
-        )
-        self.tw_exibir_pesquisar_aluno.setObjectName(
-            'tw_exibir_pesquisar_aluno'
-        )
-        self.tw_exibir_pesquisar_aluno.setGeometry(QRect(34, 350, 1211, 75))
-        self.tw_exibir_pesquisar_aluno.setStyleSheet('border:0;')
-        self.tw_exibir_pesquisar_aluno.setEditTriggers(
-            QAbstractItemView.NoEditTriggers
-        )
-        self.tw_exibir_pesquisar_aluno.setProperty('showDropIndicator', False)
-        self.tw_exibir_pesquisar_aluno.setDragDropOverwriteMode(False)
-        self.tw_exibir_pesquisar_aluno.setSelectionMode(
-            QAbstractItemView.NoSelection
-        )
-        self.tw_exibir_pesquisar_aluno.verticalHeader().setVisible(False)
-        self.pb_pesquisar_aluno = QPushButton(self.page_2)
-        self.pb_pesquisar_aluno.setObjectName('pb_pesquisar_aluno')
-        self.pb_pesquisar_aluno.setGeometry(QRect(810, 320, 21, 16))
-        self.pb_pesquisar_aluno.setStyleSheet(
+        self.pb_pg_informacoes_pesquisar.setGeometry(QRect(810, 90, 21, 16))
+        self.pb_pg_informacoes_pesquisar.setStyleSheet(
             'background-color: rgba(255, 255, 255, 0);\n'
             'border-image: url(:/cadastro/img/lupa.png);'
         )
+        self.frame_4 = QFrame(self.page_2)
+        self.frame_4.setObjectName('frame_4')
+        self.frame_4.setGeometry(QRect(460, 130, 361, 521))
+        self.frame_4.setStyleSheet(
+            'QFrame{\n'
+            'background-color: rgb(53, 58, 75);\n'
+            'border-radius: 30px;\n'
+            '}\n'
+            'QFrame::hover{\n'
+            '	border: 1px solid  rgb(173, 82, 135);\n'
+            '	color: rgb(189, 147, 249);\n'
+            '}\n'
+            'QLabel{\n'
+            '	color: rgb(80, 250, 123);\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.42, x2:0, y2:1, stop:0 rgba(53, 58, 75, 255), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}\n'
+            'Line{\n'
+            '	background-color: rgb(173, 82, 135);\n'
+            '}'
+        )
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.l_pg_informacoes_nome = QLabel(self.frame_4)
+        self.l_pg_informacoes_nome.setObjectName('l_pg_informacoes_nome')
+        self.l_pg_informacoes_nome.setGeometry(QRect(1, 200, 131, 20))
+        self.l_pg_informacoes_nome.setFont(font)
+        self.l_pg_informacoes_nome.setStyleSheet('')
+        self.l_pg_informacoes_nome.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_foto = QLabel(self.frame_4)
+        self.l_pg_informacoes_foto.setObjectName('l_pg_informacoes_foto')
+        self.l_pg_informacoes_foto.setGeometry(QRect(111, 20, 140, 140))
+        self.l_pg_informacoes_foto.setStyleSheet(
+            'background-color: rgb(255, 255, 255);'
+        )
+        self.l_pg_informacoes_foto.setScaledContents(True)
+        self.l_pg_informacoes_matricula = QLabel(self.frame_4)
+        self.l_pg_informacoes_matricula.setObjectName(
+            'l_pg_informacoes_matricula'
+        )
+        self.l_pg_informacoes_matricula.setGeometry(QRect(115, 170, 131, 20))
+        self.l_pg_informacoes_matricula.setStyleSheet('')
+        self.l_pg_informacoes_matricula.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_matricula.setTextInteractionFlags(
+            Qt.LinksAccessibleByMouse | Qt.TextSelectableByMouse
+        )
+        self.l_pg_informacoes_data_nascimento = QLabel(self.frame_4)
+        self.l_pg_informacoes_data_nascimento.setObjectName(
+            'l_pg_informacoes_data_nascimento'
+        )
+        self.l_pg_informacoes_data_nascimento.setGeometry(
+            QRect(135, 200, 131, 20)
+        )
+        self.l_pg_informacoes_data_nascimento.setStyleSheet('')
+        self.l_pg_informacoes_data_nascimento.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_cpf = QLabel(self.frame_4)
+        self.l_pg_informacoes_cpf.setObjectName('l_pg_informacoes_cpf')
+        self.l_pg_informacoes_cpf.setGeometry(QRect(270, 200, 81, 20))
+        self.l_pg_informacoes_cpf.setStyleSheet('')
+        self.l_pg_informacoes_cpf.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_celular = QLabel(self.frame_4)
+        self.l_pg_informacoes_celular.setObjectName('l_pg_informacoes_celular')
+        self.l_pg_informacoes_celular.setGeometry(QRect(1, 240, 131, 20))
+        self.l_pg_informacoes_celular.setStyleSheet('')
+        self.l_pg_informacoes_celular.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_email = QLabel(self.frame_4)
+        self.l_pg_informacoes_email.setObjectName('l_pg_informacoes_email')
+        self.l_pg_informacoes_email.setGeometry(QRect(135, 240, 216, 20))
+        self.l_pg_informacoes_email.setStyleSheet('')
+        self.l_pg_informacoes_email.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_cidade = QLabel(self.frame_4)
+        self.l_pg_informacoes_cidade.setObjectName('l_pg_informacoes_cidade')
+        self.l_pg_informacoes_cidade.setGeometry(QRect(1, 280, 131, 20))
+        self.l_pg_informacoes_cidade.setStyleSheet('')
+        self.l_pg_informacoes_cidade.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_bairro = QLabel(self.frame_4)
+        self.l_pg_informacoes_bairro.setObjectName('l_pg_informacoes_bairro')
+        self.l_pg_informacoes_bairro.setGeometry(QRect(135, 280, 131, 20))
+        self.l_pg_informacoes_bairro.setStyleSheet('')
+        self.l_pg_informacoes_bairro.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_cep = QLabel(self.frame_4)
+        self.l_pg_informacoes_cep.setObjectName('l_pg_informacoes_cep')
+        self.l_pg_informacoes_cep.setGeometry(QRect(270, 280, 81, 20))
+        self.l_pg_informacoes_cep.setStyleSheet('')
+        self.l_pg_informacoes_cep.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_data_pagamento = QLabel(self.frame_4)
+        self.l_pg_informacoes_data_pagamento.setObjectName(
+            'l_pg_informacoes_data_pagamento'
+        )
+        self.l_pg_informacoes_data_pagamento.setGeometry(
+            QRect(1, 320, 181, 20)
+        )
+        self.l_pg_informacoes_data_pagamento.setStyleSheet('')
+        self.l_pg_informacoes_data_pagamento.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_data_pagamento.setIndent(-1)
+        self.l_pg_informacoes_valor = QLabel(self.frame_4)
+        self.l_pg_informacoes_valor.setObjectName('l_pg_informacoes_valor')
+        self.l_pg_informacoes_valor.setGeometry(QRect(190, 320, 161, 20))
+        self.l_pg_informacoes_valor.setStyleSheet('')
+        self.l_pg_informacoes_valor.setAlignment(Qt.AlignCenter)
+        self.l_pg_informacoes_responsavel = QLabel(self.frame_4)
+        self.l_pg_informacoes_responsavel.setObjectName(
+            'l_pg_informacoes_responsavel'
+        )
+        self.l_pg_informacoes_responsavel.setGeometry(QRect(114, 370, 131, 20))
+        self.l_pg_informacoes_responsavel.setStyleSheet('')
+        self.l_pg_informacoes_responsavel.setAlignment(Qt.AlignCenter)
+        self.label_26 = QLabel(self.frame_4)
+        self.label_26.setObjectName('label_26')
+        self.label_26.setGeometry(QRect(0, 130, 111, 4))
+        self.label_26.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_27 = QLabel(self.frame_4)
+        self.label_27.setObjectName('label_27')
+        self.label_27.setGeometry(QRect(250, 110, 111, 4))
+        self.label_27.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_28 = QLabel(self.frame_4)
+        self.label_28.setObjectName('label_28')
+        self.label_28.setGeometry(QRect(250, 90, 111, 4))
+        self.label_28.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_29 = QLabel(self.frame_4)
+        self.label_29.setObjectName('label_29')
+        self.label_29.setGeometry(QRect(250, 70, 111, 4))
+        self.label_29.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_30 = QLabel(self.frame_4)
+        self.label_30.setObjectName('label_30')
+        self.label_30.setGeometry(QRect(0, 40, 111, 4))
+        self.label_30.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_29.raise_()
+        self.label_27.raise_()
+        self.label_28.raise_()
+        self.l_pg_informacoes_nome.raise_()
+        self.l_pg_informacoes_foto.raise_()
+        self.l_pg_informacoes_matricula.raise_()
+        self.l_pg_informacoes_data_nascimento.raise_()
+        self.l_pg_informacoes_cpf.raise_()
+        self.l_pg_informacoes_celular.raise_()
+        self.l_pg_informacoes_email.raise_()
+        self.l_pg_informacoes_cidade.raise_()
+        self.l_pg_informacoes_bairro.raise_()
+        self.l_pg_informacoes_cep.raise_()
+        self.l_pg_informacoes_data_pagamento.raise_()
+        self.l_pg_informacoes_valor.raise_()
+        self.l_pg_informacoes_responsavel.raise_()
+        self.label_26.raise_()
+        self.label_30.raise_()
+        self.label_42 = QLabel(self.page_2)
+        self.label_42.setObjectName('label_42')
+        self.label_42.setGeometry(QRect(820, 560, 381, 16))
+        self.label_42.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_45 = QLabel(self.page_2)
+        self.label_45.setObjectName('label_45')
+        self.label_45.setGeometry(QRect(270, 530, 191, 16))
+        self.label_45.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_46 = QLabel(self.page_2)
+        self.label_46.setObjectName('label_46')
+        self.label_46.setGeometry(QRect(820, 500, 381, 16))
+        self.label_46.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_47 = QLabel(self.page_2)
+        self.label_47.setObjectName('label_47')
+        self.label_47.setGeometry(QRect(820, 600, 261, 16))
+        self.label_47.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_48 = QLabel(self.page_2)
+        self.label_48.setObjectName('label_48')
+        self.label_48.setGeometry(QRect(100, 450, 361, 16))
+        self.label_48.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_58 = QLabel(self.page_2)
+        self.label_58.setObjectName('label_58')
+        self.label_58.setGeometry(QRect(1170, 510, 100, 10))
+        self.label_58.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_59 = QLabel(self.page_2)
+        self.label_59.setObjectName('label_59')
+        self.label_59.setGeometry(QRect(940, 490, 151, 10))
+        self.label_59.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_60 = QLabel(self.page_2)
+        self.label_60.setObjectName('label_60')
+        self.label_60.setGeometry(QRect(240, 460, 151, 10))
+        self.label_60.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_61 = QLabel(self.page_2)
+        self.label_61.setObjectName('label_61')
+        self.label_61.setGeometry(QRect(130, 535, 151, 5))
+        self.label_61.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.stackedWidget.addWidget(self.page_2)
+        self.label_61.raise_()
+        self.label_60.raise_()
+        self.label_58.raise_()
+        self.label_48.raise_()
+        self.label_45.raise_()
+        self.label_47.raise_()
+        self.label_42.raise_()
+        self.label_46.raise_()
+        self.le_pg_informacoes_pesquisar_aluno.raise_()
+        self.label_5.raise_()
+        self.pb_pg_informacoes_pesquisar.raise_()
+        self.frame_4.raise_()
+        self.label_59.raise_()
         JanelaAluno.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(JanelaAluno)
@@ -798,67 +1366,106 @@ class Ui_JanelaAluno(object):
                 'JanelaAluno', 'Matr\u00edcula/CPF', None
             )
         )
-        self.pb_pesquisar_pagamentos.setText('')
-        ___qtablewidgetitem = self.tw_pagamentos.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(
-            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
-        )
-        ___qtablewidgetitem1 = self.tw_pagamentos.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(
+        self.pb_pg_pagamentos_pesquisar.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_nome.setToolTip(
             QCoreApplication.translate('JanelaAluno', 'Nome', None)
         )
-        ___qtablewidgetitem2 = self.tw_pagamentos.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(
-            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_nome.setText('')
+        self.l_pg_pagamentos_foto.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_matricula.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
         )
-        ___qtablewidgetitem3 = self.tw_pagamentos.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_matricula.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_data_nascimento.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Data de nascimento', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_data_nascimento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cpf.setToolTip(
             QCoreApplication.translate('JanelaAluno', 'CPF', None)
         )
-        ___qtablewidgetitem4 = self.tw_pagamentos.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(
-            QCoreApplication.translate('JanelaAluno', 'Celular', None)
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cpf.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_celular.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'N\u00famero do celular', None
+            )
         )
-        ___qtablewidgetitem5 = self.tw_pagamentos.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(
-            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
-        )
-        ___qtablewidgetitem6 = self.tw_pagamentos.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(
-            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
-        )
-        ___qtablewidgetitem7 = self.tw_pagamentos.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(
-            QCoreApplication.translate('JanelaAluno', 'CEP', None)
-        )
-        ___qtablewidgetitem8 = self.tw_pagamentos.horizontalHeaderItem(8)
-        ___qtablewidgetitem8.setText(
-            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
-        )
-        ___qtablewidgetitem9 = self.tw_pagamentos.horizontalHeaderItem(9)
-        ___qtablewidgetitem9.setText(
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_celular.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_email.setToolTip(
             QCoreApplication.translate('JanelaAluno', 'E-mail', None)
         )
-        ___qtablewidgetitem10 = self.tw_pagamentos.horizontalHeaderItem(10)
-        ___qtablewidgetitem10.setText(
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_email.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cidade.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cidade.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_bairro.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_bairro.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cep.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_cep.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_data_pagamento.setToolTip(
             QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
         )
-        ___qtablewidgetitem11 = self.tw_pagamentos.horizontalHeaderItem(11)
-        ___qtablewidgetitem11.setText(
-            QCoreApplication.translate('JanelaAluno', 'Valor', None)
-        )
-        ___qtablewidgetitem12 = self.tw_pagamentos.horizontalHeaderItem(12)
-        ___qtablewidgetitem12.setText(
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_data_pagamento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_valor.setToolTip(
             QCoreApplication.translate(
-                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+                'JanelaAluno', 'Valor do pagamento', None
             )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_valor.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_responsavel.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula do respons\u00e1vel', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_pagamentos_responsavel.setText('')
+        self.pb_pagar_pix.setText(
+            QCoreApplication.translate('JanelaAluno', 'Pagar com Pix', None)
         )
         self.pb_imprimir_boleto.setText(
             QCoreApplication.translate('JanelaAluno', 'Imprimir boleto', None)
         )
-        self.pb_pagar_pix.setText(
-            QCoreApplication.translate('JanelaAluno', 'Pagar com Pix', None)
-        )
+        self.label_24.setText('')
+        self.label_25.setText('')
+        self.label_34.setText('')
+        self.label_35.setText('')
+        self.label_36.setText('')
+        self.label_37.setText('')
+        self.label_38.setText('')
+        self.label_39.setText('')
+        self.label_40.setText('')
+        self.label_41.setText('')
+        self.label_43.setText('')
+        self.label_44.setText('')
         self.label.setText(
             QCoreApplication.translate('JanelaAluno', 'Nome do aluno', None)
         )
@@ -967,6 +1574,42 @@ class Ui_JanelaAluno(object):
         self.pb_salvar_dados.setText(
             QCoreApplication.translate('JanelaAluno', 'Salvar', None)
         )
+        self.label_62.setText('')
+        self.label_63.setText('')
+        self.label_64.setText('')
+        self.label_65.setText('')
+        self.label_66.setText('')
+        self.label_67.setText('')
+        self.label_68.setText('')
+        self.label_69.setText('')
+        self.label_70.setText('')
+        self.label_71.setText('')
+        self.label_72.setText('')
+        self.label_73.setText('')
+        self.label_74.setText('')
+        self.label_75.setText('')
+        self.label_76.setText('')
+        self.label_77.setText('')
+        self.label_78.setText('')
+        self.label_79.setText('')
+        self.label_80.setText('')
+        self.label_81.setText('')
+        self.label_82.setText('')
+        self.label_83.setText('')
+        self.label_84.setText('')
+        self.label_85.setText('')
+        self.label_86.setText('')
+        self.label_87.setText('')
+        self.label_88.setText('')
+        self.label_89.setText('')
+        self.label_90.setText('')
+        self.label_91.setText('')
+        self.label_92.setText('')
+        self.label_93.setText('')
+        self.label_94.setText('')
+        self.label_95.setText('')
+        self.label_96.setText('')
+        self.label_97.setText('')
         self.label_6.setText(
             QCoreApplication.translate(
                 'JanelaAluno', 'Adicione uma foto', None
@@ -985,6 +1628,11 @@ class Ui_JanelaAluno(object):
         self.sb_valor_pagamento.setPrefix(
             QCoreApplication.translate('JanelaAluno', 'R$', None)
         )
+        self.label_98.setText('')
+        self.label_99.setText('')
+        self.label_100.setText('')
+        self.label_101.setText('')
+        self.label_102.setText('')
         self.label_20.setText(
             QCoreApplication.translate('JanelaAluno', 'Excluir aluno', None)
         )
@@ -993,178 +1641,208 @@ class Ui_JanelaAluno(object):
                 'JanelaAluno', 'Matr\u00edcula do respons\u00e1vel', None
             )
         )
-        ___qtablewidgetitem13 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(0)
-        )
-        ___qtablewidgetitem13.setText(
-            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
-        )
-        ___qtablewidgetitem14 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(1)
-        )
-        ___qtablewidgetitem14.setText(
+        self.pb_pg_excluir_pesquisar.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_nome.setToolTip(
             QCoreApplication.translate('JanelaAluno', 'Nome', None)
         )
-        ___qtablewidgetitem15 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(2)
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_nome.setText('')
+        self.l_pg_excluir_foto.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_matricula.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
         )
-        ___qtablewidgetitem15.setText(
-            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
-        )
-        ___qtablewidgetitem16 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(3)
-        )
-        ___qtablewidgetitem16.setText(
-            QCoreApplication.translate('JanelaAluno', 'CPF', None)
-        )
-        ___qtablewidgetitem17 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(4)
-        )
-        ___qtablewidgetitem17.setText(
-            QCoreApplication.translate('JanelaAluno', 'Celular', None)
-        )
-        ___qtablewidgetitem18 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(5)
-        )
-        ___qtablewidgetitem18.setText(
-            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
-        )
-        ___qtablewidgetitem19 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(6)
-        )
-        ___qtablewidgetitem19.setText(
-            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
-        )
-        ___qtablewidgetitem20 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(7)
-        )
-        ___qtablewidgetitem20.setText(
-            QCoreApplication.translate('JanelaAluno', 'CEP', None)
-        )
-        ___qtablewidgetitem21 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(8)
-        )
-        ___qtablewidgetitem21.setText(
-            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
-        )
-        ___qtablewidgetitem22 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(9)
-        )
-        ___qtablewidgetitem22.setText(
-            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
-        )
-        ___qtablewidgetitem23 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(10)
-        )
-        ___qtablewidgetitem23.setText(
-            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
-        )
-        ___qtablewidgetitem24 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(11)
-        )
-        ___qtablewidgetitem24.setText(
-            QCoreApplication.translate('JanelaAluno', 'Valor', None)
-        )
-        ___qtablewidgetitem25 = (
-            self.tw_exibir_excluir_aluno.horizontalHeaderItem(12)
-        )
-        ___qtablewidgetitem25.setText(
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_matricula.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_data_nascimento.setToolTip(
             QCoreApplication.translate(
-                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+                'JanelaAluno', 'Data de nascimento', None
             )
         )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_data_nascimento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_cpf.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'CPF', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_cpf.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_celular.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'N\u00famero do celular', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_celular.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_email.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_email.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_cidade.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_cidade.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_bairro.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_bairro.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_cep.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_cep.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_data_pagamento.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_data_pagamento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_valor.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Valor do pagamento', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_valor.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_excluir_responsavel.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula do respons\u00e1vel', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_excluir_responsavel.setText('')
         self.pb_excluir_aluno.setText(
             QCoreApplication.translate('JanelaAluno', 'Excluir', None)
         )
-        self.pb_pesquisar_excluir.setText('')
-        self.le_pesquisar_aluno.setPlaceholderText(
+        self.label_31.setText('')
+        self.label_32.setText('')
+        self.label_33.setText('')
+        self.label_49.setText('')
+        self.label_50.setText('')
+        self.label_51.setText('')
+        self.label_52.setText('')
+        self.label_53.setText('')
+        self.label_54.setText('')
+        self.label_55.setText('')
+        self.label_56.setText('')
+        self.label_57.setText('')
+        self.le_pg_informacoes_pesquisar_aluno.setPlaceholderText(
             QCoreApplication.translate(
                 'JanelaAluno', 'Matr\u00edcula/CPF', None
             )
         )
         self.label_5.setText(
-            QCoreApplication.translate('JanelaAluno', 'Pesquisar aluno', None)
-        )
-        ___qtablewidgetitem26 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(0)
-        )
-        ___qtablewidgetitem26.setText(
-            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
-        )
-        ___qtablewidgetitem27 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(1)
-        )
-        ___qtablewidgetitem27.setText(
-            QCoreApplication.translate('JanelaAluno', 'Nome', None)
-        )
-        ___qtablewidgetitem28 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(2)
-        )
-        ___qtablewidgetitem28.setText(
-            QCoreApplication.translate('JanelaAluno', 'Data nascimento', None)
-        )
-        ___qtablewidgetitem29 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(3)
-        )
-        ___qtablewidgetitem29.setText(
-            QCoreApplication.translate('JanelaAluno', 'CPF', None)
-        )
-        ___qtablewidgetitem30 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(4)
-        )
-        ___qtablewidgetitem30.setText(
-            QCoreApplication.translate('JanelaAluno', 'Celular', None)
-        )
-        ___qtablewidgetitem31 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(5)
-        )
-        ___qtablewidgetitem31.setText(
-            QCoreApplication.translate('JanelaAluno', '\u00c9 Whatsapp', None)
-        )
-        ___qtablewidgetitem32 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(6)
-        )
-        ___qtablewidgetitem32.setText(
-            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
-        )
-        ___qtablewidgetitem33 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(7)
-        )
-        ___qtablewidgetitem33.setText(
-            QCoreApplication.translate('JanelaAluno', 'CEP', None)
-        )
-        ___qtablewidgetitem34 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(8)
-        )
-        ___qtablewidgetitem34.setText(
-            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
-        )
-        ___qtablewidgetitem35 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(9)
-        )
-        ___qtablewidgetitem35.setText(
-            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
-        )
-        ___qtablewidgetitem36 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(10)
-        )
-        ___qtablewidgetitem36.setText(
-            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
-        )
-        ___qtablewidgetitem37 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(11)
-        )
-        ___qtablewidgetitem37.setText(
-            QCoreApplication.translate('JanelaAluno', 'Valor', None)
-        )
-        ___qtablewidgetitem38 = (
-            self.tw_exibir_pesquisar_aluno.horizontalHeaderItem(12)
-        )
-        ___qtablewidgetitem38.setText(
             QCoreApplication.translate(
-                'JanelaAluno', 'Matr\u00edcula respons\u00e1vel', None
+                'JanelaAluno', 'Informa\u00e7\u00f5es do aluno', None
             )
         )
-        self.pb_pesquisar_aluno.setText('')
+        self.pb_pg_informacoes_pesquisar.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_nome.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Nome', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_nome.setText('')
+        self.l_pg_informacoes_foto.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_matricula.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Matr\u00edcula', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_matricula.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_data_nascimento.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Data de nascimento', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_data_nascimento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cpf.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'CPF', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cpf.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_celular.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'N\u00famero do celular', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_celular.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_email.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'E-mail', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_email.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cidade.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Cidade', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cidade.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_bairro.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Bairro', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_bairro.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cep.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'CEP', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_cep.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_data_pagamento.setToolTip(
+            QCoreApplication.translate('JanelaAluno', 'Data pagamento', None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_data_pagamento.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_valor.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Valor do pagamento', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_valor.setText('')
+        # if QT_CONFIG(tooltip)
+        self.l_pg_informacoes_responsavel.setToolTip(
+            QCoreApplication.translate(
+                'JanelaAluno', 'Matr\u00edcula do respons\u00e1vel', None
+            )
+        )
+        # endif // QT_CONFIG(tooltip)
+        self.l_pg_informacoes_responsavel.setText('')
+        self.label_26.setText('')
+        self.label_27.setText('')
+        self.label_28.setText('')
+        self.label_29.setText('')
+        self.label_30.setText('')
+        self.label_42.setText('')
+        self.label_45.setText('')
+        self.label_46.setText('')
+        self.label_47.setText('')
+        self.label_48.setText('')
+        self.label_58.setText('')
+        self.label_59.setText('')
+        self.label_60.setText('')
+        self.label_61.setText('')
 
     # retranslateUi
