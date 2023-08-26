@@ -279,8 +279,12 @@ class VGymSystemDB:
         Args:
             matricula (str): Matrícula do responsável
         """
-        sql = f'DELETE FROM Aluno WHERE matricula_responsavel == "{matricula}"'
-        self._cursor.execute(sql)
+        sql_responsavel = (
+            f'DELETE FROM Aluno WHERE matricula_responsavel == "{matricula}"'
+        )
+        sql_aluno = f'DELETE FROM Aluno WHERE matricula_aluno == "{matricula}"'
+        self._cursor.execute(sql_responsavel)
+        self._cursor.execute(sql_aluno)
         self._con.commit()
 
     def fechar_db(self):
