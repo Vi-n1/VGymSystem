@@ -13,7 +13,15 @@
     <file>img/config-hover.png</file>
     <file>img/config-press.png</file>
   </qresource>
+  <qresource prefix="icon">
+    <file>icon/aluno.ico</file>
+    <file>icon/principal.ico</file>
+    <file>icon/professor.ico</file>
+  </qresource>
   <qresource prefix="central">
+    <file>img/procurar-prof.png</file>
+    <file>img/procurar-prof-hover.png</file>
+    <file>img/procurar-prof-press.png</file>
     <file>img/professor.png</file>
     <file>img/professor-hover.png</file>
     <file>img/professor-press.png</file>
@@ -28,6 +36,12 @@
     <file>img/logar.png</file>
   </qresource>
   <qresource prefix="cadastro">
+    <file>img/remove-prof.png</file>
+    <file>img/remove-prof-hover.png</file>
+    <file>img/remove-prof-press.png</file>
+    <file>img/prof.png</file>
+    <file>img/prof-hover.png</file>
+    <file>img/prof-press.png</file>
     <file>img/excluir-aluno.png</file>
     <file>img/procurar-aluno.png</file>
     <file>img/procurar-aluno-hover.png</file>
