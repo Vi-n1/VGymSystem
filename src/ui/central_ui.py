@@ -64,6 +64,11 @@ class Ui_JanelaCentral(object):
         if not JanelaCentral.objectName():
             JanelaCentral.setObjectName('JanelaCentral')
         JanelaCentral.resize(800, 600)
+        icon = QIcon()
+        icon.addFile(
+            ':/icon/icon/principal.ico', QSize(), QIcon.Normal, QIcon.Off
+        )
+        JanelaCentral.setWindowIcon(icon)
         JanelaCentral.setStyleSheet('')
         JanelaCentral.setDockOptions(
             QMainWindow.AllowTabbedDocks | QMainWindow.AnimatedDocks

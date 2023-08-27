@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Aluno</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/icon/icon/aluno.ico</normaloff>:/icon/icon/aluno.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
     <property name="geometry">
@@ -243,9 +247,13 @@ QPushButton::pressed{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QLabel, QCheckBox, QTableWidget{
+      <string notr="true">QFrame{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.341, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.994318 rgba(173, 82, 135, 118));
+}
+QLabel, QCheckBox, QTableWidget{
 	font: 10pt &quot;Arial&quot;;
 	color: rgb(80, 250, 123);
+	background-color: rgba(255, 255, 255, 0);
 }
 QPushButton{
 	border-radius: 5%;
@@ -278,7 +286,7 @@ QToolTip{
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_21">
@@ -786,7 +794,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -802,7 +812,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -850,7 +862,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -898,7 +912,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -1467,7 +1483,7 @@ QLabel{
         <property name="geometry">
          <rect>
           <x>1020</x>
-          <y>0</y>
+          <y>6</y>
           <width>111</width>
           <height>16</height>
          </rect>
@@ -1608,6 +1624,9 @@ QLabel{
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="placeholderText">
+         <string>exemplo123@gmail.com</string>
+        </property>
        </widget>
        <widget class="QPushButton" name="pb_salvar_dados">
         <property name="geometry">
@@ -1638,7 +1657,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1702,7 +1723,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1734,7 +1757,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1766,7 +1791,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1782,7 +1809,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1814,7 +1843,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1830,7 +1861,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1846,7 +1879,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1862,7 +1897,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1878,7 +1915,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1894,7 +1933,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1910,7 +1951,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -1942,7 +1985,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2022,7 +2067,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2038,7 +2085,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2054,7 +2103,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2086,7 +2137,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2102,7 +2155,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2134,7 +2189,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2166,7 +2223,9 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
@@ -2198,12 +2257,15 @@ QLabel{
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(173, 82, 135);</string>
+         <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
         </property>
         <property name="text">
          <string/>
         </property>
        </widget>
+       <zorder>label_90</zorder>
        <zorder>label_96</zorder>
        <zorder>label_95</zorder>
        <zorder>label_94</zorder>
@@ -2256,7 +2318,6 @@ QLabel{
        <zorder>label_87</zorder>
        <zorder>label_88</zorder>
        <zorder>label_89</zorder>
-       <zorder>label_90</zorder>
        <zorder>label_91</zorder>
        <zorder>label_92</zorder>
        <zorder>label_97</zorder>
@@ -2360,7 +2421,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -2376,7 +2439,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -2392,7 +2457,9 @@ QLabel{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -2953,7 +3020,9 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -2969,7 +3038,9 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -3011,13 +3082,15 @@ Line{
        <property name="geometry">
         <rect>
          <x>840</x>
-         <y>280</y>
+         <y>282</y>
          <width>151</width>
          <height>10</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -3055,8 +3128,8 @@ Line{
         <string/>
        </property>
       </widget>
-      <zorder>label_57</zorder>
       <zorder>label_55</zorder>
+      <zorder>label_57</zorder>
       <zorder>label_53</zorder>
       <zorder>label_52</zorder>
       <zorder>label_51</zorder>
@@ -3604,7 +3677,9 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -3652,7 +3727,9 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -3684,7 +3761,9 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
@@ -3700,20 +3779,22 @@ Line{
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(173, 82, 135);</string>
+        <string notr="true">background-color: rgb(173, 82, 135);
+border: none;
+border-bottom: 2px solid  rgb(189, 147, 249);</string>
        </property>
        <property name="text">
         <string/>
        </property>
       </widget>
       <zorder>label_61</zorder>
+      <zorder>label_46</zorder>
       <zorder>label_60</zorder>
       <zorder>label_58</zorder>
       <zorder>label_48</zorder>
       <zorder>label_45</zorder>
       <zorder>label_47</zorder>
       <zorder>label_42</zorder>
-      <zorder>label_46</zorder>
       <zorder>le_pg_informacoes_pesquisar_aluno</zorder>
       <zorder>label_5</zorder>
       <zorder>pb_pg_informacoes_pesquisar</zorder>

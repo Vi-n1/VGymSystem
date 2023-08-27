@@ -66,6 +66,9 @@ class Ui_JanelaAluno(object):
         JanelaAluno.resize(1280, 720)
         JanelaAluno.setMinimumSize(QSize(1280, 720))
         JanelaAluno.setMaximumSize(QSize(1280, 720))
+        icon = QIcon()
+        icon.addFile(':/icon/icon/aluno.ico', QSize(), QIcon.Normal, QIcon.Off)
+        JanelaAluno.setWindowIcon(icon)
         self.centralwidget = QWidget(JanelaAluno)
         self.centralwidget.setObjectName('centralwidget')
         self.frame = QFrame(self.centralwidget)
@@ -177,9 +180,13 @@ class Ui_JanelaAluno(object):
         self.stackedWidget.setObjectName('stackedWidget')
         self.stackedWidget.setGeometry(QRect(0, 0, 1280, 660))
         self.stackedWidget.setStyleSheet(
+            'QFrame{\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.341, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}\n'
             'QLabel, QCheckBox, QTableWidget{\n'
             '	font: 10pt "Arial";\n'
             '	color: rgb(80, 250, 123);\n'
+            '	background-color: rgba(255, 255, 255, 0);\n'
             '}\n'
             'QPushButton{\n'
             '	border-radius: 5%;\n'
@@ -207,7 +214,8 @@ class Ui_JanelaAluno(object):
             'QDateEdit{\n'
             '	color: rgb(98, 114, 164);\n'
             '}\n'
-            'QToolTip{\n'
+            'QToolTi'
+            'p{\n'
             '	background-color: rgb(0, 0, 0);\n'
             '}'
         )
@@ -343,17 +351,17 @@ class Ui_JanelaAluno(object):
         self.pb_pagar_pix = QPushButton(self.frame_3)
         self.pb_pagar_pix.setObjectName('pb_pagar_pix')
         self.pb_pagar_pix.setGeometry(QRect(190, 460, 101, 24))
-        icon = QIcon()
-        icon.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
-        self.pb_pagar_pix.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
+        self.pb_pagar_pix.setIcon(icon1)
         self.pb_imprimir_boleto = QPushButton(self.frame_3)
         self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
         self.pb_imprimir_boleto.setGeometry(QRect(70, 460, 111, 24))
-        icon1 = QIcon()
-        icon1.addFile(
+        icon2 = QIcon()
+        icon2.addFile(
             ':/grobal/img/imprimir.png', QSize(), QIcon.Normal, QIcon.Off
         )
-        self.pb_imprimir_boleto.setIcon(icon1)
+        self.pb_imprimir_boleto.setIcon(icon2)
         self.label_24 = QLabel(self.frame_3)
         self.label_24.setObjectName('label_24')
         self.label_24.setGeometry(QRect(0, 130, 111, 4))
@@ -390,11 +398,19 @@ class Ui_JanelaAluno(object):
         self.label_36 = QLabel(self.page)
         self.label_36.setObjectName('label_36')
         self.label_36.setGeometry(QRect(900, 640, 381, 16))
-        self.label_36.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_36.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_37 = QLabel(self.page)
         self.label_37.setObjectName('label_37')
         self.label_37.setGeometry(QRect(920, 590, 361, 16))
-        self.label_37.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_37.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_38 = QLabel(self.page)
         self.label_38.setObjectName('label_38')
         self.label_38.setGeometry(QRect(820, 570, 381, 16))
@@ -406,7 +422,11 @@ class Ui_JanelaAluno(object):
         self.label_40 = QLabel(self.page)
         self.label_40.setObjectName('label_40')
         self.label_40.setGeometry(QRect(0, 40, 381, 16))
-        self.label_40.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_40.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_41 = QLabel(self.page)
         self.label_41.setObjectName('label_41')
         self.label_41.setGeometry(QRect(160, 20, 311, 16))
@@ -418,7 +438,11 @@ class Ui_JanelaAluno(object):
         self.label_44 = QLabel(self.page)
         self.label_44.setObjectName('label_44')
         self.label_44.setGeometry(QRect(55, 60, 411, 16))
-        self.label_44.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_44.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.stackedWidget.addWidget(self.page)
         self.label_36.raise_()
         self.label_35.raise_()
@@ -596,7 +620,7 @@ class Ui_JanelaAluno(object):
         )
         self.label_15 = QLabel(self.groupBox)
         self.label_15.setObjectName('label_15')
-        self.label_15.setGeometry(QRect(1020, 0, 111, 16))
+        self.label_15.setGeometry(QRect(1020, 6, 111, 16))
         self.le_nome_responsavel = QLineEdit(self.groupBox)
         self.le_nome_responsavel.setObjectName('le_nome_responsavel')
         self.le_nome_responsavel.setGeometry(QRect(1, 110, 271, 22))
@@ -647,7 +671,11 @@ class Ui_JanelaAluno(object):
         self.label_62 = QLabel(self.groupBox)
         self.label_62.setObjectName('label_62')
         self.label_62.setGeometry(QRect(10, 280, 16, 141))
-        self.label_62.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_62.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_63 = QLabel(self.groupBox)
         self.label_63.setObjectName('label_63')
         self.label_63.setGeometry(QRect(50, 370, 10, 51))
@@ -663,7 +691,11 @@ class Ui_JanelaAluno(object):
         self.label_66 = QLabel(self.groupBox)
         self.label_66.setObjectName('label_66')
         self.label_66.setGeometry(QRect(130, 240, 10, 120))
-        self.label_66.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_66.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_67 = QLabel(self.groupBox)
         self.label_67.setObjectName('label_67')
         self.label_67.setGeometry(QRect(395, 250, 10, 120))
@@ -671,7 +703,11 @@ class Ui_JanelaAluno(object):
         self.label_68 = QLabel(self.groupBox)
         self.label_68.setObjectName('label_68')
         self.label_68.setGeometry(QRect(770, 300, 10, 120))
-        self.label_68.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_68.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_69 = QLabel(self.groupBox)
         self.label_69.setObjectName('label_69')
         self.label_69.setGeometry(QRect(780, 270, 10, 50))
@@ -679,11 +715,19 @@ class Ui_JanelaAluno(object):
         self.label_70 = QLabel(self.groupBox)
         self.label_70.setObjectName('label_70')
         self.label_70.setGeometry(QRect(790, 300, 10, 50))
-        self.label_70.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_70.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_71 = QLabel(self.groupBox)
         self.label_71.setObjectName('label_71')
         self.label_71.setGeometry(QRect(800, 240, 10, 70))
-        self.label_71.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_71.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_72 = QLabel(self.groupBox)
         self.label_72.setObjectName('label_72')
         self.label_72.setGeometry(QRect(920, 370, 10, 50))
@@ -691,31 +735,59 @@ class Ui_JanelaAluno(object):
         self.label_73 = QLabel(self.groupBox)
         self.label_73.setObjectName('label_73')
         self.label_73.setGeometry(QRect(930, 330, 10, 50))
-        self.label_73.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_73.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_74 = QLabel(self.groupBox)
         self.label_74.setObjectName('label_74')
         self.label_74.setGeometry(QRect(920, 300, 10, 50))
-        self.label_74.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_74.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_75 = QLabel(self.groupBox)
         self.label_75.setObjectName('label_75')
         self.label_75.setGeometry(QRect(850, 370, 10, 50))
-        self.label_75.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_75.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_76 = QLabel(self.groupBox)
         self.label_76.setObjectName('label_76')
         self.label_76.setGeometry(QRect(860, 350, 10, 50))
-        self.label_76.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_76.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_77 = QLabel(self.groupBox)
         self.label_77.setObjectName('label_77')
         self.label_77.setGeometry(QRect(870, 320, 10, 50))
-        self.label_77.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_77.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_78 = QLabel(self.groupBox)
         self.label_78.setObjectName('label_78')
         self.label_78.setGeometry(QRect(860, 280, 10, 50))
-        self.label_78.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_78.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_79 = QLabel(self.groupBox)
         self.label_79.setObjectName('label_79')
         self.label_79.setGeometry(QRect(880, 300, 10, 50))
-        self.label_79.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_79.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_80 = QLabel(self.groupBox)
         self.label_80.setObjectName('label_80')
         self.label_80.setGeometry(QRect(1250, 220, 10, 200))
@@ -723,7 +795,11 @@ class Ui_JanelaAluno(object):
         self.label_81 = QLabel(self.groupBox)
         self.label_81.setObjectName('label_81')
         self.label_81.setGeometry(QRect(1180, 230, 10, 50))
-        self.label_81.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_81.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_82 = QLabel(self.groupBox)
         self.label_82.setObjectName('label_82')
         self.label_82.setGeometry(QRect(1190, 270, 10, 50))
@@ -743,15 +819,27 @@ class Ui_JanelaAluno(object):
         self.label_86 = QLabel(self.groupBox)
         self.label_86.setObjectName('label_86')
         self.label_86.setGeometry(QRect(1020, 270, 10, 50))
-        self.label_86.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_86.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_87 = QLabel(self.groupBox)
         self.label_87.setObjectName('label_87')
         self.label_87.setGeometry(QRect(1030, 290, 10, 50))
-        self.label_87.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_87.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_88 = QLabel(self.groupBox)
         self.label_88.setObjectName('label_88')
         self.label_88.setGeometry(QRect(1040, 310, 10, 50))
-        self.label_88.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_88.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_89 = QLabel(self.groupBox)
         self.label_89.setObjectName('label_89')
         self.label_89.setGeometry(QRect(1030, 350, 10, 50))
@@ -759,11 +847,19 @@ class Ui_JanelaAluno(object):
         self.label_90 = QLabel(self.groupBox)
         self.label_90.setObjectName('label_90')
         self.label_90.setGeometry(QRect(390, 280, 10, 50))
-        self.label_90.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_90.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_91 = QLabel(self.groupBox)
         self.label_91.setObjectName('label_91')
         self.label_91.setGeometry(QRect(140, 290, 10, 50))
-        self.label_91.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_91.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_92 = QLabel(self.groupBox)
         self.label_92.setObjectName('label_92')
         self.label_92.setGeometry(QRect(270, 370, 10, 50))
@@ -771,7 +867,11 @@ class Ui_JanelaAluno(object):
         self.label_93 = QLabel(self.groupBox)
         self.label_93.setObjectName('label_93')
         self.label_93.setGeometry(QRect(230, 200, 10, 50))
-        self.label_93.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_93.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_94 = QLabel(self.groupBox)
         self.label_94.setObjectName('label_94')
         self.label_94.setGeometry(QRect(610, 290, 10, 50))
@@ -779,7 +879,11 @@ class Ui_JanelaAluno(object):
         self.label_95 = QLabel(self.groupBox)
         self.label_95.setObjectName('label_95')
         self.label_95.setGeometry(QRect(620, 360, 10, 50))
-        self.label_95.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_95.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_96 = QLabel(self.groupBox)
         self.label_96.setObjectName('label_96')
         self.label_96.setGeometry(QRect(690, 200, 21, 50))
@@ -787,7 +891,12 @@ class Ui_JanelaAluno(object):
         self.label_97 = QLabel(self.groupBox)
         self.label_97.setObjectName('label_97')
         self.label_97.setGeometry(QRect(696, 250, 10, 50))
-        self.label_97.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_97.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
+        self.label_90.raise_()
         self.label_96.raise_()
         self.label_95.raise_()
         self.label_94.raise_()
@@ -840,7 +949,6 @@ class Ui_JanelaAluno(object):
         self.label_87.raise_()
         self.label_88.raise_()
         self.label_89.raise_()
-        self.label_90.raise_()
         self.label_91.raise_()
         self.label_92.raise_()
         self.label_97.raise_()
@@ -871,15 +979,27 @@ class Ui_JanelaAluno(object):
         self.label_98 = QLabel(self.page1)
         self.label_98.setObjectName('label_98')
         self.label_98.setGeometry(QRect(1210, 90, 10, 50))
-        self.label_98.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_98.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_99 = QLabel(self.page1)
         self.label_99.setObjectName('label_99')
         self.label_99.setGeometry(QRect(930, 150, 10, 50))
-        self.label_99.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_99.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_100 = QLabel(self.page1)
         self.label_100.setObjectName('label_100')
         self.label_100.setGeometry(QRect(930, 30, 10, 50))
-        self.label_100.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_100.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_101 = QLabel(self.page1)
         self.label_101.setObjectName('label_101')
         self.label_101.setGeometry(QRect(1210, 250, 10, 50))
@@ -1042,14 +1162,14 @@ class Ui_JanelaAluno(object):
         self.pb_excluir_aluno = QPushButton(self.frame_5)
         self.pb_excluir_aluno.setObjectName('pb_excluir_aluno')
         self.pb_excluir_aluno.setGeometry(QRect(143, 440, 75, 24))
-        icon2 = QIcon()
-        icon2.addFile(
+        icon3 = QIcon()
+        icon3.addFile(
             ':/cadastro/img/excluir-aluno.png',
             QSize(),
             QIcon.Normal,
             QIcon.Off,
         )
-        self.pb_excluir_aluno.setIcon(icon2)
+        self.pb_excluir_aluno.setIcon(icon3)
         self.label_31 = QLabel(self.frame_5)
         self.label_31.setObjectName('label_31')
         self.label_31.setGeometry(QRect(0, 50, 111, 4))
@@ -1073,11 +1193,19 @@ class Ui_JanelaAluno(object):
         self.label_51 = QLabel(self.page_3)
         self.label_51.setObjectName('label_51')
         self.label_51.setGeometry(QRect(250, 440, 211, 16))
-        self.label_51.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_51.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_52 = QLabel(self.page_3)
         self.label_52.setObjectName('label_52')
         self.label_52.setGeometry(QRect(820, 290, 31, 16))
-        self.label_52.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_52.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_53 = QLabel(self.page_3)
         self.label_53.setObjectName('label_53')
         self.label_53.setGeometry(QRect(820, 160, 71, 16))
@@ -1088,8 +1216,12 @@ class Ui_JanelaAluno(object):
         self.label_54.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.label_55 = QLabel(self.page_3)
         self.label_55.setObjectName('label_55')
-        self.label_55.setGeometry(QRect(840, 280, 151, 10))
-        self.label_55.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_55.setGeometry(QRect(840, 282, 151, 10))
+        self.label_55.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_56 = QLabel(self.page_3)
         self.label_56.setObjectName('label_56')
         self.label_56.setGeometry(QRect(970, 290, 151, 10))
@@ -1099,8 +1231,8 @@ class Ui_JanelaAluno(object):
         self.label_57.setGeometry(QRect(280, 430, 151, 10))
         self.label_57.setStyleSheet('background-color: rgb(173, 82, 135);')
         self.stackedWidget.addWidget(self.page_3)
-        self.label_57.raise_()
         self.label_55.raise_()
+        self.label_57.raise_()
         self.label_53.raise_()
         self.label_52.raise_()
         self.label_51.raise_()
@@ -1301,7 +1433,11 @@ class Ui_JanelaAluno(object):
         self.label_46 = QLabel(self.page_2)
         self.label_46.setObjectName('label_46')
         self.label_46.setGeometry(QRect(820, 500, 381, 16))
-        self.label_46.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_46.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_47 = QLabel(self.page_2)
         self.label_47.setObjectName('label_47')
         self.label_47.setGeometry(QRect(820, 600, 261, 16))
@@ -1313,7 +1449,11 @@ class Ui_JanelaAluno(object):
         self.label_58 = QLabel(self.page_2)
         self.label_58.setObjectName('label_58')
         self.label_58.setGeometry(QRect(1170, 510, 100, 10))
-        self.label_58.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_58.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_59 = QLabel(self.page_2)
         self.label_59.setObjectName('label_59')
         self.label_59.setGeometry(QRect(940, 490, 151, 10))
@@ -1321,20 +1461,28 @@ class Ui_JanelaAluno(object):
         self.label_60 = QLabel(self.page_2)
         self.label_60.setObjectName('label_60')
         self.label_60.setGeometry(QRect(240, 460, 151, 10))
-        self.label_60.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_60.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.label_61 = QLabel(self.page_2)
         self.label_61.setObjectName('label_61')
         self.label_61.setGeometry(QRect(130, 535, 151, 5))
-        self.label_61.setStyleSheet('background-color: rgb(173, 82, 135);')
+        self.label_61.setStyleSheet(
+            'background-color: rgb(173, 82, 135);\n'
+            'border: none;\n'
+            'border-bottom: 2px solid  rgb(189, 147, 249);'
+        )
         self.stackedWidget.addWidget(self.page_2)
         self.label_61.raise_()
+        self.label_46.raise_()
         self.label_60.raise_()
         self.label_58.raise_()
         self.label_48.raise_()
         self.label_45.raise_()
         self.label_47.raise_()
         self.label_42.raise_()
-        self.label_46.raise_()
         self.le_pg_informacoes_pesquisar_aluno.raise_()
         self.label_5.raise_()
         self.pb_pg_informacoes_pesquisar.raise_()
@@ -1344,7 +1492,7 @@ class Ui_JanelaAluno(object):
 
         self.retranslateUi(JanelaAluno)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
         QMetaObject.connectSlotsByName(JanelaAluno)
 
@@ -1570,6 +1718,11 @@ class Ui_JanelaAluno(object):
         )
         self.le_cep_responsavel.setInputMask(
             QCoreApplication.translate('JanelaAluno', '99999-999', None)
+        )
+        self.le_email_responsavel.setPlaceholderText(
+            QCoreApplication.translate(
+                'JanelaAluno', 'exemplo123@gmail.com', None
+            )
         )
         self.pb_salvar_dados.setText(
             QCoreApplication.translate('JanelaAluno', 'Salvar', None)

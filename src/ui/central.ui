@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>VGymSystem</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/icon/icon/principal.ico</normaloff>:/icon/icon/principal.ico</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
