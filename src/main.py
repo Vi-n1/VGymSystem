@@ -5,6 +5,7 @@ from threading import Thread
 from PySide6.QtWidgets import QApplication, QMainWindow
 from ui.central_ui import Ui_JanelaCentral
 from aluno import Aluno
+from professor import Professor
 from con_db.vgymsystem_db import VGymSystemDB
 
 
@@ -17,6 +18,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         super().__init__()
         self.setupUi(self)
         self.janela_aluno = None
+        self.janela_professor = None
         self.aplicacao_ativa = True
         self.GIGABYTE = 1_000_000_000
         self.vgymsystem_db = VGymSystemDB()
@@ -27,6 +29,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             lambda: self.stackedWidget.setCurrentIndex(3)
         )
         self.pb_aluno.clicked.connect(self.exibir_janela_aluno)
+        self.pb_professor.clicked.connect(self.exibir_janela_professor)
         self.thead_visualizacao_recursos = Thread(
             target=self.informacoes_recursos_sistema
         )
@@ -36,6 +39,12 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
     def exibir_janela_aluno(self):
         self.janela_aluno = Aluno()
         self.janela_aluno.show()
+        self.showMinimized()
+
+    # Cria uma instância da janela de professor e exibe.
+    def exibir_janela_professor(self):
+        self.janela_professor = Professor()
+        self.janela_professor.show()
         self.showMinimized()
 
     # Método responsável por acrescentar informações do uso dos recursos do computador.
