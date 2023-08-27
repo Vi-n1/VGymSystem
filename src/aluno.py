@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-from PySide6.QtWidgets import (
-    QMainWindow,
-    QFileDialog,
-    QMessageBox,
-    QTableWidgetItem,
-)
+from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
+from datetime import datetime
 from PySide6.QtGui import QPixmap
 from ui.aluno_ui import Ui_JanelaAluno
 from con_db.vgymsystem_db import VGymSystemDB
@@ -18,6 +14,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        # Data de hoje
+        self.DATA_HOJE = datetime.now().strftime('%d/%m/%y')
         # Binário das fotos.
         self.binario_foto_aluno = ''
         self.binario_foto_responsavel = ''
@@ -354,7 +352,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         foto = QPixmap()
         foto.loadFromData(dados[12])
         self.l_pg_pagamentos_foto.setPixmap(foto)
-        self.l_pg_pagamentos_responsavel.setText(f'{dados[13]}')
+        self.l_pg_pagamentos_responsavel.setText(f'{dados[14]}')
 
     # Exibi dados na  página de 'Excluir aluno'.
     def exibir_dados_pg_excluir(self):
@@ -374,7 +372,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         foto = QPixmap()
         foto.loadFromData(dados[12])
         self.l_pg_excluir_foto.setPixmap(foto)
-        self.l_pg_excluir_responsavel.setText(f'{dados[13]}')
+        self.l_pg_excluir_responsavel.setText(f'{dados[14]}')
 
     # Exibi dados na página de 'Informações do aluno'.
     def exibir_dados_pg_informacoes(self):
@@ -394,7 +392,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         foto = QPixmap()
         foto.loadFromData(dados[12])
         self.l_pg_informacoes_foto.setPixmap(foto)
-        self.l_pg_informacoes_responsavel.setText(f'{dados[13]}')
+        self.l_pg_informacoes_responsavel.setText(f'{dados[14]}')
 
     def pesquisar_dados(self, identificador_unico: str) -> list:
         """
@@ -462,6 +460,9 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 len(dados_tratados[0]), matricula_responsavel
             )
 
+            # Insere a data de entrada.
+            dados_tratados[0].insert(-1, self.DATA_HOJE)
+
             # Inserindo dados do aluno dependente e obtendo o resultado da transação.
             commit_aluno = self.vgymsystem_db.set_novo_aluno(
                 *dados_tratados[0]
@@ -484,6 +485,9 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             # Insere NULL na matrícula responsável na última posição.
             null = None
             dados_tratados.insert(len(dados_tratados), null)
+
+            # Insere a data de entrada.
+            dados_tratados[0].insert(-1, self.DATA_HOJE)
 
             # Inserindo dados do aluno independente e obtendo o resultado da transação.
             commit_aluno = self.vgymsystem_db.set_novo_aluno(*dados_tratados)

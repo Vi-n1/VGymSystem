@@ -49,6 +49,7 @@ if not os.path.exists(dir_db):
         data_pagamento INTEGER,
         valor_pagamento INTEGER,
         foto TEXT,
+        data_entrada,
         matricula_responsavel INTEGER,
         FOREIGN KEY (matricula_responsavel)
         REFERENCES Responsavel (matricula_responsavel)

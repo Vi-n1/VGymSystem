@@ -33,6 +33,7 @@ class VGymSystemDB:
         data_pagamento: int,
         valor_pagamento: int,
         foto: str,
+        data_entrada: str,
         matricula_responsavel: int,
     ) -> bool:
         """
@@ -51,6 +52,7 @@ class VGymSystemDB:
             data_pagamento (int): Data do pagamento.
             valor_pagamento (int): Valor do pagamento.
             foto (str): É uma string contendo o binário da foto do aluno.
+            data_entrada (str): Data da entrada do aluno.
             matricula_responsavel (int): Número da matrícula única do responsável.
         Returns:
             bool: Retorna True se a transação foi realizada e False se acontecer algum erro.
@@ -72,6 +74,7 @@ class VGymSystemDB:
                 data_pagamento,
                 valor_pagamento,
                 foto,
+                data_entrada,
                 matricula_responsavel,
             ]
             self._set_novo_aluno(*valores)
@@ -228,7 +231,7 @@ class VGymSystemDB:
             args (list): Dados ao aluno.
         """
         try:
-            sql = 'INSERT INTO Aluno VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+            sql = 'INSERT INTO Aluno VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
             self._cursor.execute(sql, args)
             self._con.commit()
         except sqlite3.IntegrityError as erro:
