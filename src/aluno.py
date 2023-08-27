@@ -487,7 +487,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             dados_tratados.insert(len(dados_tratados), null)
 
             # Insere a data de entrada.
-            dados_tratados[0].insert(-1, self.DATA_HOJE)
+            dados_tratados.insert(-1, self.DATA_HOJE)
 
             # Inserindo dados do aluno independente e obtendo o resultado da transação.
             commit_aluno = self.vgymsystem_db.set_novo_aluno(*dados_tratados)
