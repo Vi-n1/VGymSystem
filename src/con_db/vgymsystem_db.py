@@ -35,7 +35,7 @@ class VGymSystemDB:
         foto: str,
         data_entrada: str,
         matricula_responsavel: int,
-    ) -> bool:
+    ) -> None:
         """
         Salva um novo aluno dependente no banco de dados
         Args:
@@ -54,31 +54,25 @@ class VGymSystemDB:
             foto (str): É uma string contendo o binário da foto do aluno.
             data_entrada (str): Data da entrada do aluno.
             matricula_responsavel (int): Número da matrícula única do responsável.
-        Returns:
-            bool: Retorna True se a transação foi realizada e False se acontecer algum erro.
         """
-        if nome_aluno == '':
-            return False
-        else:
-            valores = [
-                matricula_aluno,
-                nome_aluno,
-                data_nascimento,
-                cpf,
-                celular,
-                whatsapp,
-                bairro,
-                cep,
-                cidade,
-                email,
-                data_pagamento,
-                valor_pagamento,
-                foto,
-                data_entrada,
-                matricula_responsavel,
-            ]
-            self._set_novo_aluno(*valores)
-            return True
+        valores = [
+            matricula_aluno,
+            nome_aluno,
+            data_nascimento,
+            cpf,
+            celular,
+            whatsapp,
+            bairro,
+            cep,
+            cidade,
+            email,
+            data_pagamento,
+            valor_pagamento,
+            foto,
+            data_entrada,
+            matricula_responsavel,
+        ]
+        self._set_novo_aluno(*valores)
 
     def set_novo_responsavel(
         self,
@@ -93,7 +87,7 @@ class VGymSystemDB:
         cidade: str,
         email: str,
         foto: str,
-    ) -> bool:
+    ) -> None:
         """
         Salva um novo responsável no banco de dados
         Args:
@@ -108,27 +102,103 @@ class VGymSystemDB:
             cidade (str): Cidade do responsável.
             email (str): E-mail do responsável.
             foto (str): É uma string contendo o binário da foto do responsável.
-        Returns:
-            bool: Retorna True se a transação foi realizada e False se acontecer algum erro.
         """
-        if nome == '':
-            return False
+        valores = [
+            matricula_responsavel,
+            nome,
+            data_nascimento,
+            cpf,
+            celular,
+            whatsapp,
+            bairro,
+            cep,
+            cidade,
+            email,
+            foto,
+        ]
+        self._set_novo_responsavel(*valores)
+
+    def set_novo_professor(
+        self,
+        matricula_professor: int,
+        nome: str,
+        data_nascimento: str,
+        cpf: str,
+        celular: str,
+        whatsapp: int,
+        email: str,
+        cidade: str,
+        bairro: str,
+        cep: str,
+        formacao: str,
+        salario: int,
+        dia_pagamento: int,
+        foto: str,
+        data_entrada: str,
+    ) -> None:
+        """
+        Salva um novo professor no banco de dados.
+        Args:
+            matricula_professor (int): Matrícula.
+            nome (str): Nome do professor.
+            data_nascimento (str): Data de nascimento.
+            cpf (str): CPF.
+            celular (str): Número do celular.
+            whatsapp (int): Valor (0 | 1) representando um valor booleano.
+            email (str): E-mail.
+            cidade (str): Cidade.
+            bairro (str): Bairro.
+            cep (str): CEP.
+            formacao (str): Formação acadêmica.
+            salario (str): Salário.
+            dia_pagamento (str): Dia do pagamento.
+            foto (str): Foto.
+            data_entrada (str): Data da inscrição.
+        """
+        valores = [
+            matricula_professor,
+            nome,
+            data_nascimento,
+            cpf,
+            celular,
+            whatsapp,
+            email,
+            cidade,
+            bairro,
+            cep,
+            formacao,
+            salario,
+            dia_pagamento,
+            foto,
+            data_entrada,
+        ]
+        self._set_novo_professor(*valores)
+
+    def get_nova_matricula_professor(self) -> int:
+        """
+        Gera uma matrícula para professor.
+        Returns:
+            int:  Número da matrícula do professor.
+        """
+        sql = 'SELECT matricula_professor FROM Professor'
+        resultado_pesquisa_professor = self._cursor.execute(sql).fetchall()
+
+        num_matricula_professor = randint(
+            self._NUM_MATRICULA_MINIMA, self._NUM_MATRICULA_MAXIMA
+        )
+        nenhum_dado = 0
+        if len(resultado_pesquisa_professor) == nenhum_dado:
+            return num_matricula_professor
         else:
-            valores = [
-                matricula_responsavel,
-                nome,
-                data_nascimento,
-                cpf,
-                celular,
-                whatsapp,
-                bairro,
-                cep,
-                cidade,
-                email,
-                foto,
-            ]
-            self._set_novo_responsavel(*valores)
-            return True
+            matriculas_existentes_professor = list(
+                resultado_pesquisa_professor[0]
+            )
+            while num_matricula_professor in matriculas_existentes_professor:
+                num_matricula_professor = randint(
+                    self._NUM_MATRICULA_MINIMA, self._NUM_MATRICULA_MAXIMA
+                )
+
+            return num_matricula_professor
 
     def get_nova_matricula_aluno(self) -> int:
         """
@@ -226,7 +296,7 @@ class VGymSystemDB:
 
     def _set_novo_aluno(self, *args: list) -> None:
         """
-        Salva dados de um novo aluno.
+        Salva dados dum aluno.
         Args:
             args (list): Dados ao aluno.
         """
@@ -239,12 +309,25 @@ class VGymSystemDB:
 
     def _set_novo_responsavel(self, *args: list) -> None:
         """
-        Salva dados de um novo responsável.
+        Salva dados dum responsável.
         Args:
             args (list): Dados do responsável.
         """
         try:
             sql = 'INSERT INTO Responsavel VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+            self._cursor.execute(sql, args)
+            self._con.commit()
+        except sqlite3.IntegrityError as erro:
+            raise erro
+
+    def _set_novo_professor(self, *args: list) -> None:
+        """
+        Salva dados dum professor.
+        Args:
+            args (list): Dados do professor.
+        """
+        try:
+            sql = 'INSERT INTO Professor VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
             self._cursor.execute(sql, args)
             self._con.commit()
         except sqlite3.IntegrityError as erro:
