@@ -42,18 +42,38 @@ if not os.path.exists(dir_db):
         cpf TEXT NOT NULL UNIQUE,
         celular TEXT NOT NULL,
         whatsapp INTEGER NOT NULL,
-        bairro TEXT,
-        cep TEXT,
-        cidade TEXT,
-        email TEXT,
-        data_pagamento INTEGER,
-        valor_pagamento INTEGER,
-        foto TEXT,
-        data_entrada TEXT,
+        bairro TEXT NOT NULL,
+        cep TEXT NOT NULL,
+        cidade TEXT NOT NULL,
+        email TEXT NOT NULL,
+        data_pagamento INTEGER NOT NULL,
+        valor_pagamento INTEGER NOT NULL,
+        foto TEXT NOT NULL,
+        data_entrada TEXT NOT NULL,
         matricula_responsavel INTEGER,
         FOREIGN KEY (matricula_responsavel)
         REFERENCES Responsavel (matricula_responsavel)
         ON DELETE CASCADE);
+        """
+    )
+    cursor.execute(
+        """
+        CREATE TABLE Professor(
+        matricula_professor INTEGER NOT NULL PRIMARY KEY,
+        nome TEXT NOT NULL,
+        data_nascimento TEXT NOT NULL,
+        cpf TEXT NOT NULL UNIQUE,
+        celular TEXT NOT NULL,
+        whatsapp INTEGER NOT NULL,
+        email TEXT NOT NULL,
+        cidade TEXT NOT NULL,
+        bairro TEXT NOT NULL,
+        cep TEXT NOT NULL,
+        formacao TEXT NOT NULL,
+        salario INTEGER NOT NULL,
+        dia_pagamento INTEGER NOT NULL,
+        foto TEXT NOT NULL,
+        data_entrada TEXT NOT NULL);
         """
     )
     con.commit()
