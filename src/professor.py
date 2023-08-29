@@ -127,7 +127,7 @@ class Professor(QMainWindow, Ui_Professor):
 
         # Inserindo a matrícula na primeira posição.
         dados_tratados.insert(0, matricula)
-        self.vgymsystem_db._set_novo_professor(*dados_tratados)
+        self.vgymsystem_db.set_novo_professor(*dados_tratados)
 
     # Exibi uma mensagem passada por parâmetro.
     def exibir_mensagem(self, titulo, mensagem) -> None:

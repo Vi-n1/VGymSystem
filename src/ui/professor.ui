@@ -352,6 +352,9 @@ QFrame::hover{
             <height>22</height>
            </rect>
           </property>
+          <property name="maxLength">
+           <number>32</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -479,6 +482,9 @@ QFrame::hover{
             <height>22</height>
            </rect>
           </property>
+          <property name="maxLength">
+           <number>32</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -494,6 +500,9 @@ QFrame::hover{
             <width>101</width>
             <height>22</height>
            </rect>
+          </property>
+          <property name="maxLength">
+           <number>28</number>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -511,6 +520,9 @@ QFrame::hover{
             <height>22</height>
            </rect>
           </property>
+          <property name="maxLength">
+           <number>28</number>
+          </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
@@ -526,6 +538,9 @@ QFrame::hover{
             <width>181</width>
             <height>22</height>
            </rect>
+          </property>
+          <property name="maxLength">
+           <number>8</number>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
