@@ -205,6 +205,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 self.sb_data_pagamento.value(),
                 self.sb_valor_pagamento.value(),
                 self.binario_foto_aluno,
+                self.DATA_HOJE,
             ]
             if not self.cb_responsavel.isChecked():
 
@@ -444,59 +445,37 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 self.vgymsystem_db.get_nova_matricula_responsavel()
             )
 
-            # Inserindo dados do responsável primeira posição.
+            # Inserindo a matrícula do responsável na primeira posição.
             dados_tratados[1].insert(0, matricula_responsavel)
 
             # Inserindo dados do responsável e obtendo o resultado da transação.
-            commit_responsavel = self.vgymsystem_db.set_novo_responsavel(
-                *dados_tratados[1]
-            )
+            self.vgymsystem_db.set_novo_responsavel(*dados_tratados[1])
 
-            # Insere a matrícula do aluno na primeira posição.
+            # Inserindo a matrícula do aluno na primeira posição.
             dados_tratados[0].insert(0, matricula_aluno)
 
-            # Insere a matrícula do responsável na última posição.
+            # Inserindo a matrícula do responsável na última posição.
             dados_tratados[0].insert(
                 len(dados_tratados[0]), matricula_responsavel
             )
 
-            # Insere a data de entrada.
-            dados_tratados[0].insert(-1, self.DATA_HOJE)
-
             # Inserindo dados do aluno dependente e obtendo o resultado da transação.
-            commit_aluno = self.vgymsystem_db.set_novo_aluno(
-                *dados_tratados[0]
-            )
-
-            # Verifica se ocorreu algum erro na transação.
-            if not commit_aluno and commit_responsavel:
-                self.exibir_mensagem(
-                    'Dados inválido', 'Digite novamente os dados'
-                )
-            else:
-                self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
+            self.vgymsystem_db.set_novo_aluno(*dados_tratados[0])
+            self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
 
         else:
             matricula_aluno = self.vgymsystem_db.get_nova_matricula_aluno()
 
-            # Insere a matrícula do aluno na primeira posição.
+            # Inserindo a matrícula do aluno na primeira posição.
             dados_tratados.insert(0, matricula_aluno)
 
             # Insere NULL na matrícula responsável na última posição.
             null = None
             dados_tratados.insert(len(dados_tratados), null)
 
-            # Insere a data de entrada.
-            dados_tratados.insert(-1, self.DATA_HOJE)
-
             # Inserindo dados do aluno independente e obtendo o resultado da transação.
-            commit_aluno = self.vgymsystem_db.set_novo_aluno(*dados_tratados)
-            if not commit_aluno:
-                self.exibir_mensagem(
-                    'Dados inválido', 'Digite novamente os dados'
-                )
-            else:
-                self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
+            self.vgymsystem_db.set_novo_aluno(*dados_tratados)
+            self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
 
     # Se a janela for fechada a instância do banco de dados é fechado.
     def closeEvent(self, event):
