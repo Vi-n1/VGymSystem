@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from datetime import datetime
+from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PySide6.QtGui import QPixmap
 from ui.aluno_ui import Ui_JanelaAluno
 from con_db.vgymsystem_db import VGymSystemDB
@@ -134,7 +134,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         # Verifica a quantidade de valores digitado.
         elif len(self.le_cpf_aluno.text()) < self.NUM_MAXIMO_VALOR_ACEITO:
             self.exibir_mensagem(
-                'Cpf inválido', 'Digite novamente o cpf do aluno'
+                'CPF inválido', 'Digite novamente o CPF do aluno'
             )
         elif len(self.le_celular_aluno.text()) < self.NUM_MAXIMO_VALOR_ACEITO:
             self.exibir_mensagem(
@@ -225,7 +225,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     < self.NUM_MAXIMO_VALOR_ACEITO
                 ):
                     self.exibir_mensagem(
-                        'Cpf inválido', 'Digite novamente o cpf do responsável'
+                        'CPF inválido', 'Digite novamente o CPF do responsável'
                     )
                 elif (
                     len(self.le_celular_responsavel.text())
