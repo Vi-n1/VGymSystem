@@ -14,8 +14,13 @@ class Professor(QMainWindow, Ui_Professor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # Data de hoje
+
+        # Data de hoje.
         self.DATA_HOJE = datetime.now().strftime('%d/%m/%y')
+
+        # Constantes utilizadas para verificação de tamanho.
+        self.QUANTIDADE_NUM_MATRICULA = 5
+        self.INDEX_WHATSAPP = 5
 
         # Binário da fotos.
         self.binario_foto = ''
@@ -43,6 +48,17 @@ class Professor(QMainWindow, Ui_Professor):
         # Atribuindo o método que faz o tratamento de dados e salva os dados no banco.
         self.pb_pg_novo_salvar_dados.clicked.connect(self.tratamento_dados)
 
+        self.pb_pg_pesquisar.clicked.connect(self.exibir_dados_pg_pesquisar)
+        self.pb_pg_excluir_pesquisar.clicked.connect(
+            self.exibir_dados_pg_excluir
+        )
+
+        # Exclui os dados.
+        self.pb_pg_excluir_excluir_dados.clicked.connect(
+            self.excluir_professor
+        )
+
+    # Converte a foto para binário e mostra uma visualização.
     def adicionar_foto(self):
         caminho_foto = QFileDialog.getOpenFileName(self)[0]
 
@@ -63,6 +79,7 @@ class Professor(QMainWindow, Ui_Professor):
                 mensagem='Imagem não suportada, formatos aceitos: BMP, JPG, JPEG e PNG',
             )
 
+    # Verifica se os dados estão corretos e salva no banco.
     def tratamento_dados(self):
         if not self.le_pg_novo_nome.text().replace(' ', '').isalpha():
             self.exibir_mensagem('Nome inválido', 'Digite novamente o nome')
@@ -121,12 +138,100 @@ class Professor(QMainWindow, Ui_Professor):
             ]
             self.salvar_dados(dados)
 
-    # *
+    # Exibi dados na página de 'pesquisar'.
+    def exibir_dados_pg_pesquisar(self):
+        identificador = self.le_pg_pesquisar.text()
+        dados = self.pesquisar_dados(identificador)
+        dados.pop(self.INDEX_WHATSAPP)
+        self.l_pg_pesquisar_matricula.setText(f'{dados[0]}')
+        self.l_pg_pesquisar_nome.setText(dados[1])
+        self.l_pg_pesquisar_nascimento.setText(dados[2])
+        self.l_pg_pesquisar_cpf.setText(dados[3])
+        self.l_pg_pesquisar_celular.setText(dados[4])
+        self.l_pg_pesquisar_email.setText(dados[5])
+        self.l_pg_pesquisar_cidade.setText(dados[6])
+        self.l_pg_pesquisar_bairro.setText(dados[7])
+        self.l_pg_pesquisar_cep.setText(f'{dados[8]}')
+        self.l_pg_pesquisar_formacao.setText(dados[9])
+        self.l_pg_pesquisar_salario.setText(f'{dados[10]}')
+        self.l_pg_pesquisar_pagamento.setText(f'{dados[11]}')
+        foto = QPixmap()
+        foto.loadFromData(dados[12])
+        self.l_pg_pesquisar_foto.setPixmap(foto)
+
+    # Exibi dados na página de 'excluir'.
+    def exibir_dados_pg_excluir(self):
+        identificador = self.le_pg_excluir_pesquisar.text()
+        dados = self.pesquisar_dados(identificador)
+        dados.pop(self.INDEX_WHATSAPP)
+        self.l_pg_excluir_matricula.setText(f'{dados[0]}')
+        self.l_pg_excluir_nome.setText(dados[1])
+        self.l_pg_excluir_nascimento.setText(dados[2])
+        self.l_pg_excluir_cpf.setText(dados[3])
+        self.l_pg_excluir_celular.setText(dados[4])
+        self.l_pg_excluir_email.setText(dados[5])
+        self.l_pg_excluir_cidade.setText(dados[6])
+        self.l_pg_excluir_bairro.setText(dados[7])
+        self.l_pg_excluir_cep.setText(f'{dados[8]}')
+        self.l_pg_excluir_formacao.setText(dados[9])
+        self.l_pg_excluir_salario.setText(f'{dados[10]}')
+        self.l_pg_excluir_pagamento.setText(f'{dados[11]}')
+        foto = QPixmap()
+        foto.loadFromData(dados[12])
+        self.l_pg_excluir_foto.setPixmap(foto)
+
+    # Excluí o professor do banco de dados.
+    def excluir_professor(self):
+        matricula = self.le_pg_excluir_pesquisar.text()
+        if matricula.isnumeric():
+            if len(matricula) == self.QUANTIDADE_NUM_MATRICULA:
+                self.vgymsystem_db.excluir_professor(matricula)
+
+    def pesquisar_dados(self, identificador_unico: str) -> list:
+        """
+        Pesquisa dados do identificador único.
+        Args:
+            identificador_unico (str): Matrícula ou CPF.
+        Returns:
+            list: Lista com os dados.
+        """
+        dados = None
+        quantidade_num_identificador = len(identificador_unico)
+        if identificador_unico.isnumeric():
+            quantidade_num_cpf = 11
+
+            # Se a quantidade de números do identificador for igual a 11 é CPF.
+            if quantidade_num_identificador == quantidade_num_cpf:
+                dados = self.vgymsystem_db.get_professor_por_cpf(
+                    identificador_unico
+                )
+
+            # Se a quantidade de números do identificador for igual a 5 é matrícula.
+            elif quantidade_num_identificador == self.QUANTIDADE_NUM_MATRICULA:
+                dados = self.vgymsystem_db.get_professor_por_matricula(
+                    identificador_unico
+                )
+
+        # Se não tiver nenhum cadastro é exibido uma mensagem de erro.
+        if dados is None:
+            self.exibir_mensagem(
+                'Dados inexistente', 'Nenhum aluno cadastrado'
+            )
+            return []
+        else:
+            return dados
+
     def salvar_dados(self, dados_tratados: list):
+        """
+        Salva os dados.
+        Args:
+            dados_tratados (list): Dados do professor.
+        """
         matricula = self.vgymsystem_db.get_nova_matricula_professor()
 
         # Inserindo a matrícula na primeira posição.
         dados_tratados.insert(0, matricula)
+
         self.vgymsystem_db.set_novo_professor(*dados_tratados)
 
     # Exibi uma mensagem passada por parâmetro.
