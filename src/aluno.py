@@ -64,12 +64,12 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             self.exibir_dados_pg_informacoes
         )
 
-        #
+        # Exclui os dados do aluno.
         self.pb_excluir_aluno.clicked.connect(self.excluir_aluno)
 
     # Converte a foto do aluno para binário e mostra uma visualização.
     def adicionar_foto_aluno(self):
-        caminho_foto_aluno = QFileDialog.getOpenFileName()[0]
+        caminho_foto_aluno = QFileDialog.getOpenFileName(self)[0]
 
         # Obtendo o binário da foto.
         with open(caminho_foto_aluno, 'rb') as file:
@@ -90,7 +90,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
     # Converte a foto do responsável para binário e mostra uma visualização.
     def adicionar_foto_responsavel(self):
-        caminho_foto_responsavel = QFileDialog.getOpenFileName()[0]
+        caminho_foto_responsavel = QFileDialog.getOpenFileName(self)[0]
 
         # Obtendo o binário da foto.
         with open(caminho_foto_responsavel, 'rb') as file:
@@ -122,7 +122,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         self.le_email_responsavel.setEnabled(responsavel_selecionado)
         self.pb_ad_foto_responsavel.setEnabled(responsavel_selecionado)
 
-    # Verifica se os dados estão corretos e retorna os dados tratados.
+    # Verifica se os dados estão corretos e salva no banco.
     def tratamento_dados(self):
 
         # Verifica se tem algum número no nome.
