@@ -286,13 +286,52 @@ class VGymSystemDB:
                 dados = self._get_aluno_por_cpf(cpf)
                 return dados
 
+    def get_professor_por_matricula(self, matricula: str) -> list:
+        """
+        Busca dados da matrícula informada.
+        Args:
+            matricula (str): Matrícula do professor.
+
+        Returns:
+            list: Lista com os dados do professor.
+        """
+        if matricula.isnumeric():
+            quantidade_num_matricula = 5
+            if len(matricula) == quantidade_num_matricula:
+                dados = self._get_professor_por_matricula(matricula)
+                return dados
+
+    def get_professor_por_cpf(self, cpf: str) -> list:
+        """
+        Busca dados do CPF informado.
+        Args:
+            cpf (str): CPF do professor.
+        Returns:
+            list: Lista com os dados do professor.
+        """
+        if cpf.isnumeric():
+            quantidade_num_cpf = 11
+            if len(cpf) == quantidade_num_cpf:
+                dados = self._get_aluno_por_cpf(cpf)
+                return dados
+
+    def excluir_professor(self, matricula: str) -> None:
+        """
+        Exclui dados do professor.
+        Args:
+            matricula (str): Matrícula do professor
+        """
+        if matricula.isnumeric():
+            self._excluir_professor(matricula)
+
     def excluir_aluno(self, matricula: str) -> None:
         """
-        Excluí dados do aluno, se o aluno é independente a matrícula é do aluno.
+        Exclui dados do aluno, se o aluno é independente a matrícula é do aluno.
         Args:
             matricula (str): Matrícula do responsável
         """
-        self._excluir_aluno(matricula)
+        if matricula.isnumeric():
+            self._excluir_aluno(matricula)
 
     def _set_novo_aluno(self, *args: list) -> None:
         """
@@ -337,7 +376,7 @@ class VGymSystemDB:
         """
         Busca os dados da matrícula informada.
         Args:
-            matricula (str): Lista com os dados.
+            matricula (str): Matrícula do aluno.
         Returns:
             list: Lista com os dados do aluno.
         """
@@ -359,11 +398,49 @@ class VGymSystemDB:
         dados_filtrados = list(dados_brutos[0])
         return dados_filtrados
 
-    def _excluir_aluno(self, matricula) -> None:
+    def _get_professor_por_matricula(self, matricula: str) -> list:
         """
-        Excluí  os dados do aluno.
+        Busca os dados da matrícula informada.
         Args:
-            matricula (str): Matrícula do responsável
+            matricula (str): Matrícula do professor.
+        Returns:
+            list: Lista com os dados do professor.
+        """
+        sql = f'SELECT * FROM Professor WHERE matricula_professor == "{matricula}"'
+        dados_brutos = self._cursor.execute(sql).fetchall()
+        dados_filtrados = list(dados_brutos[0])
+        return dados_filtrados
+
+    def _get_professor_por_cpf(self, cpf: str) -> list:
+        """
+        Busca os dados do CPF informada.
+        Args:
+            cpf (str): CPF do professor.
+        Returns:
+            list: Lista com os dados do professor.
+        """
+        sql = f'SELECT * FROM Professor WHERE cpf == "{cpf}"'
+        dados_brutos = self._cursor.execute(sql).fetchall()
+        dados_filtrados = list(dados_brutos[0])
+        return dados_filtrados
+
+    def _excluir_professor(self, matricula: str) -> None:
+        """
+        Exclui os dados do professor.
+        Args:
+            matricula (str): Matrícula do professor.
+        """
+        sql = (
+            f'DELETE FROM Professor WHERE matricula_professor == "{matricula}"'
+        )
+        self._cursor.execute(sql)
+        self._con.commit()
+
+    def _excluir_aluno(self, matricula: str) -> None:
+        """
+        Exclui  os dados do aluno.
+        Args:
+            matricula (str): Matrícula do responsável.
         """
         sql_responsavel = (
             f'DELETE FROM Aluno WHERE matricula_responsavel == "{matricula}"'
