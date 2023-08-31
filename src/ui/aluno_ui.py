@@ -69,6 +69,15 @@ class Ui_JanelaAluno(object):
         icon = QIcon()
         icon.addFile(':/icon/icon/aluno.ico', QSize(), QIcon.Normal, QIcon.Off)
         JanelaAluno.setWindowIcon(icon)
+        JanelaAluno.setStyleSheet(
+            'QMessageBox{\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.341, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}\n'
+            'QMessageBox QLabel{\n'
+            '	font: 900 10pt "Arial Black";\n'
+            '	color: rgb(255, 255, 255);\n'
+            '}'
+        )
         self.centralwidget = QWidget(JanelaAluno)
         self.centralwidget.setObjectName('centralwidget')
         self.frame = QFrame(self.centralwidget)

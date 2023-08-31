@@ -72,6 +72,15 @@ class Ui_Professor(object):
             ':/icon/icon/professor.ico', QSize(), QIcon.Normal, QIcon.Off
         )
         Professor.setWindowIcon(icon)
+        Professor.setStyleSheet(
+            'QMessageBox{\n'
+            '	background-color: qlineargradient(spread:pad, x1:0, y1:0.341, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.994318 rgba(173, 82, 135, 118));\n'
+            '}\n'
+            'QMessageBox QLabel{\n'
+            '	font: 900 10pt "Arial Black";\n'
+            '	color: rgb(255, 255, 255);\n'
+            '}'
+        )
         self.centralwidget = QWidget(Professor)
         self.centralwidget.setObjectName('centralwidget')
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -479,12 +488,17 @@ class Ui_Professor(object):
         self.l_pg_pesquisar_pagamento.setAlignment(Qt.AlignCenter)
         self.pb_pg_pesquisar = QPushButton(self.frame_4)
         self.pb_pg_pesquisar.setObjectName('pb_pg_pesquisar')
-        self.pb_pg_pesquisar.setGeometry(QRect(143, 450, 75, 24))
+        self.pb_pg_pesquisar.setGeometry(QRect(143, 460, 75, 24))
         self.le_pg_pesquisar = QLineEdit(self.frame_4)
         self.le_pg_pesquisar.setObjectName('le_pg_pesquisar')
-        self.le_pg_pesquisar.setGeometry(QRect(105, 400, 151, 22))
+        self.le_pg_pesquisar.setGeometry(QRect(105, 420, 151, 22))
         self.le_pg_pesquisar.setMaxLength(11)
         self.le_pg_pesquisar.setAlignment(Qt.AlignCenter)
+        self.l_pg_pesquisar_matricula = QLabel(self.frame_4)
+        self.l_pg_pesquisar_matricula.setObjectName('l_pg_pesquisar_matricula')
+        self.l_pg_pesquisar_matricula.setGeometry(QRect(90, 380, 181, 22))
+        self.l_pg_pesquisar_matricula.setStyleSheet('')
+        self.l_pg_pesquisar_matricula.setAlignment(Qt.AlignCenter)
         self.label_62.raise_()
         self.label_63.raise_()
         self.label_59.raise_()
@@ -504,6 +518,7 @@ class Ui_Professor(object):
         self.l_pg_pesquisar_pagamento.raise_()
         self.pb_pg_pesquisar.raise_()
         self.le_pg_pesquisar.raise_()
+        self.l_pg_pesquisar_matricula.raise_()
         self.label_13 = QLabel(self.pagina_pesquisar_prof)
         self.label_13.setObjectName('label_13')
         self.label_13.setGeometry(QRect(534, 0, 4, 10))
@@ -603,15 +618,22 @@ class Ui_Professor(object):
         self.l_pg_excluir_pagamento.setAlignment(Qt.AlignCenter)
         self.pb_pg_excluir_pesquisar = QPushButton(self.frame_5)
         self.pb_pg_excluir_pesquisar.setObjectName('pb_pg_excluir_pesquisar')
-        self.pb_pg_excluir_pesquisar.setGeometry(QRect(143, 410, 75, 24))
+        self.pb_pg_excluir_pesquisar.setGeometry(QRect(143, 440, 75, 24))
         self.le_pg_excluir_pesquisar = QLineEdit(self.frame_5)
         self.le_pg_excluir_pesquisar.setObjectName('le_pg_excluir_pesquisar')
-        self.le_pg_excluir_pesquisar.setGeometry(QRect(105, 380, 151, 22))
+        self.le_pg_excluir_pesquisar.setGeometry(QRect(105, 410, 151, 22))
         self.le_pg_excluir_pesquisar.setMaxLength(11)
         self.le_pg_excluir_pesquisar.setAlignment(Qt.AlignCenter)
-        self.pushButton = QPushButton(self.frame_5)
-        self.pushButton.setObjectName('pushButton')
-        self.pushButton.setGeometry(QRect(143, 440, 75, 24))
+        self.pb_pg_excluir_excluir_dados = QPushButton(self.frame_5)
+        self.pb_pg_excluir_excluir_dados.setObjectName(
+            'pb_pg_excluir_excluir_dados'
+        )
+        self.pb_pg_excluir_excluir_dados.setGeometry(QRect(143, 470, 75, 24))
+        self.l_pg_excluir_matricula = QLabel(self.frame_5)
+        self.l_pg_excluir_matricula.setObjectName('l_pg_excluir_matricula')
+        self.l_pg_excluir_matricula.setGeometry(QRect(90, 380, 181, 22))
+        self.l_pg_excluir_matricula.setStyleSheet('')
+        self.l_pg_excluir_matricula.setAlignment(Qt.AlignCenter)
         self.label_67.raise_()
         self.label_68.raise_()
         self.label_64.raise_()
@@ -631,7 +653,8 @@ class Ui_Professor(object):
         self.l_pg_excluir_pagamento.raise_()
         self.pb_pg_excluir_pesquisar.raise_()
         self.le_pg_excluir_pesquisar.raise_()
-        self.pushButton.raise_()
+        self.pb_pg_excluir_excluir_dados.raise_()
+        self.l_pg_excluir_matricula.raise_()
         self.label_14 = QLabel(self.pagina_excluir)
         self.label_14.setObjectName('label_14')
         self.label_14.setGeometry(QRect(443, 0, 4, 10))
@@ -657,21 +680,23 @@ class Ui_Professor(object):
         )
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
-        self.pb_pg_pesquisar_2 = QPushButton(self.frame_6)
-        self.pb_pg_pesquisar_2.setObjectName('pb_pg_pesquisar_2')
-        self.pb_pg_pesquisar_2.setGeometry(QRect(143, 290, 75, 24))
-        self.le_pg_pesquisar_2 = QLineEdit(self.frame_6)
-        self.le_pg_pesquisar_2.setObjectName('le_pg_pesquisar_2')
-        self.le_pg_pesquisar_2.setGeometry(QRect(95, 210, 171, 22))
-        self.le_pg_pesquisar_2.setMaxLength(11)
-        self.le_pg_pesquisar_2.setAlignment(Qt.AlignCenter)
-        self.spinBox = QSpinBox(self.frame_6)
-        self.spinBox.setObjectName('spinBox')
-        self.spinBox.setGeometry(QRect(95, 250, 171, 22))
-        self.spinBox.setAlignment(Qt.AlignCenter)
-        self.spinBox.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.spinBox.setAccelerated(True)
-        self.spinBox.setMaximum(999999)
+        self.pb_pg_pagamentos_pagar = QPushButton(self.frame_6)
+        self.pb_pg_pagamentos_pagar.setObjectName('pb_pg_pagamentos_pagar')
+        self.pb_pg_pagamentos_pagar.setGeometry(QRect(143, 290, 75, 24))
+        self.le_pg_pagamentos = QLineEdit(self.frame_6)
+        self.le_pg_pagamentos.setObjectName('le_pg_pagamentos')
+        self.le_pg_pagamentos.setGeometry(QRect(95, 210, 171, 22))
+        self.le_pg_pagamentos.setMaxLength(11)
+        self.le_pg_pagamentos.setAlignment(Qt.AlignCenter)
+        self.sb_pg_pagamentos_valor = QSpinBox(self.frame_6)
+        self.sb_pg_pagamentos_valor.setObjectName('sb_pg_pagamentos_valor')
+        self.sb_pg_pagamentos_valor.setGeometry(QRect(95, 250, 171, 22))
+        self.sb_pg_pagamentos_valor.setAlignment(Qt.AlignCenter)
+        self.sb_pg_pagamentos_valor.setButtonSymbols(
+            QAbstractSpinBox.NoButtons
+        )
+        self.sb_pg_pagamentos_valor.setAccelerated(True)
+        self.sb_pg_pagamentos_valor.setMaximum(999999)
         self.label_2 = QLabel(self.page)
         self.label_2.setObjectName('label_2')
         self.label_2.setGeometry(QRect(263, 0, 4, 10))
@@ -792,6 +817,7 @@ class Ui_Professor(object):
         self.le_pg_pesquisar.setPlaceholderText(
             QCoreApplication.translate('Professor', 'Matr\u00edcula/CPF', None)
         )
+        self.l_pg_pesquisar_matricula.setText('')
         self.label_13.setText('')
         self.label_64.setText('')
         self.label_65.setText('')
@@ -816,17 +842,18 @@ class Ui_Professor(object):
         self.le_pg_excluir_pesquisar.setPlaceholderText(
             QCoreApplication.translate('Professor', 'Matr\u00edcula/CPF', None)
         )
-        self.pushButton.setText(
+        self.pb_pg_excluir_excluir_dados.setText(
             QCoreApplication.translate('Professor', 'Excluir', None)
         )
+        self.l_pg_excluir_matricula.setText('')
         self.label_14.setText('')
-        self.pb_pg_pesquisar_2.setText(
+        self.pb_pg_pagamentos_pagar.setText(
             QCoreApplication.translate('Professor', 'Pagar', None)
         )
-        self.le_pg_pesquisar_2.setPlaceholderText(
+        self.le_pg_pagamentos.setPlaceholderText(
             QCoreApplication.translate('Professor', 'Matr\u00edcula/CPF', None)
         )
-        self.spinBox.setPrefix(
+        self.sb_pg_pagamentos_valor.setPrefix(
             QCoreApplication.translate(
                 'Professor', 'Valor do pagamento: ', None
             )

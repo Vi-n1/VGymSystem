@@ -29,6 +29,15 @@
    <iconset resource="img.qrc">
     <normaloff>:/icon/icon/aluno.ico</normaloff>:/icon/icon/aluno.ico</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMessageBox{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.341, x2:0, y2:1, stop:0 rgba(0, 0, 0, 0), stop:0.994318 rgba(173, 82, 135, 118));
+}
+QMessageBox QLabel{
+	font: 900 10pt &quot;Arial Black&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
     <property name="geometry">
