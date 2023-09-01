@@ -76,6 +76,16 @@ if not os.path.exists(dir_db):
         data_entrada TEXT NOT NULL);
         """
     )
+    cursor.execute(
+        """
+        CREATE TABLE Pagamentos(
+        matricula INTEGER PRIMARY KEY,
+        mes_ano_pago TEXT,
+        FOREIGN KEY (matricula)
+        REFERENCES Professor (matricula_professor)
+        ON DELETE CASCADE);
+        """
+    )
     con.commit()
     cursor.execute("""INSERT INTO usuario VALUES ('admin', 'admin');""")
     con.commit()
