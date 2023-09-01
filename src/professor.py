@@ -48,6 +48,9 @@ class Professor(QMainWindow, Ui_Professor):
         # Atribuindo o método que faz o tratamento de dados e salva os dados no banco.
         self.pb_pg_novo_salvar_dados.clicked.connect(self.tratamento_dados)
 
+        # Atribuindo o método que faz o pagamento.
+        self.pb_pg_pagamentos_pagar.clicked.connect(self.efetuar_pagamento)
+
         self.pb_pg_pesquisar.clicked.connect(self.exibir_dados_pg_pesquisar)
         self.pb_pg_excluir_pesquisar.clicked.connect(
             self.exibir_dados_pg_excluir
@@ -137,6 +140,26 @@ class Professor(QMainWindow, Ui_Professor):
                 self.DATA_HOJE,
             ]
             self.salvar_dados(dados)
+
+    def efetuar_pagamento(self):
+        matricula = self.le_pg_pagamentos.text()
+        if len(matricula) == self.QUANTIDADE_NUM_MATRICULA:
+            data_pagamento = self.DATA_HOJE[3:]
+            transacao_aceita = self.vgymsystem_db.set_novo_pagamento(
+                matricula, data_pagamento
+            )
+            if transacao_aceita:
+                self.exibir_mensagem(
+                    'Pagamento efetuado', 'Pagamento efetuado com sucesso'
+                )
+            else:
+                self.exibir_mensagem(
+                    'Erro no pagamento', 'Digite novamente a matrícula'
+                )
+        else:
+            self.exibir_mensagem(
+                'Matrícula inválida', 'Digite novamente a matrícula'
+            )
 
     # Exibi dados na página de 'pesquisar'.
     def exibir_dados_pg_pesquisar(self):
