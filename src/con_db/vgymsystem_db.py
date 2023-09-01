@@ -173,6 +173,7 @@ class VGymSystemDB:
             data_entrada,
         ]
         self._set_novo_professor(*valores)
+        self._set_professor_tabela_pagamentos(matricula_professor)
 
     def get_nova_matricula_professor(self) -> int:
         """
@@ -332,6 +333,53 @@ class VGymSystemDB:
         """
         if matricula.isnumeric():
             self._excluir_aluno(matricula)
+
+    def set_novo_pagamento(self, matricula: str, data_pagamento: str) -> bool:
+        """
+        Adiciona a data que foi pago o salário do professor.
+        Args:
+            matricula (str): Matrícula do professor.
+            data_pagamento (str): Formato %m/%y.
+        Returns:
+            bool: Se a transação foi realizada com sucesso.
+        """
+        if matricula.isnumeric():
+            data_pagamento_formatada = '_' + data_pagamento
+            resultado_transacao = self._set_novo_pagamento(
+                matricula, data_pagamento_formatada
+            )
+            return resultado_transacao
+        else:
+            return False
+
+    def _set_novo_pagamento(self, matricula: str, data_pagamento: str) -> bool:
+        """
+        Acrescenta a data de pagamento com o formato -%m%y.
+        Args:
+            matricula (str): Matrícula do professor.
+            data_pagamento (str): Formato %m/%y.
+        Returns:
+            bool: Se a transação foi realizada com sucesso.
+        """
+        try:
+            sql = f"""
+                update 'Pagamentos' 
+                set mes_ano_pago = mes_ano_pago || '{data_pagamento}' 
+                where matricula == '{matricula}'
+                """
+            self._cursor.execute(sql)
+            self._con.commit()
+            return True
+        except sqlite3.OperationalError:
+            return False
+
+    def _set_professor_tabela_pagamentos(self, matricula: int):
+        try:
+            sql = 'INSERT INTO Pagamentos VALUES (?, ?)'
+            self._cursor.execute(sql, (matricula, ' '))
+            self._con.commit()
+        except sqlite3.IntegrityError as erro:
+            raise erro
 
     def _set_novo_aluno(self, *args: list) -> None:
         """
