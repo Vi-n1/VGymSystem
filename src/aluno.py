@@ -53,6 +53,10 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         # Atribuindo ao método que faz o tratamento de dados e salva os dados no banco.
         self.pb_salvar_dados.clicked.connect(self.tratamento_dados)
 
+        # Atribuindo ao método que faz o pagamento.
+        self.pb_pagar_pix.clicked.connect(self.efetuar_pagamento)
+        self.pb_imprimir_boleto.clicked.connect(self.efetuar_pagamento)
+
         # Atribuindo aos métodos de exibir dados.
         self.pb_pg_pagamentos_pesquisar.clicked.connect(
             self.exibir_dados_pg_pagamentos
@@ -326,6 +330,28 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     self.salvar_dados(dados)
             else:
                 self.salvar_dados(dados_aluno)
+
+    # Efetua o pagamento da pendência.
+    def efetuar_pagamento(self):
+        matricula = self.le_pagamentos.text()
+        quantidade_num_matricula = 5
+        if len(matricula) == quantidade_num_matricula:
+            data_pagamento = self.DATA_HOJE[3:]
+            transacao_aceita = self.vgymsystem_db.set_novo_pagamento_aluno(
+                matricula, data_pagamento
+            )
+            if transacao_aceita:
+                self.exibir_mensagem(
+                    'Pagamento efetuado', 'Pagamento efetuado com sucesso'
+                )
+            else:
+                self.exibir_mensagem(
+                    'Erro no pagamento', 'Digite novamente a matrícula'
+                )
+        else:
+            self.exibir_mensagem(
+                'Matrícula inválida', 'Digite novamente a matrícula'
+            )
 
     # Excluí o aluno do banco de dados.
     def excluir_aluno(self):
