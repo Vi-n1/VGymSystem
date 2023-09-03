@@ -58,6 +58,16 @@ if not os.path.exists(dir_db):
     )
     cursor.execute(
         """
+        CREATE TABLE PagamentoAluno(
+        matricula_aluno INTEGER PRIMARY KEY,
+        mes_ano_pago TEXT,
+        FOREIGN KEY (matricula_aluno)
+        REFERENCES Aluno (matricula_aluno)
+        ON DELETE CASCADE);
+        """
+    )
+    cursor.execute(
+        """
         CREATE TABLE Professor(
         matricula_professor INTEGER NOT NULL PRIMARY KEY,
         nome TEXT NOT NULL,
@@ -78,10 +88,10 @@ if not os.path.exists(dir_db):
     )
     cursor.execute(
         """
-        CREATE TABLE Pagamentos(
-        matricula INTEGER PRIMARY KEY,
+        CREATE TABLE PagamentoProfessor(
+        matricula_professor INTEGER PRIMARY KEY,
         mes_ano_pago TEXT,
-        FOREIGN KEY (matricula)
+        FOREIGN KEY (matricula_professor)
         REFERENCES Professor (matricula_professor)
         ON DELETE CASCADE);
         """
