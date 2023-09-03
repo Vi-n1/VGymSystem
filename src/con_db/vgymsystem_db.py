@@ -72,7 +72,8 @@ class VGymSystemDB:
             data_entrada,
             matricula_responsavel,
         ]
-        self._set_novo_aluno(*valores)
+        self._set_aluno(*valores)
+        self._set_aluno_tabela_pagamento(matricula_aluno)
 
     def set_novo_responsavel(
         self,
@@ -116,7 +117,7 @@ class VGymSystemDB:
             email,
             foto,
         ]
-        self._set_novo_responsavel(*valores)
+        self._set_responsavel(*valores)
 
     def set_novo_professor(
         self,
@@ -172,8 +173,8 @@ class VGymSystemDB:
             foto,
             data_entrada,
         ]
-        self._set_novo_professor(*valores)
-        self._set_professor_tabela_pagamentos(matricula_professor)
+        self._set_professor(*valores)
+        self._set_professor_tabela_pagamento(matricula_professor)
 
     def get_nova_matricula_professor(self) -> int:
         """
@@ -334,7 +335,29 @@ class VGymSystemDB:
         if matricula.isnumeric():
             self._excluir_aluno(matricula)
 
-    def set_novo_pagamento(self, matricula: str, data_pagamento: str) -> bool:
+    def set_novo_pagamento_aluno(
+        self, matricula: str, data_pagamento: str
+    ) -> bool:
+        """
+        Adiciona a data que foi pago a pendência do aluno.
+        Args:
+            matricula (str): Matrícula do aluno.
+            data_pagamento (str): Formato %m/%y.
+        Returns:
+            bool: Se a transação foi realizada com sucesso.
+        """
+        if matricula.isnumeric():
+            data_pagamento_formatada = '_' + data_pagamento
+            resultado_transacao = self._set_pagamento_aluno(
+                matricula, data_pagamento_formatada
+            )
+            return resultado_transacao
+        else:
+            return False
+
+    def set_novo_pagamento_professor(
+        self, matricula: str, data_pagamento: str
+    ) -> bool:
         """
         Adiciona a data que foi pago o salário do professor.
         Args:
@@ -345,14 +368,16 @@ class VGymSystemDB:
         """
         if matricula.isnumeric():
             data_pagamento_formatada = '_' + data_pagamento
-            resultado_transacao = self._set_novo_pagamento(
+            resultado_transacao = self._set_pagamento_professor(
                 matricula, data_pagamento_formatada
             )
             return resultado_transacao
         else:
             return False
 
-    def _set_novo_pagamento(self, matricula: str, data_pagamento: str) -> bool:
+    def _set_pagamento_professor(
+        self, matricula: str, data_pagamento: str
+    ) -> bool:
         """
         Acrescenta a data de pagamento com o formato -%m%y.
         Args:
@@ -363,9 +388,9 @@ class VGymSystemDB:
         """
         try:
             sql = f"""
-                update 'Pagamentos' 
+                update 'PagamentoProfessor' 
                 set mes_ano_pago = mes_ano_pago || '{data_pagamento}' 
-                where matricula == '{matricula}'
+                where matricula_professor == '{matricula}'
                 """
             self._cursor.execute(sql)
             self._con.commit()
@@ -373,15 +398,56 @@ class VGymSystemDB:
         except sqlite3.OperationalError:
             return False
 
-    def _set_professor_tabela_pagamentos(self, matricula: int):
+    def _set_pagamento_aluno(
+        self, matricula: str, data_pagamento: str
+    ) -> bool:
+        """
+        Acrescenta a data de pagamento com o formato -%m%y.
+        Args:
+            matricula (str): Matrícula do aluno.
+            data_pagamento (str): Formato %m/%y.
+        Returns:
+            bool: Se a transação foi realizada com sucesso.
+        """
         try:
-            sql = 'INSERT INTO Pagamentos VALUES (?, ?)'
+            sql = f"""
+                update 'PagamentoAluno' 
+                set mes_ano_pago = mes_ano_pago || '{data_pagamento}' 
+                where matricula_aluno == '{matricula}'
+                """
+            self._cursor.execute(sql)
+            self._con.commit()
+            return True
+        except sqlite3.OperationalError:
+            return False
+
+    def _set_professor_tabela_pagamento(self, matricula: int) -> None:
+        """
+        Salva a matrícula do professor na tabela PagamentoProfessor.
+        Args:
+            matricula (int): Matrícula do professor.
+        """
+        try:
+            sql = 'INSERT INTO PagamentoProfessor VALUES (?, ?)'
             self._cursor.execute(sql, (matricula, ' '))
             self._con.commit()
         except sqlite3.IntegrityError as erro:
             raise erro
 
-    def _set_novo_aluno(self, *args: list) -> None:
+    def _set_aluno_tabela_pagamento(self, matricula: int) -> None:
+        """
+        Salva a matrícula do aluno na tabela PagamentoAluno.
+        Args:
+            matricula (int): Matrícula do aluno.
+        """
+        try:
+            sql = 'INSERT INTO PagamentoAluno VALUES (?, ?)'
+            self._cursor.execute(sql, (matricula, ' '))
+            self._con.commit()
+        except sqlite3.IntegrityError as erro:
+            raise erro
+
+    def _set_aluno(self, *args: list) -> None:
         """
         Salva dados dum aluno.
         Args:
@@ -394,7 +460,7 @@ class VGymSystemDB:
         except sqlite3.IntegrityError as erro:
             raise erro
 
-    def _set_novo_responsavel(self, *args: list) -> None:
+    def _set_responsavel(self, *args: list) -> None:
         """
         Salva dados dum responsável.
         Args:
@@ -407,7 +473,7 @@ class VGymSystemDB:
         except sqlite3.IntegrityError as erro:
             raise erro
 
-    def _set_novo_professor(self, *args: list) -> None:
+    def _set_professor(self, *args: list) -> None:
         """
         Salva dados dum professor.
         Args:
