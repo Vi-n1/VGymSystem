@@ -141,11 +141,12 @@ class Professor(QMainWindow, Ui_Professor):
             ]
             self.salvar_dados(dados)
 
+    # Efetua o pagamento do salário.
     def efetuar_pagamento(self):
         matricula = self.le_pg_pagamentos.text()
         if len(matricula) == self.QUANTIDADE_NUM_MATRICULA:
             data_pagamento = self.DATA_HOJE[3:]
-            transacao_aceita = self.vgymsystem_db.set_novo_pagamento(
+            transacao_aceita = self.vgymsystem_db.set_novo_pagamento_professor(
                 matricula, data_pagamento
             )
             if transacao_aceita:
