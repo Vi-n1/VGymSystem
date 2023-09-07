@@ -422,10 +422,11 @@ class Ui_JanelaCentral(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_10)
 
-        self.label_4 = QLabel(self.f_status_horizontal)
-        self.label_4.setObjectName('label_4')
+        self.l_status_login = QLabel(self.f_status_horizontal)
+        self.l_status_login.setObjectName('l_status_login')
+        self.l_status_login.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_3.addWidget(self.label_4)
+        self.horizontalLayout_3.addWidget(self.l_status_login)
 
         self.horizontalSpacer_3 = QSpacerItem(
             40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum
@@ -547,10 +548,8 @@ class Ui_JanelaCentral(object):
                 None,
             )
         )
-        self.label_4.setText(
-            QCoreApplication.translate(
-                'JanelaCentral', '{Administrador}', None
-            )
+        self.l_status_login.setText(
+            QCoreApplication.translate('JanelaCentral', '{}', None)
         )
         self.label_2.setText(
             QCoreApplication.translate(

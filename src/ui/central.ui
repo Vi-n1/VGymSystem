@@ -698,9 +698,12 @@ QProgressBar::chunk {
            </spacer>
           </item>
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="l_status_login">
             <property name="text">
-             <string>{Administrador}</string>
+             <string>{}</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
