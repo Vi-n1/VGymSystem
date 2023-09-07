@@ -317,6 +317,17 @@ class VGymSystemDB:
                 dados = self._get_aluno_por_cpf(cpf)
                 return dados
 
+    def get_usuario(self) -> list:
+        """
+        Busca os dados do usuário.
+        Returns:
+            list: Usuário e senha.
+        """
+        sql = 'SELECT * From Usuario'
+        dados_brutos = self._cursor.execute(sql).fetchall()
+        dados_filtrados = list(dados_brutos[0])
+        return dados_filtrados
+
     def excluir_professor(self, matricula: str) -> None:
         """
         Exclui dados do professor.
