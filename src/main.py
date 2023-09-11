@@ -3,7 +3,7 @@ import sys
 from time import sleep
 import psutil
 from threading import Thread
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow
 from ui.central_ui import Ui_JanelaCentral
 from aluno import Aluno
 from professor import Professor

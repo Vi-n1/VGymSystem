@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from PySide6.QtWidgets import QMainWindow
 from _graficos_core import _GraficosCore as Core
 from ui.graficos_ui import Ui_Graficos
