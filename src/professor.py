@@ -264,3 +264,7 @@ class Professor(QMainWindow, Ui_Professor):
         erro.setWindowTitle(titulo)
         erro.setText(mensagem)
         erro.open()
+
+    # Se a janela for fechada a instância do banco de dados é fechado.
+    def closeEvent(self, event):
+        self.vgymsystem_db.fechar_db()
