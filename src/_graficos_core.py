@@ -1,4 +1,5 @@
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout
+# -*- coding: utf-8 -*-
+from PySide6.QtWidgets import QVBoxLayout
 from PySide6.QtCore import QEasingCurve, QPoint
 from PySide6.QtCharts import (
     QChart,
@@ -13,21 +14,19 @@ from PySide6.QtCharts import (
     QAbstractBarSeries,
 )
 from PySide6.QtGui import QPainter
-from ui.graficos_ui import Ui_Graficos
 
 
-class _GraficosCore(QMainWindow, Ui_Graficos):
+class _GraficosCore:
     """
     Classe que contém a implementação dos gráficos.
     """
 
     def __init__(self):
-        super().__init__()
         self._CORES = [
             '#4a1564',  # Magenta escuro
             '#a492ff',  # Magenta claro
             '#aaaaff',  # Azul magenta claro
-            '#55557f',  # Azul magenta
+            '#88c4a5',  # Verde limão
             '#ffffff',  # Branco
         ]
 
@@ -79,7 +78,7 @@ class _GraficosCore(QMainWindow, Ui_Graficos):
         # Exibição do gráfico.
         widget.addWidget(visualizacao_grafico)
 
-    def barra_linha(
+    def barra(
         self,
         titulo: str,
         titulo_y: str,
