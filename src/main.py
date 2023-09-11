@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from ui.central_ui import Ui_JanelaCentral
 from aluno import Aluno
 from professor import Professor
+from graficos import Graficos
 from con_db.vgymsystem_db import VGymSystemDB
 
 
@@ -20,6 +21,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         self.setupUi(self)
         self.janela_aluno = None
         self.janela_professor = None
+        self.janela_graficos = None
         self.aplicacao_ativa = True
         self.logado = False
         self.GIGABYTE = 1_000_000_000
@@ -30,6 +32,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         self.pb_pagina_cadastro.clicked.connect(
             lambda: self.stackedWidget.setCurrentIndex(3)
         )
+        self.pb_pagina_graficos.clicked.connect(self.exibir_janela_graficos)
         self.pb_aluno.clicked.connect(self.exibir_janela_aluno)
         self.pb_professor.clicked.connect(self.exibir_janela_professor)
         self.pb_confirmar_usuario.clicked.connect(self.logar)
@@ -52,6 +55,15 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         if self.logado:
             self.janela_professor = Professor()
             self.janela_professor.show()
+            self.showMinimized()
+        else:
+            self.erro_login()
+
+    # Cria uma instância da janela de Graficos e exibe.
+    def exibir_janela_graficos(self):
+        if self.logado:
+            self.janela_graficos = Graficos()
+            self.janela_graficos.show()
             self.showMinimized()
         else:
             self.erro_login()
@@ -85,7 +97,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             self.progress_bar_armazenamento.setValue(armazenamento_usado)
             sleep(1)
 
-    # se a janela for fechada a instância do banco de dados é fechado
+    # Se a janela for fechada a instância do banco de dados é fechado.
     def closeEvent(self, event):
         self.aplicacao_ativa = False
         self.vgymsystem_db.fechar_db()
