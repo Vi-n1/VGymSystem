@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QMainWindow, QMessageBox, QFileDialog
 from PySide6.QtGui import QPixmap
 from ui.professor_ui import Ui_Professor
 from con_db.vgymsystem_db import VGymSystemDB
+from util import exibir_mensagem, DATA_HOJE
 
 
 class Professor(QMainWindow, Ui_Professor):
@@ -14,9 +15,6 @@ class Professor(QMainWindow, Ui_Professor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
-        # Data de hoje.
-        self.DATA_HOJE = datetime.now().strftime('%d/%m/%y')
 
         # Constantes utilizadas para verificação de tamanho.
         self.QUANTIDADE_NUM_MATRICULA = 5
@@ -77,7 +75,8 @@ class Professor(QMainWindow, Ui_Professor):
             self.l_pg_novo_ad_foto.setPixmap(foto)
             self.binario_foto = imagem_montada
         else:
-            self.exibir_mensagem(
+            exibir_mensagem(
+                self,
                 titulo='Erro no carregamento imagem',
                 mensagem='Imagem não suportada, formatos aceitos: BMP, JPG, JPEG e PNG',
             )
@@ -85,30 +84,30 @@ class Professor(QMainWindow, Ui_Professor):
     # Verifica se os dados estão corretos e salva no banco.
     def tratamento_dados(self):
         if not self.le_pg_novo_nome.text().replace(' ', '').isalpha():
-            self.exibir_mensagem('Nome inválido', 'Digite novamente o nome')
+            exibir_mensagem(self, 'Nome inválido', 'Digite novamente o nome')
         elif not self.le_pg_novo_cpf.text().isnumeric():
-            self.exibir_mensagem('CPF inválido', 'Digite novamente o CPF')
+            exibir_mensagem(self, 'CPF inválido', 'Digite novamente o CPF')
         elif not self.le_pg_novo_celular.text().isnumeric():
-            self.exibir_mensagem(
-                'Número inválido', 'Digite novamente o número do celular'
+            exibir_mensagem(
+                self, 'Número inválido', 'Digite novamente o número do celular'
             )
         elif self.le_pg_novo_email.text().replace(' ', '').count('@') != 1:
-            self.exibir_mensagem(
-                'E-mail inválido', 'Digite novamente o e-mail'
+            exibir_mensagem(
+                self, 'E-mail inválido', 'Digite novamente o e-mail'
             )
         elif not self.le_pg_novo_cidade.text().replace(' ', '').isalpha():
-            self.exibir_mensagem(
-                'Cidade inválida', 'Digite novamente o nome da cidade'
+            exibir_mensagem(
+                self, 'Cidade inválida', 'Digite novamente o nome da cidade'
             )
         elif not self.le_pg_novo_bairro.text().replace(' ', '').isalpha():
-            self.exibir_mensagem(
-                'Bairro inválido', 'Digite novamente o nome do bairro'
+            exibir_mensagem(
+                self, 'Bairro inválido', 'Digite novamente o nome do bairro'
             )
         elif not self.le_pg_novo_cep.text().isnumeric():
-            self.exibir_mensagem('CEP inválido', 'Digite novamente o CEP')
+            exibir_mensagem(self, 'CEP inválido', 'Digite novamente o CEP')
         elif not self.combobox_novo_formacao.currentIndex() >= 0:
-            self.exibir_mensagem(
-                'Formação acadêmica inválido', 'Selecione uma das opções'
+            exibir_mensagem(
+                self, 'Formação acadêmica inválido', 'Selecione uma das opções'
             )
         else:
             # Retira os espaços em branco.
@@ -137,7 +136,7 @@ class Professor(QMainWindow, Ui_Professor):
                 self.sb_pg_novo_salario.value(),
                 self.sb_pg_novo_pagamento.value(),
                 self.binario_foto,
-                self.DATA_HOJE,
+                DATA_HOJE,
             ]
             self.salvar_dados(dados)
 
@@ -145,21 +144,23 @@ class Professor(QMainWindow, Ui_Professor):
     def efetuar_pagamento(self):
         matricula = self.le_pg_pagamentos.text()
         if len(matricula) == self.QUANTIDADE_NUM_MATRICULA:
-            data_pagamento = self.DATA_HOJE[3:]
+            data_pagamento = DATA_HOJE[3:]
             transacao_aceita = self.vgymsystem_db.set_novo_pagamento_professor(
                 matricula, data_pagamento
             )
             if transacao_aceita:
-                self.exibir_mensagem(
-                    'Pagamento efetuado', 'Pagamento efetuado com sucesso'
+                exibir_mensagem(
+                    self,
+                    'Pagamento efetuado',
+                    'Pagamento efetuado com sucesso',
                 )
             else:
-                self.exibir_mensagem(
-                    'Erro no pagamento', 'Digite novamente a matrícula'
+                exibir_mensagem(
+                    self, 'Erro no pagamento', 'Digite novamente a matrícula'
                 )
         else:
-            self.exibir_mensagem(
-                'Matrícula inválida', 'Digite novamente a matrícula'
+            exibir_mensagem(
+                self, 'Matrícula inválida', 'Digite novamente a matrícula'
             )
 
     # Exibi dados na página de 'pesquisar'.
@@ -238,8 +239,8 @@ class Professor(QMainWindow, Ui_Professor):
 
         # Se não tiver nenhum cadastro é exibido uma mensagem de erro.
         if dados is None:
-            self.exibir_mensagem(
-                'Dados inexistente', 'Nenhum aluno cadastrado'
+            exibir_mensagem(
+                self, 'Dados inexistente', 'Nenhum aluno cadastrado'
             )
             return []
         else:
@@ -257,13 +258,6 @@ class Professor(QMainWindow, Ui_Professor):
         dados_tratados.insert(0, matricula)
 
         self.vgymsystem_db.set_novo_professor(*dados_tratados)
-
-    # Exibi uma mensagem passada por parâmetro.
-    def exibir_mensagem(self, titulo, mensagem) -> None:
-        erro = QMessageBox(self)
-        erro.setWindowTitle(titulo)
-        erro.setText(mensagem)
-        erro.open()
 
     # Se a janela for fechada a instância do banco de dados é fechado.
     def closeEvent(self, event):

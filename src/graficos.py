@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QMainWindow
 from _graficos_core import _GraficosCore as Core
 from ui.graficos_ui import Ui_Graficos
 from con_db.vgymsystem_db import VGymSystemDB
+from util import DATA_HOJE
 
 
 class Graficos(QMainWindow, Core, Ui_Graficos):
@@ -22,8 +23,6 @@ class Graficos(QMainWindow, Core, Ui_Graficos):
         # Dados dos professores.
         self.professores = []
         self.pagamentos_professores = []
-
-        self.DATA = datetime.now().strftime('%d/%m/%y')
 
         # Instância do banco.
         self.vgymsystem_db = VGymSystemDB()
@@ -108,7 +107,7 @@ class Graficos(QMainWindow, Core, Ui_Graficos):
 
         # Verifica se tem algum pagamento.
         if pago:
-            titulo = f'Salários do Mês {self.DATA[3:]}'
+            titulo = f'Salários do Mês {DATA_HOJE[3:]}'
             nomes_fatias = [f'Pago [{pago}]', f'Não Pago [{nao_pago}]']
             valores = [pago, nao_pago]
 
@@ -122,7 +121,7 @@ class Graficos(QMainWindow, Core, Ui_Graficos):
 
         # Verifica se tem algum pagamento.
         if paga:
-            titulo = f'Matrículas do Mês {self.DATA[3:]}'
+            titulo = f'Matrículas do Mês {DATA_HOJE[3:]}'
             nomes_fatias = [f'Pagas [{paga}]', f'Não Pagas [{nao_paga}]']
             valores = [paga, nao_paga]
 
@@ -199,7 +198,7 @@ class Graficos(QMainWindow, Core, Ui_Graficos):
             nao_pago = 0
 
             # Mês e ano atual.
-            mes_ano_atual = self.DATA[3:]
+            mes_ano_atual = DATA_HOJE[3:]
 
             # Índice do mês.
             index_mes = 1

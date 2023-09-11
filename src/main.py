@@ -9,6 +9,7 @@ from aluno import Aluno
 from professor import Professor
 from graficos import Graficos
 from con_db.vgymsystem_db import VGymSystemDB
+from util import exibir_mensagem
 
 
 class VgymSystem(QMainWindow, Ui_JanelaCentral):
@@ -25,6 +26,8 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         self.aplicacao_ativa = True
         self.logado = False
         self.GIGABYTE = 1_000_000_000
+        self.TITULO_MSG_ERRO = 'Erro no usuário'
+        self.MSG_ERRO = 'Usuário não autorizado'
         self.vgymsystem_db = VGymSystemDB()
         self.pb_pagina_login.clicked.connect(
             lambda: self.stackedWidget.setCurrentIndex(2)
@@ -48,7 +51,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             self.janela_aluno.show()
             self.showMinimized()
         else:
-            self.erro_login()
+            exibir_mensagem(self, self.TITULO_MSG_ERRO, self.MSG_ERRO)
 
     # Cria uma instância da janela de professor e exibe.
     def exibir_janela_professor(self):
@@ -57,7 +60,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             self.janela_professor.show()
             self.showMinimized()
         else:
-            self.erro_login()
+            exibir_mensagem(self, self.TITULO_MSG_ERRO, self.MSG_ERRO)
 
     # Cria uma instância da janela de Graficos e exibe.
     def exibir_janela_graficos(self):
@@ -66,7 +69,7 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
             self.janela_graficos.show()
             self.showMinimized()
         else:
-            self.erro_login()
+            exibir_mensagem(self, self.TITULO_MSG_ERRO, self.MSG_ERRO)
 
     # Realiza o login no sistema.
     def logar(self):
@@ -76,13 +79,6 @@ class VgymSystem(QMainWindow, Ui_JanelaCentral):
         if usuario_informado == usuario and senha_informada == senha:
             self.logado = True
             self.l_status_login.setText(f'{{usuario}}')
-
-    # Exibi uma mensagem de erro.
-    def erro_login(self):
-        erro = QMessageBox(self)
-        erro.setWindowTitle('Erro no usuário')
-        erro.setText('Usuário não autorizado')
-        erro.open()
 
     # Método responsável por acrescentar informações do uso dos recursos do computador.
     def informacoes_recursos_sistema(self):

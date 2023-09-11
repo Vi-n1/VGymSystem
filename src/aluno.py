@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-from PySide6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QFileDialog
 from PySide6.QtGui import QPixmap
 from ui.aluno_ui import Ui_JanelaAluno
 from con_db.vgymsystem_db import VGymSystemDB
+from util import exibir_mensagem, DATA_HOJE
 
 
 class Aluno(QMainWindow, Ui_JanelaAluno):
@@ -14,8 +15,6 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # Data de hoje
-        self.DATA_HOJE = datetime.now().strftime('%d/%m/%y')
         # Binário das fotos.
         self.binario_foto_aluno = ''
         self.binario_foto_responsavel = ''
@@ -86,7 +85,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             self.l_foto_aluno.setPixmap(foto)
             self.binario_foto_aluno = imagem_montada
         else:
-            self.exibir_mensagem(
+            exibir_mensagem(
+                self,
                 titulo='Erro no carregamento imagem',
                 mensagem='Imagem não suportada, formatos aceitos: BMP, JPG, JPEG e PNG',
             )
@@ -107,7 +107,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
             self.l_foto_responsavel.setPixmap(foto)
             self.binario_foto_responsavel = imagem_montada
         else:
-            self.exibir_mensagem(
+            exibir_mensagem(
+                self,
                 titulo='Erro no carregamento imagem',
                 mensagem='Imagem não suportada, formatos aceitos: BMP, JPG, JPEG e PNG',
             )
@@ -130,43 +131,48 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
         # Verifica se tem algum número no nome.
         if not self.le_nome_aluno.text().replace(' ', '').isalpha():
-            self.exibir_mensagem(
-                'Nome inválido', 'Digite novamente o nome do aluno'
+            exibir_mensagem(
+                self, 'Nome inválido', 'Digite novamente o nome do aluno'
             )
 
         # Verifica a quantidade de valores digitado.
         elif len(self.le_cpf_aluno.text()) < self.NUM_MAXIMO_VALOR_ACEITO:
-            self.exibir_mensagem(
-                'CPF inválido', 'Digite novamente o CPF do aluno'
+            exibir_mensagem(
+                self, 'CPF inválido', 'Digite novamente o CPF do aluno'
             )
         elif len(self.le_celular_aluno.text()) < self.NUM_MAXIMO_VALOR_ACEITO:
-            self.exibir_mensagem(
+            exibir_mensagem(
+                self,
                 'Número inválido',
                 'Digite novamente o número de celular do aluno',
             )
 
         # Verifica se tem algum número no nome.
         elif not self.le_bairro_aluno.text().replace(' ', '').isalpha():
-            self.exibir_mensagem(
-                'Bairro inválido', 'Digite novamente o nome do bairro do aluno'
+            exibir_mensagem(
+                self,
+                'Bairro inválido',
+                'Digite novamente o nome do bairro do aluno',
             )
 
         # Verifica a quantidade de valores digitado.
         elif len(self.le_cep_aluno.text()) < self.NUM_MAXIMO_CEP:
-            self.exibir_mensagem(
-                'CEP inválido', 'Digite novamente o CEP do aluno'
+            exibir_mensagem(
+                self, 'CEP inválido', 'Digite novamente o CEP do aluno'
             )
 
         # Verifica se tem algum número no nome.
         elif not self.le_cidade_aluno.text().replace(' ', '').isalpha():
-            self.exibir_mensagem(
-                'Cidade inválida', 'Digite novamente o nome da cidade do aluno'
+            exibir_mensagem(
+                self,
+                'Cidade inválida',
+                'Digite novamente o nome da cidade do aluno',
             )
 
         # Verifica se tem algum arroba no nome.
         elif self.le_email_aluno.text().count('@') != 1:
-            self.exibir_mensagem(
-                'E-mail inválido', 'Digite novamente o e-mail do aluno'
+            exibir_mensagem(
+                self, 'E-mail inválido', 'Digite novamente o e-mail do aluno'
             )
 
         else:
@@ -208,7 +214,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                 self.sb_data_pagamento.value(),
                 self.sb_valor_pagamento.value(),
                 self.binario_foto_aluno,
-                self.DATA_HOJE,
+                DATA_HOJE,
             ]
             if not self.cb_responsavel.isChecked():
 
@@ -218,7 +224,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     .replace(' ', '')
                     .isalpha()
                 ):
-                    self.exibir_mensagem(
+                    exibir_mensagem(
+                        self,
                         'Nome inválido',
                         'Digite novamente o nome do responsável',
                     )
@@ -228,14 +235,17 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     len(self.le_cpf_responsavel.text())
                     < self.NUM_MAXIMO_VALOR_ACEITO
                 ):
-                    self.exibir_mensagem(
-                        'CPF inválido', 'Digite novamente o CPF do responsável'
+                    exibir_mensagem(
+                        self,
+                        'CPF inválido',
+                        'Digite novamente o CPF do responsável',
                     )
                 elif (
                     len(self.le_celular_responsavel.text())
                     < self.NUM_MAXIMO_VALOR_ACEITO
                 ):
-                    self.exibir_mensagem(
+                    exibir_mensagem(
+                        self,
                         'Número inválido',
                         'Digite novamente o número de celular do responsável',
                     )
@@ -246,15 +256,18 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     .replace(' ', '')
                     .isalpha()
                 ):
-                    self.exibir_mensagem(
+                    exibir_mensagem(
+                        self,
                         'Bairro inválido',
                         'Digite novamente o nome do bairro do responsável',
                     )
 
                 # Verifica a quantidade de valores digitado.
                 elif len(self.le_cep_responsavel.text()) < self.NUM_MAXIMO_CEP:
-                    self.exibir_mensagem(
-                        'CEP inválido', 'Digite novamente o CEP do responsável'
+                    exibir_mensagem(
+                        self,
+                        'CEP inválido',
+                        'Digite novamente o CEP do responsável',
                     )
 
                 # Verifica se tem algum número no nome.
@@ -263,14 +276,16 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
                     .replace(' ', '')
                     .isalpha()
                 ):
-                    self.exibir_mensagem(
+                    exibir_mensagem(
+                        self,
                         'Cidade inválida',
                         'Digite novamente o nome da cidade do responsável',
                     )
 
                 # Verifica se tem algum arroba no nome.
                 elif self.le_email_responsavel.text().count('@') != 1:
-                    self.exibir_mensagem(
+                    exibir_mensagem(
+                        self,
                         'E-mail inválido',
                         'Digite novamente o e-mail do responsável',
                     )
@@ -335,21 +350,23 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
         matricula = self.le_pagamentos.text()
         quantidade_num_matricula = 5
         if len(matricula) == quantidade_num_matricula:
-            data_pagamento = self.DATA_HOJE[3:]
+            data_pagamento = DATA_HOJE[3:]
             transacao_aceita = self.vgymsystem_db.set_novo_pagamento_aluno(
                 matricula, data_pagamento
             )
             if transacao_aceita:
-                self.exibir_mensagem(
-                    'Pagamento efetuado', 'Pagamento efetuado com sucesso'
+                exibir_mensagem(
+                    self,
+                    'Pagamento efetuado',
+                    'Pagamento efetuado com sucesso',
                 )
             else:
-                self.exibir_mensagem(
-                    'Erro no pagamento', 'Digite novamente a matrícula'
+                exibir_mensagem(
+                    self, 'Erro no pagamento', 'Digite novamente a matrícula'
                 )
         else:
-            self.exibir_mensagem(
-                'Matrícula inválida', 'Digite novamente a matrícula'
+            exibir_mensagem(
+                self, 'Matrícula inválida', 'Digite novamente a matrícula'
             )
 
     # Excluí o aluno do banco de dados.
@@ -451,8 +468,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
         # Se não tiver nenhum aluno cadastrado a variável é none.
         if dados is None:
-            self.exibir_mensagem(
-                'Dados inexistente', 'Nenhum aluno cadastrado'
+            exibir_mensagem(
+                self, 'Dados inexistente', 'Nenhum aluno cadastrado'
             )
             return []
         else:
@@ -489,7 +506,7 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
             # Inserindo dados do aluno dependente e obtendo o resultado da transação.
             self.vgymsystem_db.set_novo_aluno(*dados_tratados[0])
-            self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
+            exibir_mensagem(self, 'Sucesso', 'Dados salvos com sucesso')
 
         else:
             matricula_aluno = self.vgymsystem_db.get_nova_matricula_aluno()
@@ -503,15 +520,8 @@ class Aluno(QMainWindow, Ui_JanelaAluno):
 
             # Inserindo dados do aluno independente e obtendo o resultado da transação.
             self.vgymsystem_db.set_novo_aluno(*dados_tratados)
-            self.exibir_mensagem('Sucesso', 'Dados salvos com sucesso')
+            exibir_mensagem(self, 'Sucesso', 'Dados salvos com sucesso')
 
     # Se a janela for fechada a instância do banco de dados é fechado.
     def closeEvent(self, event):
         self.vgymsystem_db.fechar_db()
-
-    # Exibi uma mensagem passada por parâmetro.
-    def exibir_mensagem(self, titulo, mensagem) -> None:
-        erro = QMessageBox(self)
-        erro.setWindowTitle(titulo)
-        erro.setText(mensagem)
-        erro.open()
