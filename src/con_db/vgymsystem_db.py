@@ -328,6 +328,46 @@ class VGymSystemDB:
         dados_filtrados = list(dados_brutos[0])
         return dados_filtrados
 
+    def get_alunos(self) -> list:
+        """
+        Busca os dados dos alunos.
+        Returns:
+            list: Dados e pagamentos dos alunos.
+        """
+        sql = 'SELECT * FROM Aluno'
+        dados = self._cursor.execute(sql).fetchall()
+        return dados
+
+    def get_professores(self) -> list:
+        """
+        Busca os dados dos professores.
+        Returns:
+            list: Dados dos professores.
+        """
+        sql = 'SELECT * FROM Professor'
+        dados = self._cursor.execute(sql).fetchall()
+        return dados
+
+    def get_pagamentos_alunos(self) -> list:
+        """
+        Busca os pagamentos dos alunos.
+        Returns:
+            list: Pagamentos dos alunos.
+        """
+        sql = 'SELECT * FROM PagamentoAluno'
+        dados = self._cursor.execute(sql).fetchall()
+        return dados
+
+    def get_pagamentos_professores(self):
+        """
+        Busca os pagamentos dos professores.
+        Returns:
+            list: Pagamentos dos professores.
+        """
+        sql = 'SELECT * FROM PagamentoProfessor'
+        dados = self._cursor.execute(sql).fetchall()
+        return dados
+
     def excluir_professor(self, matricula: str) -> None:
         """
         Exclui dados do professor.
@@ -358,7 +398,7 @@ class VGymSystemDB:
             bool: Se a transação foi realizada com sucesso.
         """
         if matricula.isnumeric():
-            data_pagamento_formatada = '_' + data_pagamento
+            data_pagamento_formatada = '\x20' + data_pagamento
             resultado_transacao = self._set_pagamento_aluno(
                 matricula, data_pagamento_formatada
             )
@@ -378,7 +418,7 @@ class VGymSystemDB:
             bool: Se a transação foi realizada com sucesso.
         """
         if matricula.isnumeric():
-            data_pagamento_formatada = '_' + data_pagamento
+            data_pagamento_formatada = '\x20' + data_pagamento
             resultado_transacao = self._set_pagamento_professor(
                 matricula, data_pagamento_formatada
             )
@@ -390,7 +430,7 @@ class VGymSystemDB:
         self, matricula: str, data_pagamento: str
     ) -> bool:
         """
-        Acrescenta a data de pagamento com o formato -%m%y.
+        Acrescenta a data de pagamento com o formato \x20%m%y.
         Args:
             matricula (str): Matrícula do professor.
             data_pagamento (str): Formato %m/%y.
@@ -413,7 +453,7 @@ class VGymSystemDB:
         self, matricula: str, data_pagamento: str
     ) -> bool:
         """
-        Acrescenta a data de pagamento com o formato -%m%y.
+        Acrescenta a data de pagamento com o formato \x20%m%y.
         Args:
             matricula (str): Matrícula do aluno.
             data_pagamento (str): Formato %m/%y.
@@ -565,15 +605,37 @@ class VGymSystemDB:
         """
         Exclui  os dados do aluno.
         Args:
-            matricula (str): Matrícula do responsável.
+            matricula (str): Matrícula do responsável pelo o aluno.
         """
-        sql_responsavel = (
-            f'DELETE FROM Aluno WHERE matricula_responsavel == "{matricula}"'
-        )
-        sql_aluno = f'DELETE FROM Aluno WHERE matricula_aluno == "{matricula}"'
-        self._cursor.execute(sql_responsavel)
-        self._cursor.execute(sql_aluno)
-        self._con.commit()
+        # Busca a matrícula do aluno.
+        sql_matricula_aluno = f'SELECT matricula_aluno FROM Aluno WHERE matricula_aluno == "{matricula}"'
+        matricula_aluno = self._cursor.execute(sql_matricula_aluno).fetchall()
+
+        # Se tiver algum valor a matrícula pertence ao aluno.
+        if matricula_aluno:
+
+            # A exclusão do aluno exclui também da tabela PagamentoAluno.
+            sql_aluno = (
+                f'DELETE FROM Aluno WHERE matricula_aluno == "{matricula}"'
+            )
+            self._cursor.execute(sql_aluno)
+            self._con.commit()
+
+        # A matrícula pertence a um responsável.
+        else:
+
+            # A matrícula do aluno é a chave estrangeira da tabela PagamentoAluno.
+            sql_matricula_pagamento = f'SELECT matricula_aluno FROM Aluno WHERE matricula_responsavel == "{matricula}"'
+            matricula_pagamento = self._cursor.execute(
+                sql_matricula_pagamento
+            ).fetchall()[0][0]
+
+            # A exclusão de um dos dois exclui o aluno da tabela Aluno.
+            sql_responsavel = f'DELETE FROM Responsavel WHERE matricula_responsavel == "{matricula}"'
+            sql_pagamentos = f'DELETE FROM PagamentoAluno WHERE matricula_aluno == "{matricula_pagamento}"'
+            self._cursor.execute(sql_responsavel)
+            self._cursor.execute(sql_pagamentos)
+            self._con.commit()
 
     def fechar_db(self):
         """
