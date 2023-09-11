@@ -295,7 +295,7 @@ QToolTip{
 }</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_21">
@@ -677,38 +677,17 @@ QLabel{
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
-       <widget class="QPushButton" name="pb_pagar_pix">
+       <widget class="QPushButton" name="pb_pagar">
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>460</y>
+          <x>129</x>
+          <y>410</y>
           <width>101</width>
           <height>24</height>
          </rect>
         </property>
         <property name="text">
-         <string>Pagar com Pix</string>
-        </property>
-        <property name="icon">
-         <iconset resource="img.qrc">
-          <normaloff>:/grobal/img/pix.png</normaloff>:/grobal/img/pix.png</iconset>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_imprimir_boleto">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>460</y>
-          <width>111</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Imprimir boleto</string>
-        </property>
-        <property name="icon">
-         <iconset resource="img.qrc">
-          <normaloff>:/grobal/img/imprimir.png</normaloff>:/grobal/img/imprimir.png</iconset>
+         <string>Pagar</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_24">
@@ -758,8 +737,7 @@ QLabel{
        <zorder>l_pg_pagamentos_data_pagamento</zorder>
        <zorder>l_pg_pagamentos_valor</zorder>
        <zorder>l_pg_pagamentos_responsavel</zorder>
-       <zorder>pb_pagar_pix</zorder>
-       <zorder>pb_imprimir_boleto</zorder>
+       <zorder>pb_pagar</zorder>
       </widget>
       <widget class="QLabel" name="label_34">
        <property name="geometry">

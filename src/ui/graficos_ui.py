@@ -73,7 +73,7 @@ class Ui_Graficos(object):
         self.frame_2.setStyleSheet(
             'QChartView{\n'
             '	border-radius: 5%;\n'
-            '	background-color: rgb(62, 66, 84);\n'
+            '	background-color: rgb(78, 78, 117);\n'
             '}'
         )
         self.frame_2.setFrameShape(QFrame.StyledPanel)

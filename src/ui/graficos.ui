@@ -52,7 +52,7 @@
       <property name="styleSheet">
        <string notr="true">QChartView{
 	border-radius: 5%;
-	background-color: rgb(62, 66, 84);
+	background-color: rgb(78, 78, 117);
 }</string>
       </property>
       <property name="frameShape">

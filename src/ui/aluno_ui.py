@@ -357,20 +357,9 @@ class Ui_JanelaAluno(object):
         self.l_pg_pagamentos_responsavel.setGeometry(QRect(114, 370, 131, 20))
         self.l_pg_pagamentos_responsavel.setStyleSheet('')
         self.l_pg_pagamentos_responsavel.setAlignment(Qt.AlignCenter)
-        self.pb_pagar_pix = QPushButton(self.frame_3)
-        self.pb_pagar_pix.setObjectName('pb_pagar_pix')
-        self.pb_pagar_pix.setGeometry(QRect(190, 460, 101, 24))
-        icon1 = QIcon()
-        icon1.addFile(':/grobal/img/pix.png', QSize(), QIcon.Normal, QIcon.Off)
-        self.pb_pagar_pix.setIcon(icon1)
-        self.pb_imprimir_boleto = QPushButton(self.frame_3)
-        self.pb_imprimir_boleto.setObjectName('pb_imprimir_boleto')
-        self.pb_imprimir_boleto.setGeometry(QRect(70, 460, 111, 24))
-        icon2 = QIcon()
-        icon2.addFile(
-            ':/grobal/img/imprimir.png', QSize(), QIcon.Normal, QIcon.Off
-        )
-        self.pb_imprimir_boleto.setIcon(icon2)
+        self.pb_pagar = QPushButton(self.frame_3)
+        self.pb_pagar.setObjectName('pb_pagar')
+        self.pb_pagar.setGeometry(QRect(129, 410, 101, 24))
         self.label_24 = QLabel(self.frame_3)
         self.label_24.setObjectName('label_24')
         self.label_24.setGeometry(QRect(0, 130, 111, 4))
@@ -394,8 +383,7 @@ class Ui_JanelaAluno(object):
         self.l_pg_pagamentos_data_pagamento.raise_()
         self.l_pg_pagamentos_valor.raise_()
         self.l_pg_pagamentos_responsavel.raise_()
-        self.pb_pagar_pix.raise_()
-        self.pb_imprimir_boleto.raise_()
+        self.pb_pagar.raise_()
         self.label_34 = QLabel(self.page)
         self.label_34.setObjectName('label_34')
         self.label_34.setGeometry(QRect(710, 220, 111, 4))
@@ -1171,14 +1159,14 @@ class Ui_JanelaAluno(object):
         self.pb_excluir_aluno = QPushButton(self.frame_5)
         self.pb_excluir_aluno.setObjectName('pb_excluir_aluno')
         self.pb_excluir_aluno.setGeometry(QRect(143, 440, 75, 24))
-        icon3 = QIcon()
-        icon3.addFile(
+        icon1 = QIcon()
+        icon1.addFile(
             ':/cadastro/img/excluir-aluno.png',
             QSize(),
             QIcon.Normal,
             QIcon.Off,
         )
-        self.pb_excluir_aluno.setIcon(icon3)
+        self.pb_excluir_aluno.setIcon(icon1)
         self.label_31 = QLabel(self.frame_5)
         self.label_31.setObjectName('label_31')
         self.label_31.setGeometry(QRect(0, 50, 111, 4))
@@ -1501,7 +1489,7 @@ class Ui_JanelaAluno(object):
 
         self.retranslateUi(JanelaAluno)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
         QMetaObject.connectSlotsByName(JanelaAluno)
 
@@ -1605,11 +1593,8 @@ class Ui_JanelaAluno(object):
         )
         # endif // QT_CONFIG(tooltip)
         self.l_pg_pagamentos_responsavel.setText('')
-        self.pb_pagar_pix.setText(
-            QCoreApplication.translate('JanelaAluno', 'Pagar com Pix', None)
-        )
-        self.pb_imprimir_boleto.setText(
-            QCoreApplication.translate('JanelaAluno', 'Imprimir boleto', None)
+        self.pb_pagar.setText(
+            QCoreApplication.translate('JanelaAluno', 'Pagar', None)
         )
         self.label_24.setText('')
         self.label_25.setText('')
