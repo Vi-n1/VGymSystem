@@ -42,10 +42,6 @@ python main.py
 
 - **Usuário e senha**: admin
 
-## Status do software
-
-### Em desenvolvimento
-
 ## Janelas:
 ### Central
 ![Central](https://github.com/Vi-n1/VGymSystem/assets/138793693/edec9146-43b1-4a9e-a310-f8bf585567f4)
