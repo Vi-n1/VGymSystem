@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Dashboard</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/grobal/img/grafico.png</normaloff>:/grobal/img/grafico.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="minimumSize">
     <size>
@@ -127,6 +131,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="img.qrc"/>
+ </resources>
  <connections/>
 </ui>

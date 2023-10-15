@@ -50,6 +50,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from .img_rc import *
 
 
 class Ui_Graficos(object):
@@ -58,6 +59,11 @@ class Ui_Graficos(object):
             Graficos.setObjectName('Graficos')
         Graficos.resize(800, 600)
         Graficos.setMinimumSize(QSize(800, 600))
+        icon = QIcon()
+        icon.addFile(
+            ':/grobal/img/grafico.png', QSize(), QIcon.Normal, QIcon.Off
+        )
+        Graficos.setWindowIcon(icon)
         self.centralwidget = QWidget(Graficos)
         self.centralwidget.setObjectName('centralwidget')
         self.centralwidget.setMinimumSize(QSize(800, 600))
